@@ -1,6 +1,6 @@
 # OBX WEB Lab
 
-WordPress development for OBX Web Lab website environment using Docker.
+WordPress development for Staged website environment using Docker.
 
 ## Setup
 

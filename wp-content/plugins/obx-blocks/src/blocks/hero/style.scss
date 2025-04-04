@@ -1,0 +1,184 @@
+/**
+ * Hero block styles for both editor and frontend
+ */
+
+@use "sass:color";
+@use "../../scss/index" as *;
+
+.obx-hero {
+  
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  overflow: hidden;
+  @include alignment-classes;
+
+  @media (max-width: 768px) {
+    min-height: 400px;
+    padding: 40px 20px;
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    transform-origin: center;
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5); // Default overlay
+  }
+
+  &__container {
+    width: 100%;
+    z-index: 1;
+    color: $color-secondary;
+    @include responsive-container;
+    max-width: $container-max-width;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: inherit;
+    text-align: center;
+    @include responsive-container;
+
+    &.text-left {
+      text-align: left;
+
+      .obx-hero__buttons {
+        justify-content: flex-start;
+      }
+    }
+
+    &.text-center {
+      text-align: center;
+
+      .obx-hero__buttons {
+        justify-content: center;
+      }
+    }
+
+    &.text-right {
+      text-align: right;
+
+      .obx-hero__buttons {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 4.5rem;
+    font-family: var(--font-catalonia);
+    font-weight: 100;
+    margin: 9rem 0 2rem;
+    color: inherit;
+  }
+
+
+  &__text {
+    font-family: var(--font-futura-light);
+    text-transform: uppercase;
+    font-size: 3.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    margin-top: 2.7rem;
+    font-weight: 100;
+    color: inherit;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: $spacing-xl;
+
+    
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 264px;
+      height: 43px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      text-decoration: none;
+      text-align: center;
+      border: 2px solid #ffffff;
+      border-radius: 20px;
+      background-color: #ffffff99;
+      transition: background-color 0.4s ease;
+      touch-action: manipulation;
+      padding: 0;
+      margin: 0 auto;
+      margin-top: 1rem;
+      color: var(--color-text);
+      &:hover {
+        color: var(--color-text);
+        background-color: #ffffffff;
+      }
+      @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: center;
+  
+        &.text-left {
+          align-items: flex-start;
+        }
+  
+        &.text-right {
+          align-items: flex-end;
+        }
+      }
+  
+    }
+  }
+
+  // When there's a background image, default to white text
+  &.has-background-image {
+    .obx-hero__container {
+      color: $color-background-primary;
+    }
+
+    .obx-hero__title,
+    .obx-hero__text {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  // Support for custom text color
+  &[style*="color"] {
+    .obx-hero__container,
+    .obx-hero__content,
+    .obx-hero__title,
+    .obx-hero__text {
+      color: inherit;
+    }
+
+    .obx-hero__button--secondary {
+      color: inherit;
+      border-color: currentColor;
+    }
+  }
+}

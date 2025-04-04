@@ -8,6 +8,7 @@
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
 
+
 // Import base styles
 @use 'base/reset';
 @use 'base/typography';
@@ -19,6 +20,7 @@
 @use 'layout/navigation';
 @use 'layout/content';
 
+
 // Import components
 @use 'components/buttons';
 @use 'components/forms';
@@ -29,4 +31,8 @@
 
 // Import utilities
 @use 'utilities/helpers';
-@use 'utilities/accessibility'; 
+@use 'utilities/accessibility';
+
+// Import block styles
+@use '../../../../plugins/obx-blocks/src/scss' as blocks;
+

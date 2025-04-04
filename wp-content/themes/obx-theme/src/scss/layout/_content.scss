@@ -3,12 +3,14 @@
 @use '../abstracts/mixins' as *;
 
 .site-content {
-  padding: $spacing-lg 0;
+  //padding: $spacing-lg 0;
+
 }
+
 
 .site-main {
   width: 100%;
-  
+  padding: 0px;
   article {
     margin-bottom: $spacing-lg;
     
@@ -117,4 +119,13 @@
       }
     }
   }
-} 
+}
+
+
+.text-beige-bg-with-logo {
+  padding: 20px;
+  font-size: 25px;
+  p {
+    text-align: center;
+  }
+}

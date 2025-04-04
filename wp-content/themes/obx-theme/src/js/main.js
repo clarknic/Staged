@@ -3,10 +3,9 @@
  */
 
 // Import styles
-import '../scss/main.scss';
 
 // Import components
-import navigation from './components/navigation';
+import navigation from './components/navigation.js';
 
 // DOM ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,6 +13,4 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize navigation
   navigation();
-  
-  // Add your JavaScript code here
 }); 

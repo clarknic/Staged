@@ -1,0 +1,33 @@
+/**
+ * What We Do block editor styles
+ */
+
+.wp-block-obx-blocks-whatwedo {
+    position: relative;
+    width: 100%;
+    background-color: #F5EEE1;
+    background-size: cover;
+    background-position: center;
+    
+    .whatwedo-content {
+        padding: 40px 80px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        
+        p {
+            // font-family: futura-lt-w01-light, sans-serif;
+            font-size: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: inherit;
+        }
+        
+        .whatwedo-line {
+            width: 284px;
+            height: 1px;
+            background: var(--color-accent);
+            margin: 0 auto;
+        }
+    }
+} 

@@ -1,11 +1,15 @@
 // Colors
-$color-primary: #0073aa;
+$color-primary: #C4A468;
 $color-secondary: #23282d;
-$color-accent: #00a0d2;
-$color-text: #333;
+$color-accent: #dccc84; 
+$color-text: #414141;
 $color-light: #f8f9fa;
 $color-dark: #23282d;
 $color-border: #e2e4e7;
+
+$color-gold: #C4A468FF;
+$color-black: #000000FF;
+
 
 // Typography
 $font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -28,4 +32,74 @@ $breakpoint-lg: 1200px;
 
 // Container widths
 $container-width: 1140px;
-$container-padding: 15px; 
+$container-padding: 15px;
+
+
+// Font faces
+@font-face {
+    font-family: 'Futura Light';
+    src: url('/wp-content/themes/obx-theme/src/fonts/futura-lt-w01-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Book';
+    src: url('/wp-content/themes/obx-theme/src/fonts/futura-lt-w01-book.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Roman';
+    src: url('/wp-content/themes/obx-theme/src/fonts/helvetica-w01-roman.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catalonia';
+    src: url('/wp-content/themes/obx-theme/src/fonts/Cattalonia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+:root {
+    --color-footer-background: #c4a46833;
+    --color-background: #FAF5EF;
+    --color-text: #414141;
+    --color-accent: #C4A468;
+    --color-gold-light: #f5eee1;
+    --color-light: #FFFFFF;
+    --color-dark: #1A1A1A;
+
+
+    // Typography
+    --font-primary: 'Futura Light', Arial, sans-serif;
+    --font-primary-book: 'Futura Book', Arial, sans-serif;
+    --font-secondary: 'Helvetica Roman', 'Helvetica Neue', Arial, sans-serif;
+    --font-catalonia: 'Catalonia', Arial, sans-serif;
+    --font-size-base: 16px;
+    --line-height-base: 1.5;
+    
+    // Font weights
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    
+    // Layout
+    --container-width: 1200px;
+    --spacing-container: 2rem;
+    
+    // Breakpoints
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+}

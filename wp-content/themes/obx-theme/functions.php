@@ -11,9 +11,26 @@ if (!defined('ABSPATH')) {
  * Enqueue styles and scripts
  */
 function obx_theme_scripts() {
-    // Enqueue theme stylesheet
+    // Enqueue theme stylesheet first
+    wp_enqueue_style(
+        'obx-theme-style',
+        get_stylesheet_uri(),
+        array(),
+        wp_get_theme()->get('Version')
+    );
+
+    // Then enqueue main.css with dependency on style.css
+    if (file_exists(get_template_directory() . '/dist/css/main.css')) {
+        wp_enqueue_style(
+            'obx-theme-main',
+            get_template_directory_uri() . '/dist/css/main.css',
+            array('obx-theme-style'),
+            wp_get_theme()->get('Version')
+        );
+    }
+
+    // Enqueue JavaScript if it exists
     if (file_exists(get_template_directory() . '/dist/js/main.js')) {
-        // If we have a compiled main.js file, use it
         wp_enqueue_script(
             'obx-theme-script',
             get_template_directory_uri() . '/dist/js/main.js',
@@ -21,15 +38,24 @@ function obx_theme_scripts() {
             wp_get_theme()->get('Version'),
             true
         );
-    } else {
-        // Fallback to the original stylesheet
-        wp_enqueue_style(
-            'obx-theme-style',
-            get_stylesheet_uri(),
-            array(),
-            wp_get_theme()->get('Version')
-        );
     }
+    
+    // Enqueue main JavaScript file as a module
+    wp_enqueue_script(
+        'obx-theme-main',
+        get_template_directory_uri() . '/src/js/main.js',
+        array('jquery'),
+        wp_get_theme()->get('Version'),
+        true
+    );
+    
+    // Add type="module" to the script tag
+    add_filter('script_loader_tag', function($tag, $handle) {
+        if ('obx-theme-main' === $handle) {
+            return str_replace(' src', ' type="module" src', $tag);
+        }
+        return $tag;
+    }, 10, 2);
 }
 add_action('wp_enqueue_scripts', 'obx_theme_scripts');
 
@@ -44,6 +70,14 @@ function obx_theme_admin_scripts() {
             array('wp-api'),
             wp_get_theme()->get('Version'),
             true
+        );
+    }
+    if (file_exists(get_template_directory() . '/dist/css/admin.css')) {
+        wp_enqueue_style(
+            'obx-theme-admin-style',
+            get_template_directory_uri() . '/dist/css/admin.css',
+            array(),
+            wp_get_theme()->get('Version')
         );
     }
 }
@@ -61,6 +95,14 @@ function obx_theme_setup() {
 
     // Enable support for Post Thumbnails on posts and pages
     add_theme_support('post-thumbnails');
+
+    // Add logo support
+    add_theme_support('custom-logo', array(
+        'height'      => 250,
+        'width'       => 250,
+        'flex-width'  => true,
+        'flex-height' => true,
+    ));
 
     // Switch default core markup to output valid HTML5
     add_theme_support('html5', array(
@@ -80,6 +122,117 @@ function obx_theme_setup() {
     ));
 }
 add_action('after_setup_theme', 'obx_theme_setup');
+
+/**
+ * Add logo setting to customizer
+ */
+function obx_theme_customize_register($wp_customize) {
+    // Add section for logo
+    $wp_customize->add_section('obx_theme_logo_section', array(
+        'title'    => __('Logo', 'obx-theme'),
+        'priority' => 30,
+    ));
+
+    // Add setting for logo
+    $wp_customize->add_setting('site_logo', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    // Add control for logo
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'site_logo', array(
+        'label'    => __('Site Logo', 'obx-theme'),
+        'section'  => 'obx_theme_logo_section',
+        'mime_type' => 'image',
+    )));
+
+    // Footer Section
+    $wp_customize->add_section('footer_settings', array(
+        'title'    => __('Footer Settings', 'obx-theme'),
+        'priority' => 120,
+    ));
+
+    // Footer Logo
+    $wp_customize->add_setting('footer_logo', array(
+        'default'           => '',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Media_Control($wp_customize, 'footer_logo', array(
+        'label'       => __('Footer Logo', 'obx-theme'),
+        'description' => __('Upload a logo specifically for the footer. If not set, the main site logo will be used.', 'obx-theme'),
+        'section'     => 'footer_settings',
+        'mime_type'   => 'image',
+        'priority'    => 10,
+    )));
+
+    // Services Text
+    $wp_customize->add_setting('footer_services', array(
+        'default'           => 'Home Staging | Design | Organization | Photography',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_services', array(
+        'label'    => __('Services Text', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'text',
+    ));
+
+    // Location Text
+    $wp_customize->add_setting('footer_location', array(
+        'default'           => 'Virginia Beach, Norfolk & Hampton Roads',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_location', array(
+        'label'    => __('Location Text', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'text',
+    ));
+
+    // Email
+    $wp_customize->add_setting('footer_email', array(
+        'default'           => 'info@stagedllc.com',
+        'sanitize_callback' => 'sanitize_email',
+    ));
+    $wp_customize->add_control('footer_email', array(
+        'label'    => __('Email Address', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'email',
+    ));
+
+    // CTA Text
+    $wp_customize->add_setting('footer_cta_text', array(
+        'default'           => 'BOOK A CALL',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_cta_text', array(
+        'label'    => __('CTA Button Text', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'text',
+    ));
+
+    // CTA URL
+    $wp_customize->add_setting('footer_cta_url', array(
+        'default'           => '#',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    $wp_customize->add_control('footer_cta_url', array(
+        'label'    => __('CTA Button URL', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'url',
+    ));
+
+    // Company Name
+    $wp_customize->add_setting('footer_company_name', array(
+        'default'           => 'Staged, LLC',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    $wp_customize->add_control('footer_company_name', array(
+        'label'    => __('Company Name', 'obx-theme'),
+        'section'  => 'footer_settings',
+        'type'     => 'text',
+    ));
+}
+add_action('customize_register', 'obx_theme_customize_register');
 
 /**
  * Register widget areas
@@ -133,4 +286,3 @@ function obx_theme_widgets_init() {
         )
     );
 }
-add_action('widgets_init', 'obx_theme_widgets_init');

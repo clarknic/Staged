@@ -2,14 +2,13 @@
 @use '../abstracts/mixins' as *;
 
 .home-hero {
-  padding: $spacing-xl 0;
+  //padding: $spacing-xl 0;
   background-color: $color-light;
   text-align: center;
   
   h1 {
     font-size: 3rem;
     margin-bottom: $spacing-md;
-    
     @include respond-to(sm) {
       font-size: 2.25rem;
     }

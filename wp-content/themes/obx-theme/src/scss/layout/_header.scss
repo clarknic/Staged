@@ -2,13 +2,32 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+body {
+  font-family: var(--font-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
 .site-header {
-  background-color: $color-light;
-  padding: $spacing-md 0;
-  border-bottom: 1px solid $color-border;
-  
+  padding: 0rem 0;
+  background: #ffffff;
+  margin-bottom: 0px;
   .container {
-    @include flex(row, space-between, center);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+  }
+
+  .site-branding {
+    .site-logo {
+      img {
+        max-height: 131px;
+        width: auto;
+        display: block;
+      }
+    }
   }
 }
 

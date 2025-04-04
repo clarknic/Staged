@@ -181,7 +181,7 @@ body {
 /* Header Styles */
 .site-header {
     background: #f8f9fa;
-    padding: 2rem 0;
+    /*padding: 2rem 0;*/
     margin-bottom: 2rem;
     border-bottom: 1px solid #e9ecef;
 }
@@ -270,4 +270,4 @@ article {
     .container {
         padding: 0 15px;
     }
-} 
+}

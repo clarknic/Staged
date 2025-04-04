@@ -3,27 +3,116 @@
 @use '../abstracts/mixins' as *;
 
 .site-footer {
-  background-color: $color-dark;
-  color: $color-light;
-  padding: $spacing-lg 0;
-  margin-top: $spacing-xl;
+  margin-top: 0px;
+  background-color: var(--color-footer-background);
+  // padding: 4rem 0;
+  text-align: center;
+  font-family: var(--font-primary);
+  font-weight: 100;
+  font-size: 14px;
   
-  a {
-    color: $color-light;
-    
+
+  &__container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-container);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text);
+  }
+
+  &__scroll-top {
+    display: inline-flex;
+    border: 0px solid var(--color-accent);
+    transition: transform 0.3s ease;
     &:hover {
-      color: $color-accent;
+      transform: translateY(-5px);
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 0.9rem;
+      fill: currentColor;
     }
   }
-  
-  .container {
-    @include flex(column, center, center);
-    text-align: center;
-    
-    @include respond-to(md) {
-      @include flex(row, space-between, center);
-      text-align: left;
+
+  &__logo {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
+  }
+
+  &__services,
+  &__location {
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+  }
+
+  &__email {
+    a {
+      font-size: 1.125rem;
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__cta {
+    margin-top: 1rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 40px;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      text-decoration: none;
+      text-align: center;
+      border: 2px solid var(--color-text);
+      border-radius: 20px;
+      background-color: var(--color-light);
+      color: var(--color-text);
+      cursor: pointer;
+      transition: border-color 0.4s ease,
+                  background-color 0.4s ease;
+      touch-action: manipulation;
+      outline: none;
+      box-shadow: none;
+
+      &:hover {
+        border-color: var(--color-light);
+        background-color: var(--color-light);
+        color: var(--color-text);
+      }
+    }
+  }
+
+  &__copyright {
+    font-size: 0.75rem;
+    opacity: 0.8;
   }
 }
 
@@ -52,4 +141,28 @@
   font-size: 0.875rem;
   width: 100%;
   text-align: center;
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .site-footer {
+    // padding: 3rem 0;
+
+    &__content {
+      gap:0.5rem;
+    }
+
+    &__services,
+    &__location {
+      font-size: 1rem;
+    }
+
+    &__email a {
+      font-size: 1rem;
+    }
+
+    &__cta .button {
+      padding: 0.5rem 1.5rem;
+    }
+  }
 } 

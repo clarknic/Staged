@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "OBX Web Lab Theme for Staged",
   "main": "index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "start": "sass --watch src/scss:dist/css --style=compressed --source-map",
-    "build": "sass src/scss:dist/css --style=compressed --no-source-map"
+    "start": "NODE_OPTIONS='--max-old-space-size=16384' sass --watch src/scss:dist/css --style=compressed --source-map --load-path=../../plugins/obx-blocks/src/scss",
+    "build": "NODE_OPTIONS='--max-old-space-size=16384' sass src/scss:dist/css --style=compressed --no-source-map --load-path=../../plugins/obx-blocks/src/scss"
   },
   "author": "OBX Web Lab",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "sass": "1.32.13"
+    "sass": "^1.69.7"
   }
 }

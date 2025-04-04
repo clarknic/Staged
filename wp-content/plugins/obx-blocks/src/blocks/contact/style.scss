@@ -1,0 +1,160 @@
+/**
+ * Contact block styles for both editor and frontend
+ */
+
+@use "sass:color";
+@use "../../scss/index" as *;
+
+.obx-contact {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  overflow: hidden;
+
+  &__left {
+    padding: 60px 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-family: var(--font-catalonia);
+    text-align: center;
+  }
+
+  &__heading-line {
+    width: 284px;
+    height: 1px;
+    background-color: #C4A468;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+    
+  }
+
+  &__text {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.6;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  &__contact-info {
+    margin-bottom: 30px;
+  }
+
+  &__contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-weight: 100;
+
+    i {
+      margin-right: 15px;
+      color: #C4A468;
+    }
+  }
+
+  // Contact Form 7 Styles
+  .wpcf7 {
+    width: 100%;
+  }
+
+  .wpcf7-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .wpcf7-form-control-wrap {
+    width: 100%;
+  }
+
+  .wpcf7-text,
+  .wpcf7-email,
+  .wpcf7-tel,
+  .wpcf7-textarea {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    font-weight: 100;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: #aaa;
+    }
+
+    &:focus {
+      border-bottom-color: #C4A468;
+    }
+  }
+
+  .wpcf7-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .wpcf7-submit {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-style: italic;
+    font-weight: 100;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #C4A468;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    &__left {
+      padding: 40px 20px;
+    }
+
+    &__right {
+      min-height: 300px;
+    }
+
+    &__title {
+      font-size: 24px;
+    }
+  }
+} 

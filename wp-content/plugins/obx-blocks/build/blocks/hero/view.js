@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(()=>{document.querySelectorAll(".obx-hero").forEach((e=>{const o=e.querySelector(".obx-hero__background");if(!o)return;let t=1,n=window.scrollY;window.addEventListener("scroll",(()=>{const e=window.scrollY;t=e-n>0?Math.min(1+5e-4*e,1.5):Math.max(1+5e-4*e,1),o.style.transform=`scale(${t})`,n=e}),{passive:!0})}))}));

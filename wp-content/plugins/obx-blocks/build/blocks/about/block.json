@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "obx-blocks/about",
+  "version": "1.0.0",
+  "title": "About Us",
+  "category": "obx-blocks",
+  "icon": "groups",
+  "description": "Display your team members with images, names, positions, descriptions, and quotes.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "tagline": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "introText": {
+      "type": "string",
+      "default": ""
+    },
+    "teamMembers": {
+      "type": "array",
+      "default": []
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#a7d1fb"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "contentWidth": {
+      "type": "number",
+      "default": 80
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

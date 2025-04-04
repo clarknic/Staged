@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "obx-blocks/whatwedo",
+  "version": "1.0.0",
+  "title": "What We Do",
+  "category": "obx-blocks",
+  "icon": "admin-generic",
+  "description": "A full-width section with title, background color, and background image",
+  "supports": {
+    "html": false,
+    "align": [
+      "full"
+    ]
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#F5EEE1"
+    },
+    "backgroundImage": {
+      "type": "object",
+      "default": null
+    },
+    "imageAfter": {
+      "type": "object",
+      "default": null
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

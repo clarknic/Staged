@@ -1,1 +1,183 @@
-.obx-contact{display:grid;grid-template-columns:1fr 1fr;min-height:600px;overflow:hidden;position:relative;width:100%}.obx-contact__left{display:flex;flex-direction:column;justify-content:center;padding:60px 120px;position:relative;z-index:1}.obx-contact__right{height:100%;min-height:600px;position:relative;width:100%}.obx-contact__right:before{background-position:50%;background-repeat:no-repeat;background-size:cover;content:"";height:100%;left:0;position:absolute;top:0;width:100%}.obx-contact__title{font-family:var(--font-catalonia);font-size:1.5rem;font-weight:100;line-height:1.2;margin-bottom:20px;text-align:center}.obx-contact__heading-line{background-color:#c4a468;height:1px;margin:20px auto 0;text-align:center;width:284px}.obx-contact__text{font-size:1rem;font-weight:100;line-height:1.6;margin-top:20px;text-align:center}.obx-contact__contact-info{margin-bottom:30px}.obx-contact__contact-item{align-items:center;display:flex;font-weight:100;margin-bottom:15px}.obx-contact__contact-item i{color:#c4a468;margin-right:15px}.obx-contact .wpcf7{width:100%}.obx-contact .wpcf7-form{display:flex;flex-direction:column;gap:20px}.obx-contact .wpcf7-form-control-wrap{width:100%}.obx-contact .wpcf7-email,.obx-contact .wpcf7-tel,.obx-contact .wpcf7-text,.obx-contact .wpcf7-textarea{background:transparent;border:none;border-bottom:1px solid #000;font-size:1rem;font-weight:100;outline:none;padding:10px 0;transition:border-color .3s ease;width:100%}.obx-contact .wpcf7-email::-moz-placeholder,.obx-contact .wpcf7-tel::-moz-placeholder,.obx-contact .wpcf7-text::-moz-placeholder,.obx-contact .wpcf7-textarea::-moz-placeholder{color:#aaa}.obx-contact .wpcf7-email::placeholder,.obx-contact .wpcf7-tel::placeholder,.obx-contact .wpcf7-text::placeholder,.obx-contact .wpcf7-textarea::placeholder{color:#aaa}.obx-contact .wpcf7-email:focus,.obx-contact .wpcf7-tel:focus,.obx-contact .wpcf7-text:focus,.obx-contact .wpcf7-textarea:focus{border-bottom-color:#c4a468}.obx-contact .wpcf7-textarea{min-height:100px;resize:vertical}.obx-contact .wpcf7-submit{background:none;border:none;cursor:pointer;font-style:italic;font-weight:100;padding:10px 20px;text-align:center;transition:color .3s ease}.obx-contact .wpcf7-submit:hover{color:#c4a468}@media(max-width:768px){.obx-contact{grid-template-columns:1fr}.obx-contact__left{padding:40px 20px}.obx-contact__right{min-height:300px}.obx-contact__title{font-size:24px}}
+/*!******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/contact/style.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Contact block styles for both editor and frontend
+ */
+.obx-contact {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  overflow: hidden;
+}
+.obx-contact__left {
+  padding: 60px 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.obx-contact__right {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+}
+.obx-contact__right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.obx-contact__title {
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-family: var(--font-catalonia);
+  text-align: center;
+}
+.obx-contact__heading-line {
+  width: 284px;
+  height: 1px;
+  background-color: #C4A468;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+}
+.obx-contact__text {
+  font-size: 1rem;
+  font-weight: 100;
+  line-height: 1.6;
+  margin-top: 20px;
+  text-align: center;
+}
+.obx-contact__contact-info {
+  margin-bottom: 30px;
+}
+.obx-contact__contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-weight: 100;
+}
+.obx-contact__contact-item i {
+  margin-right: 15px;
+  color: #C4A468;
+}
+.obx-contact__form {
+  margin: 0 20px;
+  margin-top: 50px;
+  padding: 0 80px;
+  background: #fff;
+}
+.obx-contact__form .form-group {
+  margin-bottom: 1rem;
+}
+.obx-contact__form .form-group label {
+  display: none;
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+  color: #333;
+}
+.obx-contact__form .form-group input,
+.obx-contact__form .form-group textarea {
+  width: 100%;
+  padding: 0.35rem;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+.obx-contact__form .form-group input:focus,
+.obx-contact__form .form-group textarea:focus {
+  outline: none;
+  border: 0;
+  border-color: #666666;
+}
+.obx-contact__form .form-group input:invalid,
+.obx-contact__form .form-group textarea:invalid {
+  border-color: #824e35;
+}
+.obx-contact__form .form-group input:valid,
+.obx-contact__form .form-group textarea:valid {
+  border-color: #28a745;
+}
+.obx-contact__form .form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.obx-contact__form .submit-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.obx-contact__form .submit-button:hover {
+  opacity: 0.9;
+}
+.obx-contact__form .submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.obx-contact__form .form-status {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 500;
+}
+.obx-contact__form .form-status.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.obx-contact__form .form-status.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.obx-contact__form .form-status.loading {
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+.obx-contact__form .form-status.loading:after {
+  content: "...";
+  animation: loading-dots 1.5s infinite;
+}
+
+@keyframes loading-dots {
+  0% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+}
+@media (max-width: 768px) {
+  .obx-contact__form {
+    padding: 1rem;
+    margin: 0 1rem;
+  }
+  .obx-contact__title {
+    font-size: 24px;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

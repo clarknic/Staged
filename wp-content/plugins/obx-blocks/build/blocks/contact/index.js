@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@wordpress/icons/build-module/library/globe.js":
@@ -7,7 +8,6 @@
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -38,7 +38,6 @@ const globe = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_pr
   \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -69,7 +68,6 @@ const mobile = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_p
   \***************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"obx-blocks/contact","version":"1.0.0","title":"Contact","category":"obx-blocks","icon":"email","description":"Contact form block with background image and content","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"heading":{"type":"string","default":""},"styledTitle":{"type":"string","default":"Contact Us"},"title":{"type":"string","default":"Contact Us"},"text":{"type":"string","default":"Get in touch with us"},"backgroundImageUrl":{"type":"string","default":""},"backgroundImageId":{"type":"number","default":0},"backgroundImageAlt":{"type":"string","default":""},"contentWidth":{"type":"number","default":100},"formFields":{"type":"object","default":{"name":{"label":"Name","placeholder":"Enter your name"},"email":{"label":"Email","placeholder":"Enter your email"},"phone":{"label":"Phone","placeholder":"Enter your phone number"},"message":{"label":"Message","placeholder":"Enter your message"},"submit":{"text":"Submit","backgroundColor":"#007bff","textColor":"#ffffff"}}},"mailSubject":{"type":"string","default":"New Contact Form Submission"},"mailReceivers":{"type":"string","default":""}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
@@ -80,7 +78,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Edit)
@@ -100,7 +97,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _icons_email_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./icons/email.svg */ "./src/blocks/contact/icons/email.svg");
 /* harmony import */ var _icons_location_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./icons/location.svg */ "./src/blocks/contact/icons/location.svg");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/contact/editor.scss");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_7__);
 
 /**
  * WordPress dependencies
@@ -436,9 +432,11 @@ function Edit({
 /*!****************************************!*\
   !*** ./src/blocks/contact/editor.scss ***!
   \****************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nHookWebpackError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Top-level selectors may not contain the parent selector \"&\".\n    ╷\n211 │     &__title {\n    │     ^^^^^^^^\n    ╵\n  src/blocks/contact/style.scss 211:5  @use\n  src/blocks/contact/editor.scss 7:1   root stylesheet\n    at tryRunOrWebpackError (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:86:9)\n    at __webpack_require_module__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5301:12)\n    at __webpack_require__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5258:18)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5330:20\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5236:43\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5198:16\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5166:15\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5112:8\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3531:6\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:67:2\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Cache.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:111:20)\n    at ItemCacheFacade.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:141:15)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3530:11\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:34\n    at Array.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/cache/MemoryCachePlugin.js:45:13)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:19\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:19:1)\n    at Cache.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:79:18)\n    at ItemCacheFacade.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:115:15)\n    at Compilation._codeGenerationModule (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3498:9)\n    at codeGen (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5100:11)\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5130:14\n    at processQueue (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/util/processAsyncTree.js:61:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)\n-- inner error --\nError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Top-level selectors may not contain the parent selector \"&\".\n    ╷\n211 │     &__title {\n    │     ^^^^^^^^\n    ╵\n  src/blocks/contact/style.scss 211:5  @use\n  src/blocks/contact/editor.scss 7:1   root stylesheet\n    at Object.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/src/blocks/contact/editor.scss:1:7)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:494:10\n    at Hook.eval [as call] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5303:39\n    at tryRunOrWebpackError (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:81:7)\n    at __webpack_require_module__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5301:12)\n    at __webpack_require__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5258:18)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5330:20\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5236:43\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5198:16\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5166:15\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5112:8\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3531:6\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:67:2\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Cache.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:111:20)\n    at ItemCacheFacade.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:141:15)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3530:11\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:34\n    at Array.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/cache/MemoryCachePlugin.js:45:13)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:19\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:19:1)\n    at Cache.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:79:18)\n    at ItemCacheFacade.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:115:15)\n    at Compilation._codeGenerationModule (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3498:9)\n    at codeGen (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5100:11)\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5130:14\n    at processQueue (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/util/processAsyncTree.js:61:4)\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)\n\nGenerated code for /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/src/blocks/contact/editor.scss\n1 | throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nSassError: Top-level selectors may not contain the parent selector \\\"&\\\".\\n    ╷\\n211 │     &__title {\\n    │     ^^^^^^^^\\n    ╵\\n  src/blocks/contact/style.scss 211:5  @use\\n  src/blocks/contact/editor.scss 7:1   root stylesheet\");");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -448,7 +446,6 @@ throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugi
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgEmail),
@@ -480,7 +477,6 @@ var SvgEmail = function SvgEmail(props) {
   \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReactComponent: () => (/* binding */ SvgLocation),
@@ -506,13 +502,49 @@ var SvgLocation = function SvgLocation(props) {
 
 /***/ }),
 
+/***/ "./src/blocks/contact/index.js":
+/*!*************************************!*\
+  !*** ./src/blocks/contact/index.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/blocks/contact/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/contact/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/contact/style.scss");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+/**
+ * Register the block
+ */
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: () => null // Server-side rendering with render.php
+});
+
+/***/ }),
+
 /***/ "./src/blocks/contact/style.scss":
 /*!***************************************!*\
   !*** ./src/blocks/contact/style.scss ***!
   \***************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nHookWebpackError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Top-level selectors may not contain the parent selector \"&\".\n    ╷\n211 │     &__title {\n    │     ^^^^^^^^\n    ╵\n  src/blocks/contact/style.scss 211:5  root stylesheet\n    at tryRunOrWebpackError (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:86:9)\n    at __webpack_require_module__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5301:12)\n    at __webpack_require__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5258:18)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5330:20\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5236:43\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5198:16\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5166:15\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5112:8\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3531:6\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:67:2\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Cache.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:111:20)\n    at ItemCacheFacade.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:141:15)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3530:11\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:34\n    at Array.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/cache/MemoryCachePlugin.js:45:13)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:19\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:19:1)\n    at Cache.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:79:18)\n    at ItemCacheFacade.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:115:15)\n    at Compilation._codeGenerationModule (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3498:9)\n    at codeGen (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5100:11)\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5130:14\n    at processQueue (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/util/processAsyncTree.js:61:4)\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)\n    at runNextTicks (node:internal/process/task_queues:64:3)\n    at process.processImmediate (node:internal/timers:447:9)\n-- inner error --\nError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: Top-level selectors may not contain the parent selector \"&\".\n    ╷\n211 │     &__title {\n    │     ^^^^^^^^\n    ╵\n  src/blocks/contact/style.scss 211:5  root stylesheet\n    at Object.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/src/blocks/contact/style.scss:1:7)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:494:10\n    at Hook.eval [as call] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)\n    at Hook.CALL_DELEGATE [as _call] (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/Hook.js:14:14)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5303:39\n    at tryRunOrWebpackError (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:81:7)\n    at __webpack_require_module__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5301:12)\n    at __webpack_require__ (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5258:18)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5330:20\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/Hook.js:18:14)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5236:43\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5198:16\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5166:15\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3485:9)\n    at done (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3527:9)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5112:8\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3531:6\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/HookWebpackError.js:67:2\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Cache.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:111:20)\n    at ItemCacheFacade.store (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:141:15)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3530:11\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:34\n    at Array.<anonymous> (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/cache/MemoryCachePlugin.js:45:13)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:95:19\n    at Hook.eval [as callAsync] (eval at create (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:19:1)\n    at Cache.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Cache.js:79:18)\n    at ItemCacheFacade.get (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/CacheFacade.js:115:15)\n    at Compilation._codeGenerationModule (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:3498:9)\n    at codeGen (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5100:11)\n    at symbolIterator (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3482:9)\n    at timesSync (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:2297:7)\n    at Object.eachLimit (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/neo-async/async.js:3463:5)\n    at /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/Compilation.js:5130:14\n    at processQueue (/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/webpack/lib/util/processAsyncTree.js:61:4)\n    at processTicksAndRejections (node:internal/process/task_queues:77:11)\n    at runNextTicks (node:internal/process/task_queues:64:3)\n    at process.processImmediate (node:internal/timers:447:9)\n\nGenerated code for /Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!/Users/eugenenikulin/OBX-Web-Lab/Staged/wp-content/plugins/obx-blocks/src/blocks/contact/style.scss\n1 | throw new Error(\"Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\\nSassError: Top-level selectors may not contain the parent selector \\\"&\\\".\\n    ╷\\n211 │     &__title {\\n    │     ^^^^^^^^\\n    ╵\\n  src/blocks/contact/style.scss 211:5  root stylesheet\");");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -522,7 +554,6 @@ throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugi
   \*************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["blockEditor"];
 
 /***/ }),
@@ -533,7 +564,6 @@ module.exports = window["wp"]["blockEditor"];
   \********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["blocks"];
 
 /***/ }),
@@ -544,7 +574,6 @@ module.exports = window["wp"]["blocks"];
   \************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["components"];
 
 /***/ }),
@@ -555,7 +584,6 @@ module.exports = window["wp"]["components"];
   \*********************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["element"];
 
 /***/ }),
@@ -566,7 +594,6 @@ module.exports = window["wp"]["element"];
   \******************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["i18n"];
 
 /***/ }),
@@ -577,7 +604,6 @@ module.exports = window["wp"]["i18n"];
   \************************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["wp"]["primitives"];
 
 /***/ }),
@@ -588,7 +614,6 @@ module.exports = window["wp"]["primitives"];
   \************************/
 /***/ ((module) => {
 
-"use strict";
 module.exports = window["React"];
 
 /***/ })
@@ -619,7 +644,42 @@ module.exports = window["React"];
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -660,42 +720,68 @@ module.exports = window["React"];
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"blocks/contact/index": 0,
+/******/ 			"blocks/contact/style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkobx_blocks"] = globalThis["webpackChunkobx_blocks"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
-(() => {
-"use strict";
-/*!*************************************!*\
-  !*** ./src/blocks/contact/index.js ***!
-  \*************************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
-/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/blocks/contact/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/contact/block.json");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/contact/style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_3__);
-/**
- * WordPress dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-/**
- * Register the block
- */
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: () => null // Server-side rendering with render.php
-});
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/contact/style-index"], () => (__webpack_require__("./src/blocks/contact/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

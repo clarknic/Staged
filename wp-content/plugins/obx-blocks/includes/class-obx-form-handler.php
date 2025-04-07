@@ -17,6 +17,7 @@ class OBX_Form_Handler {
 
     private function __construct() {
         global $wpdb;
+        // Use site-specific table name for Multisite
         $this->table_name = $wpdb->prefix . 'contact_submissions';
     }
 
@@ -31,7 +32,11 @@ class OBX_Form_Handler {
             // Validate and sanitize data
             $validated_data = $this->validate_submission($data);
             
-            // Check rate limiting
+            // Add site information for Multisite
+            $validated_data['site_id'] = get_current_blog_id();
+            $validated_data['site_url'] = get_site_url();
+            
+            // Check rate limiting with site-specific key
             if ($this->is_rate_limited()) {
                 throw new Exception('Please wait a few minutes before submitting again.');
             }
@@ -48,7 +53,7 @@ class OBX_Form_Handler {
                 error_log('OBX Blocks: Failed to send email notification for submission ID: ' . $submission_id);
             }
 
-            // Set rate limit
+            // Set rate limit with site-specific key
             $this->set_rate_limit();
 
             return array(
@@ -116,9 +121,11 @@ class OBX_Form_Handler {
                 'email' => $data['email'],
                 'phone' => 'Phone: ' . $data['phone'],
                 'message' => 'Message: ' . $data['message'],
-                'created_at' => $data['created_at']
+                'created_at' => $data['created_at'],
+                'site_id' => $data['site_id'],
+                'site_url' => $data['site_url']
             ),
-            array('%s', '%s', '%s', '%s', '%s')
+            array('%s', '%s', '%s', '%s', '%s', '%d', '%s')
         );
 
         return $result ? $wpdb->insert_id : false;
@@ -134,11 +141,19 @@ class OBX_Form_Handler {
         // Decode mail data
         $mail_data = json_decode(base64_decode($data['mail_data']), true);
         
+        // Get site-specific recipients or fallback to site admin
         $recipients = !empty($mail_data['mail_receivers']) ? $mail_data['mail_receivers'] : get_option('admin_email');
-        $subject = !empty($mail_data['mail_subject']) ? $mail_data['mail_subject'] : __('New Contact Form Submission', 'obx-blocks');
+        
+        // Get site-specific subject
+        $subject = !empty($mail_data['mail_subject']) ? $mail_data['mail_subject'] : sprintf(
+            __('New Contact Form Submission - %s', 'obx-blocks'),
+            get_bloginfo('name')
+        );
         
         $body = sprintf(
-            "Name: %s\nEmail: %s\nPhone: %s\n\nMessage:\n%s",
+            "Site: %s\nURL: %s\n\nName: %s\nEmail: %s\nPhone: %s\n\nMessage:\n%s",
+            get_bloginfo('name'),
+            $data['site_url'],
             $data['name'],
             $data['email'],
             $data['phone'],
@@ -161,7 +176,8 @@ class OBX_Form_Handler {
      */
     private function is_rate_limited() {
         $ip = $_SERVER['REMOTE_ADDR'];
-        $transient_key = 'contact_form_' . md5($ip);
+        $site_id = get_current_blog_id();
+        $transient_key = 'contact_form_' . $site_id . '_' . md5($ip);
         return (bool) get_transient($transient_key);
     }
 
@@ -170,7 +186,8 @@ class OBX_Form_Handler {
      */
     private function set_rate_limit() {
         $ip = $_SERVER['REMOTE_ADDR'];
-        $transient_key = 'contact_form_' . md5($ip);
+        $site_id = get_current_blog_id();
+        $transient_key = 'contact_form_' . $site_id . '_' . md5($ip);
         set_transient($transient_key, true, $this->rate_limit_minutes * MINUTE_IN_SECONDS);
     }
 } 

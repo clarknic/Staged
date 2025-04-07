@@ -80,9 +80,18 @@ class OBX_Blocks {
     }
 
     public function render_contact_info_page() {
+        if (!current_user_can('manage_options')) {
+            wp_die(__('You do not have sufficient permissions to access this page.', 'obx-blocks'));
+        }
+
         global $wpdb;
         $table_name = $wpdb->prefix . 'contact_submissions';
-        $submissions = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
+        
+        // Get submissions for current site only
+        $submissions = $wpdb->get_results($wpdb->prepare(
+            "SELECT * FROM $table_name WHERE site_id = %d ORDER BY created_at DESC",
+            get_current_blog_id()
+        ));
         
         include OBX_BLOCKS_PLUGIN_DIR . 'admin/contact-info-page.php';
     }
@@ -121,7 +130,16 @@ class OBX_Blocks {
         $id = intval($_POST['submission_id']);
         global $wpdb;
         $table_name = $wpdb->prefix . 'contact_submissions';
-        $wpdb->delete($table_name, array('id' => $id), array('%d'));
+        
+        // Ensure we only delete submissions from current site
+        $wpdb->delete(
+            $table_name,
+            array(
+                'id' => $id,
+                'site_id' => get_current_blog_id()
+            ),
+            array('%d', '%d')
+        );
 
         wp_redirect(add_query_arg('deleted', '1', admin_url('admin.php?page=contact-info')));
         exit;
@@ -142,6 +160,8 @@ class OBX_Blocks {
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'contact_submissions';
+        
+        // Ensure we only update submissions from current site
         $wpdb->update(
             $table_name,
             array(
@@ -150,12 +170,30 @@ class OBX_Blocks {
                 'phone' => $phone,
                 'message' => $message
             ),
-            array('id' => $id),
+            array(
+                'id' => $id,
+                'site_id' => get_current_blog_id()
+            ),
             array('%s', '%s', '%s', '%s'),
-            array('%d')
+            array('%d', '%d')
         );
 
         wp_redirect(add_query_arg('updated', '1', admin_url('admin.php?page=contact-info')));
         exit;
     }
-} 
+}
+
+register_activation_hook(__FILE__, function($network_wide) {
+    if (is_multisite() && $network_wide) {
+        // Network-wide activation
+        $sites = get_sites();
+        foreach ($sites as $site) {
+            switch_to_blog($site->blog_id);
+            // Create tables and set up options
+            restore_current_blog();
+        }
+    } else {
+        // Single site activation
+        // Create tables and set up options
+    }
+}); 

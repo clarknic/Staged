@@ -25,27 +25,15 @@
     },
     "styledTitle": {
       "type": "string",
-      "default": ""
+      "default": "Contact Us"
+    },
+    "title": {
+      "type": "string",
+      "default": "Contact Us"
     },
     "text": {
       "type": "string",
-      "default": ""
-    },
-    "email": {
-      "type": "string",
-      "default": ""
-    },
-    "phone": {
-      "type": "string",
-      "default": ""
-    },
-    "address": {
-      "type": "string",
-      "default": ""
-    },
-    "formShortcode": {
-      "type": "string",
-      "default": ""
+      "default": "Get in touch with us"
     },
     "backgroundImageUrl": {
       "type": "string",
@@ -53,40 +41,55 @@
     },
     "backgroundImageId": {
       "type": "number",
-      "default": null
+      "default": 0
     },
     "backgroundImageAlt": {
       "type": "string",
       "default": ""
     },
-    "backgroundColor": {
-      "type": "string",
-      "default": "#ffffff"
-    },
-    "textColor": {
-      "type": "string",
-      "default": "#000000"
-    },
-    "accentColor": {
-      "type": "string",
-      "default": "#C4A468"
-    },
-    "align": {
-      "type": "string",
-      "default": "full"
-    },
-    "textAlign": {
-      "type": "string",
-      "default": "left"
-    },
     "contentWidth": {
       "type": "number",
       "default": 100
+    },
+    "formFields": {
+      "type": "object",
+      "default": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter your name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "phone": {
+          "label": "Phone",
+          "placeholder": "Enter your phone number"
+        },
+        "message": {
+          "label": "Message",
+          "placeholder": "Enter your message"
+        },
+        "submit": {
+          "text": "Submit",
+          "backgroundColor": "#007bff",
+          "textColor": "#ffffff"
+        }
+      }
+    },
+    "mailSubject": {
+      "type": "string",
+      "default": "New Contact Form Submission"
+    },
+    "mailReceivers": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
 }

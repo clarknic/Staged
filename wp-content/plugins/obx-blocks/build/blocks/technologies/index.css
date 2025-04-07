@@ -1,1 +1,264 @@
-.obx-technologies{padding:3rem 1.5rem;padding:80px 40px}@media(max-width:992px){.obx-technologies{padding:40px 20px}}.obx-technologies.alignfull{margin-left:0;margin-right:0;max-width:100%;padding-left:40px;padding-right:40px;width:100%}@media(max-width:992px){.obx-technologies.alignfull{padding-left:20px;padding-right:20px}}.obx-technologies.alignwide{margin-left:auto;margin-right:auto;max-width:1400px}.obx-technologies.text-left .obx-technologies__header,.obx-technologies.text-left .obx-technologies__heading{text-align:left}.obx-technologies.text-left .obx-technologies__intro-text,.obx-technologies.text-left .obx-technologies__tagline{margin-left:0;text-align:left}.obx-technologies.text-center .obx-technologies__header,.obx-technologies.text-center .obx-technologies__heading{text-align:center}.obx-technologies.text-center .obx-technologies__intro-text,.obx-technologies.text-center .obx-technologies__tagline{margin-left:auto;margin-right:auto;text-align:center}.obx-technologies.text-right .obx-technologies__header,.obx-technologies.text-right .obx-technologies__heading{text-align:right}.obx-technologies.text-right .obx-technologies__intro-text,.obx-technologies.text-right .obx-technologies__tagline{margin-left:auto;margin-right:0;text-align:right}.obx-technologies__container{margin:0 auto;max-width:1140px}@media(max-width:992px){.obx-technologies__container{max-width:100%!important}}.obx-technologies__header{margin-bottom:160px;text-align:center}.obx-technologies__heading{font-size:2.5rem;font-weight:700;line-height:1.2;margin:0 auto;max-width:800px}@media(max-width:992px){.obx-technologies__heading{font-size:2rem}}.obx-technologies__heading{background-image:linear-gradient(transparent 60%,#0073aa 0);box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline;padding:0 10px}.obx-technologies__subheading{color:#5b6875;font-size:1.5rem;font-weight:600;margin:40px auto 0;max-width:800px}.obx-technologies__intro-text{color:#505b66;font-size:1.1rem;line-height:1.7;margin:80px auto 0;max-width:800px}@media(max-width:992px){.obx-technologies__intro-text{font-size:16px;padding:0 20px}}.obx-technologies__intro-text p{margin-bottom:20px}.obx-technologies__intro-text p:last-child{margin-bottom:0}.obx-technologies__grid{display:grid;gap:80px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));margin-top:160px}@media(max-width:992px){.obx-technologies__grid{gap:40px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}@media(max-width:768px){.obx-technologies__grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.obx-technologies__grid{grid-template-columns:1fr}}.obx-technologies__tech{align-items:center;background-color:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);display:flex;flex-direction:column;padding:40px;text-align:center;transition:transform .3s ease}.obx-technologies__tech:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);transform:translateY(-5px)}.obx-technologies__tech-logo{height:80px;margin-bottom:20px;-o-object-fit:contain;object-fit:contain;width:80px}@media(max-width:992px){.obx-technologies__tech-logo{height:60px;width:60px}}.obx-technologies__tech-logo svg{height:100%;width:100%}.obx-technologies__tech-name{color:#23282d;font-size:16px;font-weight:600}.obx-technologies__add-button{margin-top:2rem}@media(max-width:992px){.obx-technologies{padding:3rem 1.5rem}}.obx-technologies__tech{position:relative}.obx-technologies__tech.is-selected .obx-technologies__tech-actions,.obx-technologies__tech:hover .obx-technologies__tech-actions{opacity:1;visibility:visible}.obx-technologies__tech-actions{display:flex;gap:5px;opacity:0;position:absolute;right:10px;top:10px;transition:opacity .2s ease;visibility:hidden;z-index:10}.obx-technologies__tech-logo-placeholder{align-items:center;background-color:#f8f8f8;border-radius:4px;display:flex;height:80px;justify-content:center;margin-bottom:20px;width:80px}@media(max-width:992px){.obx-technologies__tech-logo-placeholder{height:60px;width:60px}}.obx-technologies__tech-logo-button{align-items:center;display:flex;height:100%;justify-content:center;width:100%}.obx-technologies__add-button{border:2px dashed #e2e4e7;border-radius:8px;justify-content:center;margin-top:80px;padding:40px;width:100%}.obx-technologies__add-button:hover{background-color:#f8f8f8}
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/technologies/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Technologies block editor styles
+ */
+/**
+ * Technologies block styles for both editor and frontend
+ */
+.obx-technologies {
+  padding: 3rem 1.5rem;
+}
+.obx-technologies {
+  padding: 80px 40px;
+}
+@media (max-width: 992px) {
+  .obx-technologies {
+    padding: 40px 20px;
+  }
+}
+.obx-technologies.alignfull {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+@media (max-width: 992px) {
+  .obx-technologies.alignfull {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.obx-technologies.alignwide {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.obx-technologies.text-left .obx-technologies__header {
+  text-align: left;
+}
+.obx-technologies.text-left .obx-technologies__heading {
+  text-align: left;
+}
+.obx-technologies.text-left .obx-technologies__intro-text,
+.obx-technologies.text-left .obx-technologies__tagline {
+  text-align: left;
+  margin-left: 0;
+}
+.obx-technologies.text-center .obx-technologies__header {
+  text-align: center;
+}
+.obx-technologies.text-center .obx-technologies__heading {
+  text-align: center;
+}
+.obx-technologies.text-center .obx-technologies__intro-text,
+.obx-technologies.text-center .obx-technologies__tagline {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.obx-technologies.text-right .obx-technologies__header {
+  text-align: right;
+}
+.obx-technologies.text-right .obx-technologies__heading {
+  text-align: right;
+}
+.obx-technologies.text-right .obx-technologies__intro-text,
+.obx-technologies.text-right .obx-technologies__tagline {
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
+}
+.obx-technologies__container {
+  max-width: 1140px;
+}
+.obx-technologies__container {
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .obx-technologies__container {
+    max-width: 100% !important;
+  }
+}
+.obx-technologies__header {
+  text-align: center;
+  margin-bottom: 160px;
+}
+.obx-technologies__heading {
+  margin: 0 auto;
+  max-width: 800px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.obx-technologies__heading {
+  font-size: 2.5rem;
+}
+@media (max-width: 992px) {
+  .obx-technologies__heading {
+    font-size: 2rem;
+  }
+}
+.obx-technologies__heading {
+  display: inline;
+  padding: 0 10px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(transparent 60%, #0073aa 60%);
+}
+.obx-technologies__subheading {
+  margin: 40px auto 0;
+  max-width: 800px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(90.78125, 103.75, 116.71875);
+}
+.obx-technologies__intro-text {
+  max-width: 800px;
+  margin: 80px auto 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgb(79.625, 91, 102.375);
+}
+@media (max-width: 992px) {
+  .obx-technologies__intro-text {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+.obx-technologies__intro-text p {
+  margin-bottom: 20px;
+}
+.obx-technologies__intro-text p:last-child {
+  margin-bottom: 0;
+}
+.obx-technologies__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 80px;
+  margin-top: 160px;
+}
+@media (max-width: 992px) {
+  .obx-technologies__grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .obx-technologies__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .obx-technologies__grid {
+    grid-template-columns: 1fr;
+  }
+}
+.obx-technologies__tech {
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  align-items: center;
+  text-align: center;
+}
+.obx-technologies__tech {
+  display: flex;
+  flex-direction: column;
+}
+.obx-technologies__tech:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.obx-technologies__tech-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 992px) {
+  .obx-technologies__tech-logo {
+    width: 60px;
+    height: 60px;
+  }
+}
+.obx-technologies__tech-logo svg {
+  width: 100%;
+  height: 100%;
+}
+.obx-technologies__tech-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #23282d;
+}
+.obx-technologies__add-button {
+  margin-top: 2rem;
+}
+@media (max-width: 992px) {
+  .obx-technologies {
+    padding: 3rem 1.5rem;
+  }
+}
+
+.obx-technologies__tech {
+  position: relative;
+}
+.obx-technologies__tech.is-selected .obx-technologies__tech-actions, .obx-technologies__tech:hover .obx-technologies__tech-actions {
+  opacity: 1;
+  visibility: visible;
+}
+.obx-technologies__tech-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+.obx-technologies__tech-logo-placeholder {
+  width: 80px;
+  height: 80px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.obx-technologies__tech-logo-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 992px) {
+  .obx-technologies__tech-logo-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+}
+.obx-technologies__tech-logo-button {
+  width: 100%;
+  height: 100%;
+}
+.obx-technologies__tech-logo-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.obx-technologies__add-button {
+  margin-top: 80px;
+  width: 100%;
+  justify-content: center;
+  padding: 40px;
+  border: 2px dashed #e2e4e7;
+  border-radius: 8px;
+}
+.obx-technologies__add-button:hover {
+  background-color: #f8f8f8;
+}
+
+/*# sourceMappingURL=index.css.map*/

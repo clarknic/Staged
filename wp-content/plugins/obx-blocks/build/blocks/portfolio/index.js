@@ -1,1 +1,605 @@
-(()=>{"use strict";var e,o={695:()=>{const e=window.wp.blocks,o=window.React,t=window.wp.i18n,l=window.wp.blockEditor,a=window.wp.components,n=window.wp.element,r=window.wp.primitives,i=(0,o.createElement)(r.SVG,{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24"},(0,o.createElement)(r.Path,{d:"M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"})),c=JSON.parse('{"UU":"obx-blocks/portfolio"}');(0,e.registerBlockType)(c.UU,{edit:function({attributes:e,setAttributes:r}){const{tagline:c,heading:s,portfolioItems:m,backgroundColor:d,textColor:b,accentColor:p,align:g,textAlign:_,contentWidth:u}=e,[x,v]=(0,n.useState)(null),h=(0,l.useBlockProps)({className:`obx-portfolio align${g||"none"} text-${_||"center"}`,style:{backgroundColor:d,color:b}}),k=(e,o,t)=>{const l=[...m];l[e]={...l[e],[o]:t},r({portfolioItems:l})};return(0,o.createElement)(o.Fragment,null,(0,o.createElement)(l.BlockControls,null,(0,o.createElement)(l.BlockAlignmentToolbar,{value:g,onChange:e=>r({align:e}),controls:["wide","full"]}),(0,o.createElement)(l.AlignmentToolbar,{value:_,onChange:e=>r({textAlign:e})})),(0,o.createElement)(l.InspectorControls,null,(0,o.createElement)(a.PanelBody,{title:(0,t.__)("Portfolio Settings","obx-blocks")},(0,o.createElement)("div",{className:"components-base-control"},(0,o.createElement)("label",{className:"components-base-control__label"},(0,t.__)("Background Color","obx-blocks")),(0,o.createElement)(l.ColorPalette,{value:d,onChange:e=>r({backgroundColor:e})})),(0,o.createElement)("div",{className:"components-base-control"},(0,o.createElement)("label",{className:"components-base-control__label"},(0,t.__)("Text Color","obx-blocks")),(0,o.createElement)(l.ColorPalette,{value:b,onChange:e=>r({textColor:e})})),(0,o.createElement)("div",{className:"components-base-control"},(0,o.createElement)("label",{className:"components-base-control__label"},(0,t.__)("Accent Color","obx-blocks")),(0,o.createElement)(l.ColorPalette,{value:p,onChange:e=>r({accentColor:e})}))),(0,o.createElement)(a.PanelBody,{title:(0,t.__)("Content Settings","obx-blocks")},(0,o.createElement)(a.RangeControl,{label:(0,t.__)("Content Width (%)","obx-blocks"),value:u,onChange:e=>r({contentWidth:e}),min:50,max:100,step:5,help:(0,t.__)("Controls the width of the content container on desktop. Mobile will always be 100%.","obx-blocks")}))),(0,o.createElement)("div",{...h},(0,o.createElement)("div",{className:"obx-portfolio__container",style:{maxWidth:`${u}%`}},(0,o.createElement)("div",{className:"obx-portfolio__header",style:{textAlign:_}},(0,o.createElement)(l.RichText,{tagName:"div",className:"obx-portfolio__tagline",value:c,onChange:e=>r({tagline:e}),placeholder:(0,t.__)("OUR PORTFOLIO","obx-blocks")}),(0,o.createElement)(l.RichText,{tagName:"h2",className:"obx-portfolio__heading",value:s,onChange:e=>r({heading:e}),placeholder:(0,t.__)("Check out our latest work","obx-blocks"),style:{backgroundImage:p?`linear-gradient(transparent 60%, ${p} 60%)`:"none"}})),(0,o.createElement)("div",{className:"obx-portfolio__items"},m.map(((e,n)=>(0,o.createElement)("div",{key:e.id,className:"obx-portfolio__item "+(x===n?"is-selected":""),onClick:()=>v(n)},(0,o.createElement)("div",{className:"obx-portfolio__item-image-container"},e.imageUrl?(0,o.createElement)("img",{src:e.imageUrl,alt:e.imageAlt,className:"obx-portfolio__item-image"}):(0,o.createElement)("div",{className:"obx-portfolio__item-image-placeholder"},(0,o.createElement)(l.MediaUploadCheck,null,(0,o.createElement)(l.MediaUpload,{onSelect:e=>{k(n,"imageUrl",e.url),k(n,"imageId",e.id),k(n,"imageAlt",e.alt||"")},allowedTypes:["image"],value:e.imageId,render:({open:e})=>(0,o.createElement)(a.Button,{onClick:e,className:"obx-portfolio__item-image-button"},(0,t.__)("Add Image","obx-blocks"))}))),e.imageUrl&&(0,o.createElement)("div",{className:"obx-portfolio__item-image-actions"},(0,o.createElement)(l.MediaUploadCheck,null,(0,o.createElement)(l.MediaUpload,{onSelect:e=>{k(n,"imageUrl",e.url),k(n,"imageId",e.id),k(n,"imageAlt",e.alt||"")},allowedTypes:["image"],value:e.imageId,render:({open:e})=>(0,o.createElement)(a.Button,{onClick:e,variant:"secondary",isSmall:!0},(0,t.__)("Replace","obx-blocks"))})),(0,o.createElement)(a.Button,{onClick:()=>{k(n,"imageUrl",""),k(n,"imageId",0),k(n,"imageAlt","")},variant:"secondary",isSmall:!0,isDestructive:!0},(0,t.__)("Remove","obx-blocks")))),(0,o.createElement)("div",{className:"obx-portfolio__item-content"},(0,o.createElement)(l.RichText,{tagName:"h3",className:"obx-portfolio__item-name",value:e.name,onChange:e=>k(n,"name",e),placeholder:(0,t.__)("Project Name","obx-blocks"),allowedFormats:["core/bold","core/italic"]}),(0,o.createElement)(l.RichText,{tagName:"div",className:"obx-portfolio__item-description",value:e.description,onChange:e=>k(n,"description",e),placeholder:(0,t.__)("Project description...","obx-blocks"),allowedFormats:["core/bold","core/italic","core/link"]}),(0,o.createElement)("div",{className:"obx-portfolio__item-actions"},(0,o.createElement)(a.Button,{isDestructive:!0,onClick:e=>{e.stopPropagation(),(e=>{const o=[...m];o.splice(e,1),r({portfolioItems:o}),v(null)})(n)},className:"obx-portfolio__item-remove"},(0,t.__)("Remove Item","obx-blocks"))))))),(0,o.createElement)(a.Button,{className:"obx-portfolio__add-button",icon:i,onClick:()=>{const e=[...m];e.push({id:`portfolio-${Date.now()}`,imageUrl:"",imageId:0,imageAlt:"",name:"",description:""}),r({portfolioItems:e})}},(0,t.__)("Add Portfolio Item","obx-blocks"))))))},save:()=>null})}},t={};function l(e){var a=t[e];if(void 0!==a)return a.exports;var n=t[e]={exports:{}};return o[e](n,n.exports,l),n.exports}l.m=o,e=[],l.O=(o,t,a,n)=>{if(!t){var r=1/0;for(m=0;m<e.length;m++){for(var[t,a,n]=e[m],i=!0,c=0;c<t.length;c++)(!1&n||r>=n)&&Object.keys(l.O).every((e=>l.O[e](t[c])))?t.splice(c--,1):(i=!1,n<r&&(r=n));if(i){e.splice(m--,1);var s=a();void 0!==s&&(o=s)}}return o}n=n||0;for(var m=e.length;m>0&&e[m-1][2]>n;m--)e[m]=e[m-1];e[m]=[t,a,n]},l.o=(e,o)=>Object.prototype.hasOwnProperty.call(e,o),(()=>{var e={773:0,425:0};l.O.j=o=>0===e[o];var o=(o,t)=>{var a,n,[r,i,c]=t,s=0;if(r.some((o=>0!==e[o]))){for(a in i)l.o(i,a)&&(l.m[a]=i[a]);if(c)var m=c(l)}for(o&&o(t);s<r.length;s++)n=r[s],l.o(e,n)&&e[n]&&e[n][0](),e[n]=0;return l.O(m)},t=globalThis.webpackChunkobx_blocks=globalThis.webpackChunkobx_blocks||[];t.forEach(o.bind(null,0)),t.push=o.bind(null,t.push.bind(t))})();var a=l.O(void 0,[425],(()=>l(695)));a=l.O(a)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/@wordpress/icons/build-module/library/plus.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@wordpress/icons/build-module/library/plus.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+/**
+ * WordPress dependencies
+ */
+
+const plus = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
+  d: "M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"
+}));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plus);
+//# sourceMappingURL=plus.js.map
+
+/***/ }),
+
+/***/ "./src/blocks/portfolio/block.json":
+/*!*****************************************!*\
+  !*** ./src/blocks/portfolio/block.json ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/portfolio","version":"1.0.0","title":"Portfolio","category":"obx-blocks","icon":"portfolio","description":"Display your portfolio items with images, names, and descriptions.","supports":{"html":false,"align":["wide","full"]},"attributes":{"tagline":{"type":"string","default":""},"heading":{"type":"string","default":""},"portfolioItems":{"type":"array","default":[]},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string","default":"#ffffff"},"textColor":{"type":"string","default":""},"accentColor":{"type":"string","default":"#a7d1fb"},"textAlign":{"type":"string","default":"center"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./editor.css","style":"file:./style.css","render":"file:./render.php"}');
+
+/***/ }),
+
+/***/ "./src/blocks/portfolio/edit.js":
+/*!**************************************!*\
+  !*** ./src/blocks/portfolio/edit.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/portfolio/editor.scss");
+
+/**
+ * WordPress dependencies
+ */
+
+
+
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Edit function for the Portfolio block
+ */
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    tagline,
+    heading,
+    portfolioItems,
+    backgroundColor,
+    textColor,
+    accentColor,
+    align,
+    textAlign,
+    contentWidth
+  } = attributes;
+  const [activeItem, setActiveItem] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
+    className: `obx-portfolio align${align || 'none'} text-${textAlign || 'center'}`,
+    style: {
+      backgroundColor,
+      color: textColor
+    }
+  });
+  const addPortfolioItem = () => {
+    const newItems = [...portfolioItems];
+    newItems.push({
+      id: `portfolio-${Date.now()}`,
+      imageUrl: '',
+      imageId: 0,
+      imageAlt: '',
+      name: '',
+      description: ''
+    });
+    setAttributes({
+      portfolioItems: newItems
+    });
+  };
+  const removePortfolioItem = index => {
+    const newItems = [...portfolioItems];
+    newItems.splice(index, 1);
+    setAttributes({
+      portfolioItems: newItems
+    });
+    setActiveItem(null);
+  };
+  const updatePortfolioItem = (index, property, value) => {
+    const newItems = [...portfolioItems];
+    newItems[index] = {
+      ...newItems[index],
+      [property]: value
+    };
+    setAttributes({
+      portfolioItems: newItems
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockAlignmentToolbar, {
+    value: align,
+    onChange: newAlign => setAttributes({
+      align: newAlign
+    }),
+    controls: ['wide', 'full']
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
+    value: textAlign,
+    onChange: newAlign => setAttributes({
+      textAlign: newAlign
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Portfolio Settings', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "components-base-control"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "components-base-control__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+    value: backgroundColor,
+    onChange: color => setAttributes({
+      backgroundColor: color
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "components-base-control"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "components-base-control__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+    value: textColor,
+    onChange: color => setAttributes({
+      textColor: color
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "components-base-control"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    className: "components-base-control__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+    value: accentColor,
+    onChange: color => setAttributes({
+      accentColor: color
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width (%)', 'obx-blocks'),
+    value: contentWidth,
+    onChange: value => setAttributes({
+      contentWidth: value
+    }),
+    min: 50,
+    max: 100,
+    step: 5,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Controls the width of the content container on desktop. Mobile will always be 100%.', 'obx-blocks')
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__container",
+    style: {
+      maxWidth: `${contentWidth}%`
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__header",
+    style: {
+      textAlign
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    className: "obx-portfolio__tagline",
+    value: tagline,
+    onChange: value => setAttributes({
+      tagline: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('OUR PORTFOLIO', 'obx-blocks')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "h2",
+    className: "obx-portfolio__heading",
+    value: heading,
+    onChange: value => setAttributes({
+      heading: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Check out our latest work', 'obx-blocks'),
+    style: {
+      backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none'
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__items"
+  }, portfolioItems.map((item, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: item.id,
+    className: `obx-portfolio__item ${activeItem === index ? 'is-selected' : ''}`,
+    onClick: () => setActiveItem(index)
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__item-image-container"
+  }, item.imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: item.imageUrl,
+    alt: item.imageAlt,
+    className: "obx-portfolio__item-image"
+  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__item-image-placeholder"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: media => {
+      updatePortfolioItem(index, 'imageUrl', media.url);
+      updatePortfolioItem(index, 'imageId', media.id);
+      updatePortfolioItem(index, 'imageAlt', media.alt || '');
+    },
+    allowedTypes: ['image'],
+    value: item.imageId,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      className: "obx-portfolio__item-image-button"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image', 'obx-blocks'))
+  }))), item.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__item-image-actions"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: media => {
+      updatePortfolioItem(index, 'imageUrl', media.url);
+      updatePortfolioItem(index, 'imageId', media.id);
+      updatePortfolioItem(index, 'imageAlt', media.alt || '');
+    },
+    allowedTypes: ['image'],
+    value: item.imageId,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: open,
+      variant: "secondary",
+      isSmall: true
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace', 'obx-blocks'))
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    onClick: () => {
+      updatePortfolioItem(index, 'imageUrl', '');
+      updatePortfolioItem(index, 'imageId', 0);
+      updatePortfolioItem(index, 'imageAlt', '');
+    },
+    variant: "secondary",
+    isSmall: true,
+    isDestructive: true
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'obx-blocks')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__item-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "h3",
+    className: "obx-portfolio__item-name",
+    value: item.name,
+    onChange: value => updatePortfolioItem(index, 'name', value),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Project Name', 'obx-blocks'),
+    allowedFormats: ['core/bold', 'core/italic']
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    tagName: "div",
+    className: "obx-portfolio__item-description",
+    value: item.description,
+    onChange: value => updatePortfolioItem(index, 'description', value),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Project description...', 'obx-blocks'),
+    allowedFormats: ['core/bold', 'core/italic', 'core/link']
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-portfolio__item-actions"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isDestructive: true,
+    onClick: e => {
+      e.stopPropagation();
+      removePortfolioItem(index);
+    },
+    className: "obx-portfolio__item-remove"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Item', 'obx-blocks')))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "obx-portfolio__add-button",
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
+    onClick: addPortfolioItem
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Portfolio Item', 'obx-blocks'))))));
+}
+
+/***/ }),
+
+/***/ "./src/blocks/portfolio/editor.scss":
+/*!******************************************!*\
+  !*** ./src/blocks/portfolio/editor.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/portfolio/index.js":
+/*!***************************************!*\
+  !*** ./src/blocks/portfolio/index.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/blocks/portfolio/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/portfolio/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/portfolio/style.scss");
+/**
+ * WordPress dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+/**
+ * Register the block
+ */
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+  save: () => null // Server-side rendering with render.php
+});
+
+/***/ }),
+
+/***/ "./src/blocks/portfolio/style.scss":
+/*!*****************************************!*\
+  !*** ./src/blocks/portfolio/style.scss ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/primitives":
+/*!************************************!*\
+  !*** external ["wp","primitives"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["primitives"];
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = window["React"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"blocks/portfolio/index": 0,
+/******/ 			"blocks/portfolio/style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkobx_blocks"] = globalThis["webpackChunkobx_blocks"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/portfolio/style-index"], () => (__webpack_require__("./src/blocks/portfolio/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

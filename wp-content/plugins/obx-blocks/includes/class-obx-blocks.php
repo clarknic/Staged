@@ -24,7 +24,8 @@ class OBX_Blocks {
     }
 
     public function run() {
-      
+        // Include form handler
+        require_once OBX_BLOCKS_PLUGIN_DIR . 'includes/class-obx-form-handler.php';
     }
 
     public function register_blocks() {
@@ -96,150 +97,18 @@ class OBX_Blocks {
             return;
         }
 
-        // Sanitize and validate form data
-        $name = sanitize_text_field($_POST['name'] ?? '');
-        $email = sanitize_email($_POST['email'] ?? '');
-        $phone = sanitize_text_field($_POST['phone'] ?? '');
-        $message = sanitize_textarea_field($_POST['message'] ?? '');
-        $block_id = sanitize_text_field($_POST['block_id'] ?? '');
+        // Get form handler instance
+        $form_handler = OBX_Form_Handler::get_instance();
 
-        // Validate required fields
-        if (empty($name) || empty($email) || empty($phone) || empty($message)) {
-            wp_send_json_error(array('message' => 'Please fill in all required fields.'));
-            return;
+        // Process submission
+        $response = $form_handler->process_submission($_POST);
+
+        // Send response
+        if ($response['success']) {
+            wp_send_json_success($response);
+        } else {
+            wp_send_json_error($response);
         }
-
-        // Validate email format
-        if (!is_email($email)) {
-            wp_send_json_error(array('message' => 'Please enter a valid email address.'));
-            return;
-        }
-
-        // Validate message length
-        if (strlen($message) > 500) {
-            wp_send_json_error(array('message' => 'Message cannot exceed 500 characters.'));
-            return;
-        }
-
-        // Rate limiting
-        $ip = $_SERVER['REMOTE_ADDR'];
-        $transient_key = 'contact_form_' . md5($ip);
-        if (get_transient($transient_key)) {
-            wp_send_json_error(array('message' => 'Please wait a few minutes before submitting again.'));
-            return;
-        }
-
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'contact_submissions';
-
-        // Format fields for database storage
-        $db_name = 'Name: ' . $name;
-        $db_phone = 'Phone: ' . $phone;
-        $db_message = 'Message: ' . $message;
-
-        // Insert submission
-        $result = $wpdb->insert(
-            $table_name,
-            array(
-                'name' => $db_name,
-                'email' => $email,
-                'phone' => $db_phone,
-                'message' => $db_message,
-                'created_at' => current_time('mysql')
-            ),
-            array('%s', '%s', '%s', '%s', '%s')
-        );
-
-        if ($result === false) {
-            wp_send_json_error(array('message' => 'Failed to save your message. Please try again later.'));
-            return;
-        }
-
-        // Set rate limiting transient
-        set_transient($transient_key, true, 5 * MINUTE_IN_SECONDS);
-
-        // Get email settings from block attributes
-        $block_data = $this->get_contact_block_data($block_id);
-        
-        // Send email notification
-        $this->send_contact_email($name, $email, $phone, $message, $block_data);
-
-        // Send success response
-        wp_send_json_success(array('message' => 'Thank you for your message. We will get back to you soon.'));
-    }
-
-    /**
-     * Get block data by block ID
-     *
-     * @param string $block_id The block ID
-     * @return array Block data with default values if not found
-     */
-    private function get_contact_block_data($block_id) {
-        global $wpdb;
-        
-        // First try to get from post meta (for regular posts)
-        $meta_query = $wpdb->prepare(
-            "SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key LIKE %s AND meta_value LIKE %s LIMIT 1",
-            '%_block_instances%',
-            '%' . $wpdb->esc_like($block_id) . '%'
-        );
-        
-        $meta_value = $wpdb->get_var($meta_query);
-        
-        if ($meta_value) {
-            $blocks_data = maybe_unserialize($meta_value);
-            
-            if (is_array($blocks_data)) {
-                foreach ($blocks_data as $block) {
-                    if (isset($block['id']) && $block['id'] === $block_id) {
-                        return $block['attrs'] ?? array();
-                    }
-                }
-            }
-        }
-        
-        // Fallback
-        return array(
-            'mailReceivers' => get_option('admin_email'),
-            'mailSubject' => 'New Contact Form Submission'
-        );
-    }
-
-    /**
-     * Send contact form email
-     *
-     * @param string $name The sender's name
-     * @param string $email The sender's email
-     * @param string $phone The sender's phone
-     * @param string $message The message
-     * @param array $block_data The block data containing email settings
-     * @return bool Whether the email was sent
-     */
-    private function send_contact_email($name, $email, $phone, $message, $block_data) {
-        // Get recipients
-        $recipients = !empty($block_data['mailReceivers']) ? $block_data['mailReceivers'] : get_option('admin_email');
-        
-        // Get subject
-        $subject = !empty($block_data['mailSubject']) ? $block_data['mailSubject'] : __('New Contact Form Submission', 'obx-blocks');
-        
-        // Format message body
-        $body = sprintf(
-            "Name: %s\nEmail: %s\nPhone: %s\n\nMessage:\n%s",
-            $name,
-            $email,
-            $phone,
-            $message
-        );
-        
-        // Set headers
-        $headers = array(
-            'Content-Type: text/plain; charset=UTF-8',
-            'From: ' . $name . ' <' . $email . '>',
-            'Reply-To: ' . $email
-        );
-        
-        // Send email
-        return wp_mail($recipients, $subject, $body, $headers);
     }
 
     public function delete_contact_submission() {
@@ -289,5 +158,4 @@ class OBX_Blocks {
         wp_redirect(add_query_arg('updated', '1', admin_url('admin.php?page=contact-info')));
         exit;
     }
-
 } 

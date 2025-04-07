@@ -85,7 +85,13 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
             <form class="contact-form" id="contact-form-<?php echo esc_attr($block->id); ?>">
                 <?php wp_nonce_field('contact_form_nonce', 'nonce'); ?>
                 <input type="hidden" name="block_id" value="<?php echo esc_attr($block->id); ?>">
-
+                <?php $mail_data = array(
+                    'mail_subject' => $mail_subject,
+                    'mail_receivers' => $mail_receivers
+                ); 
+                $mail_data = base64_encode(json_encode($mail_data));
+                ?>
+                <input type="hidden" name="mail_data" value="<?php echo esc_attr($mail_data); ?>">
                 <div class="form-group">
                     <label for="name-<?php echo esc_attr($block->id); ?>"><?php echo esc_html($form_fields['name']['label']); ?></label>
                     <input
@@ -159,46 +165,3 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
         "
     ></div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form-<?php echo esc_attr($block->id); ?>');
-    const statusDiv = form.parentElement.querySelector('.form-status');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Show loading state
-        statusDiv.style.display = 'block';
-        statusDiv.className = 'form-status loading';
-        statusDiv.textContent = '<?php echo esc_js(__('Sending...', 'obx-blocks')); ?>';
-
-        const formData = new FormData(form);
-        formData.append('action', 'submit_contact_form');
-
-        fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            statusDiv.style.display = 'block';
-            if (data.success) {
-                statusDiv.className = 'form-status success';
-                statusDiv.textContent = data.data.message;
-                form.reset();
-            } else {
-                statusDiv.className = 'form-status error';
-                statusDiv.textContent = data.data.message;
-            }
-        })
-        .catch(error => {
-            statusDiv.style.display = 'block';
-            statusDiv.className = 'form-status error';
-            statusDiv.textContent = '<?php echo esc_js(__('An error occurred. Please try again.', 'obx-blocks')); ?>';
-            console.error('Error:', error);
-        });
-    });
-});
-</script>
-<?php

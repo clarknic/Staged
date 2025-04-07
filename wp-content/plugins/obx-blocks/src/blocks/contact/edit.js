@@ -19,8 +19,9 @@ import {
     TextControl,
     SelectControl,
     RangeControl,
+    ColorPicker,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { plus, trash, mobile, globe } from '@wordpress/icons';
 // Import SVG icons for email and location since they're not available in @wordpress/icons
 import { ReactComponent as EmailIcon } from './icons/email.svg';
@@ -56,9 +57,26 @@ export default function Edit({ attributes, setAttributes }) {
         backgroundImageUrl,
         backgroundImageId,
         backgroundImageAlt,
+        mailSubject,
+        mailReceivers
     } = attributes;
 
     const [activeItem, setActiveItem] = useState(null);
+    const [formFields, setFormFields] = useState(attributes.formFields || {
+        name: { label: 'Name', placeholder: 'Enter your name' },
+        email: { label: 'Email', placeholder: 'Enter your email' },
+        phone: { label: 'Phone', placeholder: 'Enter your phone number' },
+        message: { label: 'Message', placeholder: 'Enter your message' },
+        submit: {
+            text: 'Submit',
+            backgroundColor: '#007bff',
+            textColor: '#ffffff'
+        }
+    });
+
+    useEffect(() => {
+        setAttributes({ formFields });
+    }, [formFields]);
 
     const blockProps = useBlockProps({
         className: `obx-contact align${align || 'none'} text-${textAlign || 'center'}`,
@@ -131,6 +149,16 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ contactInfo: newItems });
     };
 
+    const updateField = (field, property, value) => {
+        setFormFields(prev => ({
+            ...prev,
+            [field]: {
+                ...prev[field],
+                [property]: value
+            }
+        }));
+    };
+
     return (
         <>
             <BlockControls>
@@ -147,13 +175,6 @@ export default function Edit({ attributes, setAttributes }) {
             
             <InspectorControls>
                 <PanelBody title={__('Contact Settings', 'obx-blocks')}>
-                    <TextControl
-                        label={__('Form Shortcode', 'obx-blocks')}
-                        value={formShortcode}
-                        onChange={(value) => setAttributes({ formShortcode: value })}
-                        help={__('Enter a shortcode for your contact form plugin (e.g., Contact Form 7, WPForms, etc.)', 'obx-blocks')}
-                    />
-                    
                     <div className="components-base-control">
                         <label className="components-base-control__label">
                             {__('Background Image', 'obx-blocks')}
@@ -178,36 +199,6 @@ export default function Edit({ attributes, setAttributes }) {
                             />
                         </MediaUploadCheck>
                     </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Background Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={backgroundColor}
-                            onChange={(color) => setAttributes({ backgroundColor: color })}
-                        />
-                    </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Text Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={textColor}
-                            onChange={(color) => setAttributes({ textColor: color })}
-                        />
-                    </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Accent Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={accentColor}
-                            onChange={(color) => setAttributes({ accentColor: color })}
-                        />
-                    </div>
                 </PanelBody>
                 
                 <PanelBody title={__('Content Settings', 'obx-blocks')}>
@@ -220,6 +211,60 @@ export default function Edit({ attributes, setAttributes }) {
                         step={5}
                         help={__('Controls the width of the content container on desktop. Mobile will always be 100%.', 'obx-blocks')}
                     />
+                </PanelBody>
+
+                <PanelBody title={__('Email Settings', 'obx-blocks')}>
+                    <TextControl
+                        label={__('Email Recipients', 'obx-blocks')}
+                        value={mailReceivers}
+                        onChange={(value) => setAttributes({ mailReceivers: value })}
+                        help={__('Enter email addresses separated by comma', 'obx-blocks')}
+                        placeholder="admin@example.com, info@example.com"
+                    />
+                    <TextControl
+                        label={__('Email Subject', 'obx-blocks')}
+                        value={mailSubject}
+                        onChange={(value) => setAttributes({ mailSubject: value })}
+                        placeholder={__('New Contact Form Submission', 'obx-blocks')}
+                    />
+                </PanelBody>
+
+                <PanelBody title={__('Form Settings', 'obx-blocks')}>
+                    <div className="form-fields-settings">
+                        {Object.entries(formFields).map(([field, settings]) => (
+                            <div key={field} className="field-settings">
+                                <h3>{field.charAt(0).toUpperCase() + field.slice(1)}</h3>
+                                <TextControl
+                                    label={__('Label', 'obx-blocks')}
+                                    value={settings.label}
+                                    onChange={(value) => updateField(field, 'label', value)}
+                                />
+                                <TextControl
+                                    label={__('Placeholder', 'obx-blocks')}
+                                    value={settings.placeholder}
+                                    onChange={(value) => updateField(field, 'placeholder', value)}
+                                />
+                                {field === 'submit' && (
+                                    <>
+                                        <div className="color-picker">
+                                            <label>{__('Background Color', 'obx-blocks')}</label>
+                                            <ColorPicker
+                                                color={settings.backgroundColor}
+                                                onChange={(value) => updateField(field, 'backgroundColor', value)}
+                                            />
+                                        </div>
+                                        <div className="color-picker">
+                                            <label>{__('Text Color', 'obx-blocks')}</label>
+                                            <ColorPicker
+                                                color={settings.textColor}
+                                                onChange={(value) => updateField(field, 'textColor', value)}
+                                            />
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </PanelBody>
             </InspectorControls>
 
@@ -261,16 +306,54 @@ export default function Edit({ attributes, setAttributes }) {
                         )}
                     </div>
                     <div className="obx-contact__form">
-                        {formShortcode ? (
-                            <div className="obx-contact__form-preview">
-                                <div dangerouslySetInnerHTML={{ __html: formShortcode }} />
+                        <form className="contact-form">
+                            <div className="form-group">
+                                <label>{formFields.name.label}</label>
+                                <input
+                                    type="text"
+                                    placeholder={formFields.name.placeholder}
+                                    disabled
+                                />
                             </div>
-                        ) : (
-                            <div className="obx-contact__form-placeholder">
-                                <p>{__('Add a form shortcode in the block settings.', 'obx-blocks')}</p>
-                                <p>{__('Example: [contact-form-7 id="123" title="Contact form"]', 'obx-blocks')}</p>
+
+                            <div className="form-group">
+                                <label>{formFields.email.label}</label>
+                                <input
+                                    type="email"
+                                    placeholder={formFields.email.placeholder}
+                                    disabled
+                                />
                             </div>
-                        )}
+
+                            <div className="form-group">
+                                <label>{formFields.phone.label}</label>
+                                <input
+                                    type="tel"
+                                    placeholder={formFields.phone.placeholder}
+                                    disabled
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>{formFields.message.label}</label>
+                                <textarea
+                                    placeholder={formFields.message.placeholder}
+                                    disabled
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="button"
+                                className="submit-button"
+                                disabled
+                                style={{
+                                    backgroundColor: formFields.submit.backgroundColor,
+                                    color: formFields.submit.textColor
+                                }}
+                            >
+                                {formFields.submit.text}
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div 

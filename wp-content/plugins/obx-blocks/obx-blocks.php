@@ -26,50 +26,14 @@ define('OBX_BLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 // Include global functions
 require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
 
-/**
- * Initialize the plugin
- */
-function obx_blocks_init() {
-    // Automatically register all blocks from the build directory
-    $blocks_dir = OBX_BLOCKS_PLUGIN_DIR . 'build/blocks';
-    
-    // Check if the blocks directory exists
-    if (file_exists($blocks_dir) && is_dir($blocks_dir)) {
-        // Get all subdirectories (each should be a block)
-        $block_folders = array_filter(glob($blocks_dir . '/*'), 'is_dir');
-        
-        if (!empty($block_folders)) {
-            foreach ($block_folders as $block_folder) {
-                // Check if block.json exists in the folder
-                if (file_exists($block_folder . '/block.json')) {
-                    $block_name = basename($block_folder);
-                    error_log('OBX Blocks: Registering block: ' . $block_name);
-                    
-                    // Register the block with its render callback
-                    register_block_type($block_folder);
-                }
-            }
-        } else {
-            error_log('OBX Blocks: No block folders found in ' . $blocks_dir);
-        }
-    } else {
-        error_log('OBX Blocks: Blocks directory not found at ' . $blocks_dir);
-    }
-}
-add_action('init', 'obx_blocks_init');
+// Include required files
+require_once OBX_BLOCKS_PLUGIN_DIR . 'includes/class-obx-blocks-activator.php';
+require_once OBX_BLOCKS_PLUGIN_DIR . 'includes/class-obx-blocks.php';
 
 /**
- * Enqueue block editor assets
+ * Register activation hook
  */
-function obx_blocks_editor_assets() {
-    wp_enqueue_style(
-        'obx-blocks-editor-style',
-        OBX_BLOCKS_PLUGIN_URL . 'build/css/editor.css',
-        array(),
-        OBX_BLOCKS_VERSION
-    );
-}
-add_action('enqueue_block_editor_assets', 'obx_blocks_editor_assets');
+register_activation_hook(__FILE__, array('OBX_Blocks_Activator', 'activate'));
 
 /**
  * Enqueue frontend assets
@@ -128,23 +92,16 @@ function obx_blocks_register_category($categories) {
 add_filter('block_categories_all', 'obx_blocks_register_category', 10, 1);
 
 /**
- * Verify block registration
- */
-function obx_blocks_verify_registration() {
-    $registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
-    error_log('OBX Blocks: Registered blocks:');
-    foreach ($registered_blocks as $block_name => $block) {
-        if (strpos($block_name, 'obx-blocks/') === 0) {
-            error_log('OBX Blocks: Found registered block: ' . $block_name);
-        }
-    }
-}
-add_action('init', 'obx_blocks_verify_registration', 20);
-
-/**
  * Load text domain
  */
 function obx_blocks_load_textdomain() {
     load_plugin_textdomain('obx-blocks', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
 add_action('plugins_loaded', 'obx_blocks_load_textdomain');
+
+// Initialize the plugin
+function run_obx_blocks() {
+    $plugin = OBX_Blocks::get_instance();
+    $plugin->run();
+}
+add_action('plugins_loaded', 'run_obx_blocks');

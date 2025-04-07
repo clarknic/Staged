@@ -60,6 +60,7 @@
     
   }
 
+
   &__text {
     font-size: 1rem;
     font-weight: 100;
@@ -70,6 +71,10 @@
 
   &__contact-info {
     margin-bottom: 30px;
+  }
+
+  &__contact-item {
+    text-align: center;
   }
 
   &__contact-item {
@@ -84,77 +89,126 @@
     }
   }
 
-  // Contact Form 7 Styles
-  .wpcf7 {
-    width: 100%;
   }
 
-  .wpcf7-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.obx-contact__form {
+
+    margin: 0 20px;
+    margin-top: 50px;
+    padding: 0px 80px;
+    background: #fff;
+
+    .form-group {
+        margin-bottom: 1rem;
+
+        label {
+            display: none;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+            color: #333;
   }
 
-  .wpcf7-form-control-wrap {
+        input,
+        textarea {
     width: 100%;
-  }
-
-  .wpcf7-text,
-  .wpcf7-email,
-  .wpcf7-tel,
-  .wpcf7-textarea {
-    width: 100%;
-    padding: 10px 0;
-    border: none;
-    border-bottom: 1px solid #000;
-    background: transparent;
-    font-weight: 100;
-    font-size: 1rem;
-    outline: none;
+            padding: 0.35rem;
+            border: 0px;
+            border-bottom: 1px solid #aaa;
+            font-size: 0.9rem;
     transition: border-color 0.3s ease;
 
-    &::placeholder {
-      color: #aaa;
-    }
-
     &:focus {
-      border-bottom-color: #C4A468;
+                outline: none;
+                border: 0px;
+                border-color: #666666;
+            }
+
+            &:invalid {
+                border-color: #824e35;
+            }
+
+            &:valid {
+                border-color: #28a745;
     }
   }
 
-  .wpcf7-textarea {
-    min-height: 100px;
+        textarea {
+            min-height: 120px;
     resize: vertical;
   }
+    }
 
-  .wpcf7-submit {
-    background: none;
+    .submit-button {
+        width: 100%;
+        padding: 1rem;
     border: none;
-    padding: 10px 20px;
-    font-style: italic;
-    font-weight: 100;
+        font-size: 1rem;
+        font-weight: 500;
     cursor: pointer;
-    text-align: center;
-    transition: color 0.3s ease;
+        transition: opacity 0.3s ease;
 
     &:hover {
-      color: #C4A468;
+            opacity: 0.9;
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
     }
+
+    .form-status {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 500;
+
+        &.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+    }
+
+        &.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
   }
 
+        &.loading {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+
+            &:after {
+                content: "...";
+                animation: loading-dots 1.5s infinite;
+            }
+        }
+    }
+}
+
+@keyframes loading-dots {
+    0% {
+        content: ".";
+    }
+    33% {
+        content: "..";
+    }
+    66% {
+        content: "...";
+    }
+}
+
+
+// Responsive styles
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-
-    &__left {
-      padding: 40px 20px;
+    .obx-contact-form {
+        padding: 1rem;
+        margin: 0 1rem;
     }
-
-    &__right {
-      min-height: 300px;
-    }
-
     &__title {
       font-size: 24px;
     }
   }
-} 

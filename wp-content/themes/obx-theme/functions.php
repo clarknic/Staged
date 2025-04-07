@@ -231,6 +231,38 @@ function obx_theme_customize_register($wp_customize) {
         'section'  => 'footer_settings',
         'type'     => 'text',
     ));
+
+    // Add section for floating contact button
+    $wp_customize->add_section('floating_contact_button', array(
+        'title'    => __('Floating Contact Button', 'obx-theme'),
+        'priority' => 30,
+    ));
+
+    // Add setting for button text
+    $wp_customize->add_setting('floating_contact_text', array(
+        'default'           => 'Contact Us',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    // Add control for button text
+    $wp_customize->add_control('floating_contact_text', array(
+        'label'    => __('Button Text', 'obx-theme'),
+        'section'  => 'floating_contact_button',
+        'type'     => 'text',
+    ));
+
+    // Add setting for button link
+    $wp_customize->add_setting('floating_contact_link', array(
+        'default'           => '#contact-us',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+
+    // Add control for button link
+    $wp_customize->add_control('floating_contact_link', array(
+        'label'    => __('Button Link', 'obx-theme'),
+        'section'  => 'floating_contact_button',
+        'type'     => 'url',
+    ));
 }
 add_action('customize_register', 'obx_theme_customize_register');
 

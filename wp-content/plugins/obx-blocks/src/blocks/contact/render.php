@@ -16,16 +16,15 @@ $text = $attributes['text'] ?? '';
 $email = $attributes['email'] ?? '';
 $phone = $attributes['phone'] ?? '';
 $address = $attributes['address'] ?? '';
-$form_shortcode = $attributes['formShortcode'] ?? '';
 $background_image_url = $attributes['backgroundImageUrl'] ?? '';
-$background_image_id = $attributes['backgroundImageId'] ?? null;
-$background_image_alt = $attributes['backgroundImageAlt'] ?? '';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '#000000';
 $accent_color = !empty($attributes['accentColor']) ? $attributes['accentColor'] : '#C4A468';
 $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $text_align = !empty($attributes['textAlign']) ? $attributes['textAlign'] : 'left';
-$content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 100;
+$form_fields = $attributes['formFields'] ?? [];
+$mail_subject = $attributes['mailSubject'] ?? '';
+$mail_receivers = $attributes['mailReceivers'] ?? '';
 
 // Build the class names
 $class_names = 'obx-contact';
@@ -42,6 +41,7 @@ if (!empty($background_color)) {
 if (!empty($text_color)) {
     $block_style .= "color: {$text_color};";
 }
+
 
 // Add anchor ID if it exists
 $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anchor']) . '"' : '';
@@ -81,11 +81,71 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
             <?php endif; ?>
         </div>
         
-        <?php if (!empty($form_shortcode)) : ?>
-            <div class="obx-contact__form">
-                <?php echo do_shortcode($form_shortcode); ?>
+        <div class="obx-contact__form" id="contact-us">
+            <form class="contact-form" id="contact-form-<?php echo esc_attr($block->id); ?>">
+                <?php wp_nonce_field('contact_form_nonce', 'nonce'); ?>
+                <input type="hidden" name="block_id" value="<?php echo esc_attr($block->id); ?>">
+
+                <div class="form-group">
+                    <label for="name-<?php echo esc_attr($block->id); ?>"><?php echo esc_html($form_fields['name']['label']); ?></label>
+                    <input
+                        type="text"
+                        id="name-<?php echo esc_attr($block->id); ?>"
+                        name="name"
+                        placeholder="<?php echo esc_attr($form_fields['name']['placeholder']); ?>"
+                        required
+                        pattern="[A-Za-z\s]+"
+                        title="Please enter only letters and spaces"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email-<?php echo esc_attr($block->id); ?>"><?php echo esc_html($form_fields['email']['label']); ?></label>
+                    <input
+                        type="email"
+                        id="email-<?php echo esc_attr($block->id); ?>"
+                        name="email"
+                        placeholder="<?php echo esc_attr($form_fields['email']['placeholder']); ?>"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Please enter a valid email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone-<?php echo esc_attr($block->id); ?>"><?php echo esc_html($form_fields['phone']['label']); ?></label>
+                    <input
+                        type="tel"
+                        id="phone-<?php echo esc_attr($block->id); ?>"
+                        name="phone"
+                        placeholder="<?php echo esc_attr($form_fields['phone']['placeholder']); ?>"
+                        required
+                        pattern="[0-9\s\-\(\)\+]+"
+                        title="Please enter a valid phone number"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="message-<?php echo esc_attr($block->id); ?>"><?php echo esc_html($form_fields['message']['label']); ?></label>
+                    <textarea
+                        id="message-<?php echo esc_attr($block->id); ?>"
+                        name="message"
+                        placeholder="<?php echo esc_attr($form_fields['message']['placeholder']); ?>"
+                        required
+                        maxlength="500"
+                    ></textarea>
             </div>
-        <?php endif; ?>
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    <?php echo esc_html($form_fields['submit']['text']); ?>
+                </button>
+            </form>
+
+            <div class="form-status" style="display: none;"></div>
+        </div>
     </div>
     
     <div 
@@ -98,4 +158,47 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
             background-repeat: no-repeat;
         "
     ></div>
-</div> 
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form-<?php echo esc_attr($block->id); ?>');
+    const statusDiv = form.parentElement.querySelector('.form-status');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Show loading state
+        statusDiv.style.display = 'block';
+        statusDiv.className = 'form-status loading';
+        statusDiv.textContent = '<?php echo esc_js(__('Sending...', 'obx-blocks')); ?>';
+
+        const formData = new FormData(form);
+        formData.append('action', 'submit_contact_form');
+
+        fetch('<?php echo esc_url(admin_url('admin-ajax.php')); ?>', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            statusDiv.style.display = 'block';
+            if (data.success) {
+                statusDiv.className = 'form-status success';
+                statusDiv.textContent = data.data.message;
+                form.reset();
+            } else {
+                statusDiv.className = 'form-status error';
+                statusDiv.textContent = data.data.message;
+            }
+        })
+        .catch(error => {
+            statusDiv.style.display = 'block';
+            statusDiv.className = 'form-status error';
+            statusDiv.textContent = '<?php echo esc_js(__('An error occurred. Please try again.', 'obx-blocks')); ?>';
+            console.error('Error:', error);
+        });
+    });
+});
+</script>
+<?php

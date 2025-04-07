@@ -2,6 +2,10 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-primary);
   font-size: 1.1rem;
@@ -17,7 +21,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
   }
 
   .site-branding {
@@ -56,4 +59,32 @@ body {
 .site-description {
   font-size: 0.875rem;
   color: color.adjust($color-text, $lightness: 20%);
-} 
+}
+
+// Floating Contact Button
+.contact-us-floating-link {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 1000;
+  background: $color-gold;
+  padding: 80px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $color-light;
+  font-weight: 100;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+
+  &:hover {
+    background: $color-light;
+    color: $color-text;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  @include respond-to(md) {
+
+  }
+}

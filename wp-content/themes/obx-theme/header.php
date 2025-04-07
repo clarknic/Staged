@@ -25,7 +25,9 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     <div id="page" class="site">
-        <a href="<?php echo esc_url(get_theme_mod('floating_contact_link', '#contact-us')); ?>" class="contact-us-floating-link"><?php echo esc_html(get_theme_mod('floating_contact_text', 'Contact Us')); ?></a>
+        <?php if (is_front_page()) : ?>
+            <a href="<?php echo esc_url(get_theme_mod('floating_contact_link', '#contact-us')); ?>" class="contact-us-floating-link"><?php echo esc_html(get_theme_mod('floating_contact_text', 'Contact Us')); ?></a>
+        <?php endif; ?>
         <header id="masthead" class="site-header">
             <div class="container">
                 <div class="site-branding">

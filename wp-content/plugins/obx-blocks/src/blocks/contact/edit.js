@@ -189,12 +189,37 @@ export default function Edit({ attributes, setAttributes }) {
                                 allowedTypes={['image']}
                                 value={backgroundImageId}
                                 render={({ open }) => (
-                                    <Button 
-                                        onClick={open}
-                                        className="editor-post-featured-image__toggle"
-                                    >
-                                        {backgroundImageUrl ? __('Change Background Image', 'obx-blocks') : __('Set Background Image', 'obx-blocks')}
-                                    </Button>
+                                    <div>
+                                        {backgroundImageUrl && (
+                                            <div className="editor-post-featured-image__preview">
+                                                <img
+                                                    src={backgroundImageUrl}
+                                                    alt={backgroundImageAlt}
+                                                    style={{ maxHeight: '150px', width: 'auto' }}
+                                                />
+                                            </div>
+                                        )}
+                                        <Button 
+                                            onClick={open}
+                                            variant="secondary"
+                                            className="editor-post-featured-image__toggle"
+                                        >
+                                            {backgroundImageUrl ? __('Replace Image', 'obx-blocks') : __('Set Background Image', 'obx-blocks')}
+                                        </Button>
+                                        {backgroundImageUrl && (
+                                            <Button
+                                                onClick={() => setAttributes({ 
+                                                    backgroundImageUrl: '',
+                                                    backgroundImageId: 0,
+                                                    backgroundImageAlt: ''
+                                                })}
+                                                variant="link"
+                                                isDestructive
+                                            >
+                                                {__('Remove Image', 'obx-blocks')}
+                                            </Button>
+                                        )}
+                                    </div>
                                 )}
                             />
                         </MediaUploadCheck>

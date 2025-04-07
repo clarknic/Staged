@@ -9,9 +9,13 @@
     "description": "A full-width section with title, background color, and background image",
     "supports": {
         "html": false,
-        "align": ["full"]
+        "align": ["full"],
+        "anchor": true
     },
     "attributes": {
+        "anchor": {
+            "type": "string"
+        },
         "title": {
             "type": "string",
             "default": ""

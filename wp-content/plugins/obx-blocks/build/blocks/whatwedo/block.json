@@ -11,9 +11,13 @@
     "html": false,
     "align": [
       "full"
-    ]
+    ],
+    "anchor": true
   },
   "attributes": {
+    "anchor": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "default": ""

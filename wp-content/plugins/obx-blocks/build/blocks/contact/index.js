@@ -285,10 +285,28 @@ function Edit({
     value: backgroundImageId,
     render: ({
       open
-    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, backgroundImageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "editor-post-featured-image__preview"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: backgroundImageUrl,
+      alt: backgroundImageAlt,
+      style: {
+        maxHeight: '150px',
+        width: 'auto'
+      }
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: open,
+      variant: "secondary",
       className: "editor-post-featured-image__toggle"
-    }, backgroundImageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Change Background Image', 'obx-blocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Background Image', 'obx-blocks'))
+    }, backgroundImageUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace Image', 'obx-blocks') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Background Image', 'obx-blocks')), backgroundImageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      onClick: () => setAttributes({
+        backgroundImageUrl: '',
+        backgroundImageId: 0,
+        backgroundImageAlt: ''
+      }),
+      variant: "link",
+      isDestructive: true
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'obx-blocks')))
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'obx-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {

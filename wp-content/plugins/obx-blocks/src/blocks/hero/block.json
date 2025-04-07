@@ -9,9 +9,13 @@
   "description": "A full-width hero section with background image, heading, and call-to-action buttons.",
   "supports": {
     "html": false,
-    "align": ["wide", "full"]
+    "align": ["wide", "full"],
+    "anchor": true
   },
   "attributes": {
+    "anchor": {
+      "type": "string"
+    },
     "title": {
       "type": "string",
       "default": ""

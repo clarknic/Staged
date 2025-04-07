@@ -35,9 +35,7 @@ export default function Edit({ attributes, setAttributes }) {
         primaryButtonUrl,
         secondaryButtonText,
         secondaryButtonUrl,
-        backgroundImageUrl,
-        backgroundImageId,
-        backgroundImageAlt,
+        backgroundImage,
         overlayColor,
         overlayOpacity,
         textColor,
@@ -45,17 +43,28 @@ export default function Edit({ attributes, setAttributes }) {
         textAlign,
         content,
         contentWidth,
-        backgroundImage,
         backgroundColor,
         backgroundOverlayOpacity,
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: `obx-hero align${align || 'none'} ${backgroundImageUrl ? 'has-background-image' : ''}`,
+        className: `obx-hero align${align}`,
         style: {
-            color: textColor || '#23282d',
+            textAlign,
+            backgroundColor: backgroundColor || 'transparent',
         },
     });
+
+    const backgroundStyle = {
+        backgroundImage: backgroundImage?.url ? `url(${backgroundImage.url})` : undefined,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    };
+
+    const overlayStyle = {
+        backgroundColor: overlayColor || 'transparent',
+        opacity: overlayOpacity || 0.5,
+    };
 
     return (
         <>
@@ -79,21 +88,39 @@ export default function Edit({ attributes, setAttributes }) {
                         </label>
                         <MediaUploadCheck>
                             <MediaUpload
-                                onSelect={(media) => setAttributes({ 
-                                    backgroundImage: media,
-                                    backgroundImageUrl: media.url,
-                                    backgroundImageId: media.id,
-                                    backgroundImageAlt: media.alt
-                                })}
+                                onSelect={(media) => {
+                                    setAttributes({
+                                        backgroundImage: {
+                                            url: media.url,
+                                            id: media.id,
+                                            alt: media.alt || ''
+                                        }
+                                    });
+                                }}
                                 allowedTypes={['image']}
-                                value={backgroundImageId}
+                                value={backgroundImage?.id}
                                 render={({ open }) => (
-                                    <Button 
-                                        onClick={open}
-                                        className="editor-post-featured-image__toggle"
-                                    >
-                                        {backgroundImageUrl ? __('Change Background Image', 'obx-blocks') : __('Set Background Image', 'obx-blocks')}
-                                    </Button>
+                                    <div>
+                                        <Button
+                                            onClick={open}
+                                            variant="secondary"
+                                            className="editor-post-featured-image__toggle"
+                                        >
+                                            {backgroundImage?.url
+                                                ? __('Replace Image', 'obx-blocks')
+                                                : __('Add Image', 'obx-blocks')
+                                            }
+                                        </Button>
+                                        {backgroundImage?.url && (
+                                            <Button
+                                                onClick={() => setAttributes({ backgroundImage: null })}
+                                                variant="link"
+                                                isDestructive
+                                            >
+                                                {__('Remove Image', 'obx-blocks')}
+                                            </Button>
+                                        )}
+                                    </div>
                                 )}
                             />
                         </MediaUploadCheck>
@@ -159,19 +186,11 @@ export default function Edit({ attributes, setAttributes }) {
             <div {...blockProps}>
                 <div 
                     className="obx-hero__background"
-                    style={{
-                        backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : 'none',
-                        backgroundColor: backgroundColor || 'transparent',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
+                    style={backgroundStyle}
                 >
                     <div 
                         className="obx-hero__overlay"
-                        style={{
-                            backgroundColor: overlayColor || 'rgba(0, 0, 0, 0.5)',
-                            opacity: overlayOpacity / 100
-                        }}
+                        style={overlayStyle}
                     />
                 </div>
                 <div 

@@ -47,6 +47,15 @@
 
 // Editor-specific overrides to match frontend
 .wp-block-obx-blocks-hero {
+  // Make block full width in editor
+  max-width: 100% !important;
+  width: 100% !important;
+  
+  .block-editor-block-list__block {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
   // Editor-specific styles
   .editor-post-featured-image {
     margin-bottom: $spacing-md;

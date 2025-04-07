@@ -1,0 +1,304 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/services/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Services block styles for both editor and frontend
+ */
+.obx-services {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 33px;
+}
+.obx-services--alignfull {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+.obx-services--alignwide {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.obx-services-main {
+  position: relative;
+  padding: 0;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+.obx-services-main__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.obx-services-main__content {
+  position: relative;
+  z-index: 2;
+  width: 50%;
+  margin-left: auto;
+  padding: 60px 15% 60px 60px;
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+@media (max-width: 991px) {
+  .obx-services-main__content {
+    width: 100%;
+    margin-left: 0;
+    padding: 40px 20px;
+    text-align: center;
+  }
+}
+.obx-services-main__heading {
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.3em;
+  font-size: 1.1rem;
+  font-weight: 100;
+}
+.obx-services-main__styled-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 100;
+  margin-top: 3rem;
+  color: #C4A468;
+  font-family: var(--font-catalonia);
+}
+.obx-services-main__text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-top: 2rem;
+  font-weight: 100;
+}
+.obx-services-main__button {
+  margin-top: 2rem;
+}
+.obx-services-main__button a {
+  display: inline-block;
+  padding: 12px 50px;
+  border: 2px solid #000000;
+  cursor: pointer !important;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 100;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+.obx-services-main__button a:hover {
+  border-color: #ffffff;
+  background: #999999;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.obx-services-main__button a:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.obx-services-items {
+  padding: 50px 0;
+  background-color: #fff;
+}
+.obx-services-items .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.obx-service-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.obx-service-item:last-child {
+  margin-bottom: 0;
+}
+.obx-service-item__image {
+  flex: 0 0 70%;
+  max-width: 566px;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  z-index: 3;
+  margin-right: -140px;
+  margin-left: 0;
+}
+.obx-service-item__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.obx-service-item__line {
+  width: 70%;
+  height: 1px;
+  background-color: #C4A468;
+  margin: 20px 0;
+}
+.obx-service-item__content {
+  position: relative;
+  background: #F4EEE3;
+  padding: 60px;
+  padding-right: 100px;
+  padding-left: 180px;
+  overflow: visible;
+  flex: 1;
+  min-height: 500px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+.obx-service-item__title {
+  position: relative;
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #333;
+}
+.obx-service-item__heading-line {
+  position: relative;
+  width: 284px;
+  height: 1px;
+  background-color: #C4A468;
+  margin: 20px 0;
+}
+.obx-service-item__text {
+  font-size: 1rem;
+  line-height: 2em;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0em;
+  width: 100%;
+}
+.obx-service-item__styled-bg {
+  position: absolute;
+  top: 70%;
+  right: -2%;
+  transform: translate(0%, -50%) rotate(270deg);
+  font-size: 24px;
+  font-weight: 100;
+  font-family: var(--font-catalonia);
+  color: #ffffff;
+  z-index: 3;
+  white-space: nowrap;
+}
+.obx-service-item--reversed {
+  flex-direction: row-reverse;
+}
+.obx-service-item--reversed .obx-service-item__image {
+  margin-right: 0;
+  margin-left: -140px;
+}
+.obx-service-item--reversed .obx-service-item__text {
+  width: 70%;
+}
+.obx-service-item--reversed .obx-service-item__content {
+  padding-left: 100px;
+  padding-right: 140px;
+}
+.obx-service-item--reversed .obx-service-item__styled-bg {
+  top: 82%;
+  right: 50%;
+}
+
+@media (max-width: 991px) {
+  .obx-service-item {
+    flex-direction: column;
+    max-width: 100%;
+  }
+  .obx-service-item:nth-child(odd) {
+    flex-direction: column;
+  }
+  .obx-service-item__image {
+    max-width: calc(100% - 60px);
+    width: 100%;
+    margin-right: 0;
+    order: 2;
+    position: relative;
+    top: -50px;
+    left: -10px;
+  }
+  .obx-service-item__content {
+    max-width: calc(100% - 60px);
+    width: 100%;
+    padding: 40px 40px;
+    order: 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .obx-service-item__styled-bg {
+    bottom: 50%;
+    right: 0;
+    font-size: 12px;
+  }
+  .obx-service-item--odd .obx-service-item__image {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .obx-service-item--odd .obx-service-item__content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .obx-service-item--odd .obx-service-item__content .obx-service-item__text {
+    width: 100%;
+  }
+  .obx-service-item--odd .obx-service-item__content .obx-service-item__line {
+    width: 100%;
+  }
+  .obx-service-item--odd .obx-service-item__styled-bg {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .obx-services-main {
+    padding: 60px 0;
+  }
+  .obx-services-main__heading {
+    font-size: 2rem;
+  }
+  .obx-services-main__styled-title {
+    font-size: 1.5rem;
+  }
+  .obx-services-main__text {
+    font-size: 1rem;
+  }
+  .obx-services-items {
+    padding: 40px 0;
+  }
+  .obx-service-item {
+    margin-bottom: 40px;
+  }
+  .obx-service-item__title {
+    font-size: 1.5rem;
+  }
+  .obx-service-item__text {
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

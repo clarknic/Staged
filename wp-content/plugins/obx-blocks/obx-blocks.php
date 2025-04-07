@@ -36,46 +36,6 @@ require_once OBX_BLOCKS_PLUGIN_DIR . 'includes/class-obx-blocks.php';
 register_activation_hook(__FILE__, array('OBX_Blocks_Activator', 'activate'));
 
 /**
- * Enqueue frontend assets
- */
-function obx_blocks_frontend_assets() {
-    error_log('OBX Blocks: Enqueuing frontend assets');
-    
-    // Enqueue main style file
-    if (file_exists(OBX_BLOCKS_PLUGIN_DIR . 'build/css/style-index.css')) {
-        wp_enqueue_style(
-            'obx-blocks-style',
-            OBX_BLOCKS_PLUGIN_URL . 'build/css/style-index.css',
-            array(),
-            OBX_BLOCKS_VERSION
-        );
-        error_log('OBX Blocks: Enqueued main style file');
-    } else {
-        error_log('OBX Blocks: Main style file not found');
-    }
-
-    // Enqueue individual block styles
-    $blocks_dir = OBX_BLOCKS_PLUGIN_DIR . 'build/blocks';
-    if (file_exists($blocks_dir) && is_dir($blocks_dir)) {
-        $block_folders = array_filter(glob($blocks_dir . '/*'), 'is_dir');
-        foreach ($block_folders as $block_folder) {
-            $style_file = $block_folder . '/style-index.css';
-            if (file_exists($style_file)) {
-                $block_name = basename($block_folder);
-                wp_enqueue_style(
-                    'obx-blocks-' . $block_name,
-                    OBX_BLOCKS_PLUGIN_URL . 'build/blocks/' . $block_name . '/style-index.css',
-                    array(),
-                    OBX_BLOCKS_VERSION
-                );
-                error_log('OBX Blocks: Enqueued style for block: ' . $block_name);
-            }
-        }
-    }
-}
-add_action('wp_enqueue_scripts', 'obx_blocks_frontend_assets');
-
-/**
  * Register block categories
  */
 function obx_blocks_register_category($categories) {

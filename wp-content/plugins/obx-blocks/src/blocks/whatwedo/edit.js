@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck, RichText } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ColorPicker, Button } from '@wordpress/components';
 import './editor.scss';
 
@@ -124,7 +124,14 @@ export default function Edit({ attributes, setAttributes }) {
             <div className="whatwedo-wrapper">
                 <div {...blockProps} style={style}>
                     <div className="whatwedo-content">
-                        <h2>{title}</h2>
+                        <RichText
+                            tagName="h2"
+                            className="whatwedo-title"
+                            value={title}
+                            onChange={(value) => setAttributes({ title: value })}
+                            placeholder={__('Enter title...', 'obx-blocks')}
+                            allowedFormats={[]}
+                        />
                         <div className="whatwedo-line"></div>
                     </div>
                 </div>

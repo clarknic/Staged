@@ -29,41 +29,14 @@ class OBX_Blocks {
     }
 
     public function register_blocks() {
-        // Get all blocks from the build directory
         $blocks_dir = OBX_BLOCKS_PLUGIN_DIR . 'build/blocks';
+        $block_folders = glob($blocks_dir . '/*', GLOB_ONLYDIR);
         
-        // Check if the blocks directory exists
-        if (file_exists($blocks_dir) && is_dir($blocks_dir)) {
-            // Get all subdirectories (each should be a block)
-            $block_folders = array_filter(glob($blocks_dir . '/*'), 'is_dir');
-            
-            if (!empty($block_folders)) {
-                foreach ($block_folders as $block_folder) {
-                    // Check if block.json exists in the folder
-                    if (file_exists($block_folder . '/block.json')) {
-                        $block_name = basename($block_folder);
-                        $block_path = $blocks_dir . '/' . $block_name;
-                        
-                        // Check if block is already registered
-                        if (!WP_Block_Type_Registry::get_instance()->is_registered('obx-blocks/' . $block_name)) {
-                            // Include the render.php file if it exists
-                            $render_file = $block_path . '/render.php';
-                            if (file_exists($render_file)) {
-                                ob_start();
-                                require_once $render_file;
-                                ob_end_clean();
-                            }
-                            
-                            register_block_type($block_path);
-                            error_log('OBX Blocks: Registered block: ' . $block_name);
-                        }
-                    }
-                }
-            } else {
-                error_log('OBX Blocks: No block folders found in ' . $blocks_dir);
+        foreach ($block_folders as $block_folder) {
+            $block_json = $block_folder . '/block.json';
+            if (file_exists($block_json)) {
+                register_block_type($block_json);
             }
-        } else {
-            error_log('OBX Blocks: Blocks directory not found at ' . $blocks_dir);
         }
     }
 

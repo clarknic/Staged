@@ -1,0 +1,33 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/whatwedo/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * What We Do block editor styles
+ */
+.wp-block-obx-blocks-whatwedo {
+  position: relative;
+  width: 100%;
+  background-color: #F5EEE1;
+  background-size: cover;
+  background-position: center;
+}
+.wp-block-obx-blocks-whatwedo .whatwedo-content {
+  padding: 40px 80px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wp-block-obx-blocks-whatwedo .whatwedo-content p {
+  font-size: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: inherit;
+}
+.wp-block-obx-blocks-whatwedo .whatwedo-content .whatwedo-line {
+  width: 284px;
+  height: 1px;
+  background: var(--color-accent);
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=index.css.map*/

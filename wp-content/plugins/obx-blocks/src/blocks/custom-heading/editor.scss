@@ -1,15 +1,15 @@
 /**
- * What We Do block editor styles
+ * Custom Heading block editor styles
  */
 
-.wp-block-obx-blocks-whatwedo {
+.wp-block-obx-blocks-custom-heading {
     position: relative;
     width: 100%;
     background-color: #F5EEE1;
     background-size: cover;
     background-position: center;
     
-    .whatwedo-content {
+    .custom-heading-content {
         padding: 40px 80px;
         text-align: center;
         max-width: 1200px;
@@ -23,7 +23,7 @@
             color: inherit;
         }
         
-        .whatwedo-line {
+        .custom-heading-line {
             width: 284px;
             height: 1px;
             background: var(--color-accent);

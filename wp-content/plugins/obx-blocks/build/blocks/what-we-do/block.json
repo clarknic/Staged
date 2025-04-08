@@ -1,15 +1,18 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "obx-blocks/services",
+  "name": "obx-blocks/what-we-do",
   "version": "1.0.0",
-  "title": "Services",
+  "title": "What We Do",
   "category": "obx-blocks",
   "icon": "grid-view",
   "description": "A block to display services with a main section and service items",
   "supports": {
     "html": false,
-    "align": ["wide", "full"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true
   },
   "attributes": {
@@ -75,4 +78,4 @@
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php"
-} 
+}

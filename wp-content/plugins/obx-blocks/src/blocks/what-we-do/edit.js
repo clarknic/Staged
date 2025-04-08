@@ -49,7 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: 'obx-services'
+        className: 'obx-what-we-do'
     });
 
     const updateServiceItem = (index, field, value) => {
@@ -112,21 +112,21 @@ export default function Edit({ attributes, setAttributes }) {
             </InspectorControls>
 
             <div {...blockProps}>
-                <div className="obx-services-main">
+                <div className="obx-what-we-do-main">
                     <MediaUploadCheck>
                         <MediaUpload
                             onSelect={(media) => setAttributes({ backgroundImage: media })}
                             allowedTypes={['image']}
                             value={backgroundImage?.id}
                             render={({ open }) => (
-                                <div className="obx-services-main__background-upload">
+                                <div className="obx-what-we-do-main__background-upload">
                                     {backgroundImage ? (
                                         <div 
-                                            className="obx-services-main__background"
+                                            className="obx-what-we-do-main__background"
                                             style={{ backgroundImage: `url(${backgroundImage.url})` }}
                                         >
                                             <Button
-                                                className="obx-services-main__background-edit"
+                                                className="obx-what-we-do-main__background-edit"
                                                 onClick={open}
                                                 icon={edit}
                                                 label={__('Edit background image', 'obx-blocks')}
@@ -152,10 +152,10 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </MediaUploadCheck>
                     
-                    <div className="obx-services-main__content">
+                    <div className="obx-what-we-do-main__content">
                         <RichText
                             tagName="h2"
-                            className="obx-services-main__heading"
+                            className="obx-what-we-do-main__heading"
                             value={heading}
                             onChange={(value) => setAttributes({ heading: value })}
                             placeholder={__('Enter heading...', 'obx-blocks')}
@@ -163,7 +163,7 @@ export default function Edit({ attributes, setAttributes }) {
 
                         <RichText
                             tagName="h3"
-                            className="obx-services-main__styled-title"
+                            className="obx-what-we-do-main__styled-title"
                             value={styledTitle}
                             onChange={(value) => setAttributes({ styledTitle: value })}
                             placeholder={__('Enter styled title...', 'obx-blocks')}
@@ -171,39 +171,39 @@ export default function Edit({ attributes, setAttributes }) {
 
                         <RichText
                             tagName="div"
-                            className="obx-services-main__text"
+                            className="obx-what-we-do-main__text"
                             value={text}
                             onChange={(value) => setAttributes({ text: value })}
                             placeholder={__('Enter text...', 'obx-blocks')}
                         />
 
                         {buttonText && buttonLink && (
-                            <div className="obx-services-main__button">
+                            <div className="obx-what-we-do-main__button">
                                 <a href={buttonLink}>{buttonText}</a>
                             </div>
                         )}
                     </div>
                 </div>
 
-                <div className="obx-services-items">
+                <div className="obx-what-we-do-items">
                     {serviceItems.map((item, index) => (
                         <div 
                             key={index}
-                            className={`obx-service-item${item.isReversed ? ' obx-service-item--reversed' : ''}${index % 2 !== 0 ? ' obx-service-item--odd' : ''}`}
+                            className={`obx-what-we-do-item${item.isReversed ? ' obx-what-we-do-item--reversed' : ''}${index % 2 !== 0 ? ' obx-what-we-do-item--odd' : ''}`}
                         >
-                            <div className="obx-service-item__image">
+                            <div className="obx-what-we-do-item__image">
                                 <MediaUploadCheck>
                                     <MediaUpload
                                         onSelect={(media) => updateServiceItem(index, 'image', media)}
                                         allowedTypes={['image']}
                                         value={item.image?.id}
                                         render={({ open }) => (
-                                            <div className="obx-service-item__image-upload">
+                                            <div className="obx-what-we-do-item__image-upload">
                                                 {item.image ? (
-                                                    <div className="obx-service-item__image-preview">
+                                                    <div className="obx-what-we-do-item__image-preview">
                                                         <img src={item.image.url} alt={item.title || ''} />
                                                         <Button
-                                                            className="obx-service-item__image-edit"
+                                                            className="obx-what-we-do-item__image-edit"
                                                             onClick={open}
                                                             icon={edit}
                                                             label={__('Edit image', 'obx-blocks')}
@@ -230,18 +230,18 @@ export default function Edit({ attributes, setAttributes }) {
                                 </MediaUploadCheck>
                             </div>
 
-                            <div className="obx-service-item__content">
+                            <div className="obx-what-we-do-item__content">
                                 <RichText
                                     tagName="h3"
-                                    className="obx-service-item__title"
+                                    className="obx-what-we-do-item__title"
                                     value={item.title}
                                     onChange={(value) => updateServiceItem(index, 'title', value)}
                                     placeholder={__('Enter service item title...', 'obx-blocks')}
                                 />
-                                <div className="obx-service-item__line"></div>
+                                <div className="obx-what-we-do-item__line"></div>
                                 <RichText
                                     tagName="div"
-                                    className="obx-service-item__text"
+                                    className="obx-what-we-do-item__text"
                                     value={item.text}
                                     onChange={(value) => updateServiceItem(index, 'text', value)}
                                     placeholder={__('Enter service item text...', 'obx-blocks')}
@@ -251,16 +251,16 @@ export default function Edit({ attributes, setAttributes }) {
                             {item.title && (
                                 <RichText
                                     tagName="h4"
-                                    className="obx-service-item__styled-bg"
+                                    className="obx-what-we-do-item__styled-bg"
                                     value={item.title}
                                     onChange={(value) => updateServiceItem(index, 'title', value)}
                                 />
                             )}
 
-                            <div className="obx-service-item__actions">
+                            <div className="obx-what-we-do-item__actions">
                                 <Button
                                     isDestructive
-                                    className="obx-service-item__remove"
+                                    className="obx-what-we-do-item__remove"
                                     onClick={() => removeServiceItem(index)}
                                 >
                                     {__('Remove Service Item', 'obx-blocks')}

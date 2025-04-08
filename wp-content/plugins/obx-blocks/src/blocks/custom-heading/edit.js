@@ -121,22 +121,22 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                 </PanelBody>
             </InspectorControls>
-            <div className="whatwedo-wrapper">
+            <div className="custom-heading-wrapper">
                 <div {...blockProps} style={style}>
-                    <div className="whatwedo-content">
+                    <div className="custom-heading-content">
                         <RichText
                             tagName="h2"
-                            className="whatwedo-title"
+                            className="custom-heading-title"
                             value={title}
                             onChange={(value) => setAttributes({ title: value })}
                             placeholder={__('Enter title...', 'obx-blocks')}
                             allowedFormats={[]}
                         />
-                        <div className="whatwedo-line"></div>
+                        <div className="custom-heading-line"></div>
                     </div>
                 </div>
                 {imageAfter?.url && (
-                    <div className="whatwedo-image-section">
+                    <div className="custom-heading-image-section">
                         <img src={imageAfter.url} alt={imageAfter.alt} />
                     </div>
                 )}

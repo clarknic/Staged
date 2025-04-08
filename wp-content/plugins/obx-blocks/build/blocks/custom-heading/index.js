@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/whatwedo/block.json":
-/*!****************************************!*\
-  !*** ./src/blocks/whatwedo/block.json ***!
-  \****************************************/
+/***/ "./src/blocks/custom-heading/block.json":
+/*!**********************************************!*\
+  !*** ./src/blocks/custom-heading/block.json ***!
+  \**********************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/whatwedo","version":"1.0.0","title":"What We Do","category":"obx-blocks","icon":"admin-generic","description":"A full-width section with title, background color, and background image","supports":{"html":false,"align":["full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"title":{"type":"string","default":""},"backgroundColor":{"type":"string","default":"#F5EEE1"},"backgroundImage":{"type":"object","default":null},"imageAfter":{"type":"object","default":null}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/custom-heading","version":"1.0.0","title":"Custom Heading","category":"obx-blocks","icon":"admin-generic","description":"A full-width section with title, background color, and background image","supports":{"html":false,"align":["full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"title":{"type":"string","default":""},"backgroundColor":{"type":"string","default":"#F5EEE1"},"backgroundImage":{"type":"object","default":null},"imageAfter":{"type":"object","default":null}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
-/***/ "./src/blocks/whatwedo/edit.js":
-/*!*************************************!*\
-  !*** ./src/blocks/whatwedo/edit.js ***!
-  \*************************************/
+/***/ "./src/blocks/custom-heading/edit.js":
+/*!*******************************************!*\
+  !*** ./src/blocks/custom-heading/edit.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -30,7 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/whatwedo/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/custom-heading/editor.scss");
 
 
 
@@ -130,15 +130,15 @@ function Edit({
       isDestructive: true
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Bottom Image', 'obx-blocks')))
   }))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "whatwedo-wrapper"
+    className: "custom-heading-wrapper"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps,
     style: style
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "whatwedo-content"
+    className: "custom-heading-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h2",
-    className: "whatwedo-title",
+    className: "custom-heading-title",
     value: title,
     onChange: value => setAttributes({
       title: value
@@ -146,9 +146,9 @@ function Edit({
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter title...', 'obx-blocks'),
     allowedFormats: []
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "whatwedo-line"
+    className: "custom-heading-line"
   }))), imageAfter?.url && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "whatwedo-image-section"
+    className: "custom-heading-image-section"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: imageAfter.url,
     alt: imageAfter.alt
@@ -157,10 +157,10 @@ function Edit({
 
 /***/ }),
 
-/***/ "./src/blocks/whatwedo/editor.scss":
-/*!*****************************************!*\
-  !*** ./src/blocks/whatwedo/editor.scss ***!
-  \*****************************************/
+/***/ "./src/blocks/custom-heading/editor.scss":
+/*!***********************************************!*\
+  !*** ./src/blocks/custom-heading/editor.scss ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -169,18 +169,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/whatwedo/index.js":
-/*!**************************************!*\
-  !*** ./src/blocks/whatwedo/index.js ***!
-  \**************************************/
+/***/ "./src/blocks/custom-heading/index.js":
+/*!********************************************!*\
+  !*** ./src/blocks/custom-heading/index.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/blocks/whatwedo/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/whatwedo/block.json");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/whatwedo/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./src/blocks/custom-heading/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./block.json */ "./src/blocks/custom-heading/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/custom-heading/style.scss");
 /**
  * WordPress dependencies
  */
@@ -204,10 +204,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/whatwedo/style.scss":
-/*!****************************************!*\
-  !*** ./src/blocks/whatwedo/style.scss ***!
-  \****************************************/
+/***/ "./src/blocks/custom-heading/style.scss":
+/*!**********************************************!*\
+  !*** ./src/blocks/custom-heading/style.scss ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -376,8 +376,8 @@ module.exports = window["React"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/whatwedo/index": 0,
-/******/ 			"blocks/whatwedo/style-index": 0
+/******/ 			"blocks/custom-heading/index": 0,
+/******/ 			"blocks/custom-heading/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -427,7 +427,7 @@ module.exports = window["React"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/whatwedo/style-index"], () => (__webpack_require__("./src/blocks/whatwedo/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/custom-heading/style-index"], () => (__webpack_require__("./src/blocks/custom-heading/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

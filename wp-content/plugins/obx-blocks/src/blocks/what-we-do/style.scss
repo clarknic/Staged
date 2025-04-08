@@ -1,0 +1,348 @@
+/**
+ * What We Do block styles for both editor and frontend
+ */
+
+ @use "sass:color";
+ @use "../../scss/index" as *;
+ @use "sass:math";
+ 
+ .obx-what-we-do {
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+     padding-top: 33px;
+ 
+     &--alignfull {
+         width: 100vw;
+         margin-left: calc(-50vw + 50%);
+         margin-right: calc(-50vw + 50%);
+     }
+ 
+     &--alignwide {
+         width: 100%;
+         max-width: 1200px;
+         margin-left: auto;
+         margin-right: auto;
+     }
+ }
+ 
+ .obx-what-we-do-main {
+     position: relative;
+     padding: 0;
+     min-height: 600px;
+     display: flex;
+     align-items: center;
+ 
+ 
+     &__background {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+         background-repeat: no-repeat;
+         z-index: 1;
+     }
+ 
+     &__content {
+         position: relative;
+         z-index: 2;
+         width: 50%;
+         margin-left: auto;
+         padding: 60px 15% 60px 60px;
+         background: rgba(255, 255, 255, 0.96);
+         backdrop-filter: blur(1px);
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         text-align: left;
+ 
+         @media (max-width: 991px) {
+             width: 100%;
+             margin-left: 0;
+             padding: 40px 20px;
+             text-align: center;
+         }
+     }
+ 
+     &__heading {
+         position: relative;
+         text-align: center;
+         letter-spacing: 0.3em;
+         font-size: 1.1rem;
+         font-weight: 100;
+     }
+ 
+     &__styled-title {
+         text-align: center;
+         font-size: 24px;
+         font-weight: 100;
+         margin-top: 3.0rem;
+         color: #C4A468;
+         font-family: var(--font-catalonia);
+     }
+ 
+     &__text {
+         font-size: 1.1rem;
+         line-height: 1.6;
+         color: #666;
+         margin-top: 2rem;
+         font-weight: 100;
+     }
+ 
+     &__button {
+         margin-top: 2rem;
+         a {
+             display: inline-block;
+             padding: 12px 50px;
+             border: 2px solid #000000;
+             cursor: pointer!important;
+             color: #000000;
+             text-decoration: none;
+             font-weight: 100;
+             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+             position: relative;
+             overflow: hidden;
+ 
+             &:hover {
+                 border-color: #ffffff;
+                 background: #999999;
+                 color: #ffffff;
+                 transform: translateY(-2px);
+                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+             }
+ 
+             &:active {
+                 transform: translateY(0);
+                 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+             }
+         }
+     }
+ }
+ 
+ .obx-what-we-do-items {
+     padding: 50px 0;
+     background-color: #fff;
+ 
+     .container {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 0 20px;
+     }
+ }
+ 
+ .obx-what-we-do-item {
+     display: flex;
+     align-items: center;
+     margin-bottom: 50px;
+     max-width: 1100px;
+     margin-left: auto;
+     margin-right: auto;
+     position: relative;
+ 
+     &:last-child {
+         margin-bottom: 0;
+     }
+ 
+     
+     &__image {
+         flex: 0 0 70%;
+         max-width: 566px;
+         width: 100%;
+         display: flex;
+         align-items: stretch;
+         position: relative;
+         z-index: 3;
+         margin-right: -140px;
+         margin-left: 0;
+         img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+         }
+     }
+ 
+     &__line {
+         width: 70%;
+         height: 1px;
+         background-color: #C4A468;
+         margin: 20px 0;
+     }
+ 
+     &__content {
+         position: relative;
+         background: #F4EEE3;
+         padding: 60px;
+         padding-right: 100px;
+         padding-left: 180px;
+         overflow: visible;
+         flex: 1;
+         min-height: 500px;
+         width: 50%;
+         display: flex;
+         flex-direction: column;
+         z-index: 2;
+     }
+ 
+     &__title {
+         position: relative;
+         font-size: 1.8rem;
+         font-weight: 100;
+         margin-bottom: 20px;
+         text-transform: uppercase;
+         color: #333;
+     }
+ 
+     &__heading-line {
+         position: relative;
+         width: 284px;
+         height: 1px;
+         background-color: #C4A468;
+         margin: 20px 0;
+     }
+ 
+     &__text {
+         font-size: 1rem;
+         line-height: 2em;
+         color: var(--color-text);
+         margin-bottom: 1.5rem;
+         letter-spacing: 0em;
+         width: 100%;
+     }
+ 
+     &__styled-bg {
+         position: absolute;
+         top: 70%;
+         right: -2%;
+         transform: translate(0%, -50%) rotate(270deg);
+         font-size: 24px;
+         font-weight: 100;
+         font-family: var(--font-catalonia);
+         color: #ffffff;
+         z-index: 3;
+         white-space: nowrap;
+     }
+ 
+     &--reversed {
+         flex-direction: row-reverse;
+ 
+         .obx-what-we-do-item__image {
+             margin-right: 0;
+             margin-left: -140px;
+         }
+         .obx-what-we-do-item__text {
+             width: 70%;
+         }
+ 
+         .obx-what-we-do-item__content {
+             padding-left: 100px;
+             padding-right: 140px;
+         }
+         .obx-what-we-do-item__styled-bg {
+             top: 82%;
+             right: 50%;
+         }
+         
+     }
+     
+ }
+ 
+ @media (max-width: 991px) {
+     .obx-what-we-do-item {
+         flex-direction: column;
+         max-width: 100%;
+         
+ 
+         &:nth-child(odd) {
+             flex-direction: column;
+         }
+ 
+         &__image{
+             max-width: calc(100% - 60px);
+             width: 100%;
+             margin-right: 0;
+             order: 2;
+             position: relative;
+             top: -50px;
+             left: -10px;
+         }
+ 
+         &__content {
+             max-width: calc(100% - 60px);
+             width: 100%;
+             padding:40px 40px;
+             order: 1;
+             margin-left: auto;
+             margin-right: auto;
+         }
+ 
+         &__styled-bg {
+             bottom: 50%;
+             right: 0;
+             font-size: 12px;
+         }
+ 
+         &--odd {
+     
+             .obx-what-we-do-item__image {
+                 margin-right: 0;
+                 margin-left: 0;
+             }
+             
+             .obx-what-we-do-item__content {
+                 padding-left: 20px;
+                 padding-right: 20px;
+                 .obx-what-we-do-item__text {
+                     width: 100%;
+                 }
+                 .obx-what-we-do-item__line {
+                     width: 100%;
+                 }
+             }
+ 
+             .obx-what-we-do-item__styled-bg {
+                 display: none;
+             }
+             
+         }
+     }
+ }
+ 
+ @media (max-width: 767px) {
+     .obx-what-we-do-main {
+         padding: 60px 0;
+ 
+         &__heading {
+             font-size: 2rem;
+         }
+ 
+         &__styled-title {
+             font-size: 1.5rem;
+         }
+ 
+         &__text {
+             font-size: 1rem;
+         }
+     }
+ 
+     .obx-what-we-do-items {
+         padding: 40px 0;
+     }
+ 
+     .obx-what-we-do-item {
+         margin-bottom: 40px;
+ 
+         &__title {
+             font-size: 1.5rem;
+         }
+ 
+         &__text {
+             
+             font-size: 1rem;
+         }
+     }
+ } 

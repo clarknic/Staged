@@ -26,8 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const formData = new FormData(form);
       formData.append('action', 'submit_contact_form');
 
+      // Add the security nonce
+      formData.append('security', obx_site.nonce);
+
+      // Use the global ajax URL
+      const ajaxUrl = obx_site.ajax_url;
+
       // Send AJAX request
-      fetch(obx_blocks.ajax_url, {
+      fetch(ajaxUrl, {
         method: 'POST',
         credentials: 'same-origin',
         body: formData

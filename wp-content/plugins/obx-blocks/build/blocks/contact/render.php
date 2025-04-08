@@ -112,7 +112,6 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
                         id="email-<?php echo esc_attr($block->id); ?>"
                         name="email"
                         placeholder="<?php echo esc_attr($form_fields['email']['placeholder']); ?>"
-                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                         title="Please enter a valid email address"
                         required
                     >

@@ -153,7 +153,7 @@
         }
       }
       
-      &.current-menu-item > a {
+      &.current-menu-item:not(.menu-item-type-custom) > a {
         color: $color-gold;
       }
     }

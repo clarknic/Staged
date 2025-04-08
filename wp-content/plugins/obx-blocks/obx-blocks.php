@@ -59,6 +59,22 @@ function obx_blocks_load_textdomain() {
 }
 add_action('plugins_loaded', 'obx_blocks_load_textdomain');
 
+/**
+ * Localize scripts for blocks that require ajax
+ */
+function obx_blocks_localize_scripts() {
+    // Check if the block's script is enqueued or if we're on a page with the contact block
+    if (wp_script_is('obx-blocks-contact-view-script', 'registered')) {
+        // Localize the ajax URL for the contact form
+        wp_localize_script('obx-blocks-contact-view-script', 'obx_blocks', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('contact_form_nonce')
+        ));
+    }
+}
+// Use a later priority to ensure the script is registered first
+add_action('wp_enqueue_scripts', 'obx_blocks_localize_scripts', 99);
+
 // Initialize the plugin
 function run_obx_blocks() {
     $plugin = OBX_Blocks::get_instance();

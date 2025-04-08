@@ -29,6 +29,12 @@ function obx_theme_scripts() {
         );
     }
 
+    // Register global site data that will be available to all scripts
+    $site_data = array(
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('obx_site_nonce')
+    );
+
     // Enqueue JavaScript if it exists
     if (file_exists(get_template_directory() . '/dist/js/main.js')) {
         wp_enqueue_script(
@@ -38,6 +44,9 @@ function obx_theme_scripts() {
             wp_get_theme()->get('Version'),
             true
         );
+        
+        // Localize script with WordPress AJAX URL and other global data
+        wp_localize_script('obx-theme-script', 'obx_site', $site_data);
     }
     
     // Enqueue main JavaScript file as a module
@@ -56,6 +65,11 @@ function obx_theme_scripts() {
         }
         return $tag;
     }, 10, 2);
+    
+    // Also localize the module script in case main.js isn't loaded
+    if (!file_exists(get_template_directory() . '/dist/js/main.js')) {
+        wp_localize_script('obx-theme-main', 'obx_site', $site_data);
+    }
 }
 add_action('wp_enqueue_scripts', 'obx_theme_scripts');
 

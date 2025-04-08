@@ -21,6 +21,7 @@ class OBX_Blocks {
         add_action('wp_ajax_nopriv_submit_contact_form', array($this, 'handle_contact_form_submission'));
         add_action('admin_post_delete_contact_submission', array($this, 'delete_contact_submission'));
         add_action('admin_post_edit_contact_submission', array($this, 'edit_contact_submission'));
+        add_action('wp_enqueue_scripts', array($this, 'localize_contact_form_script'));
     }
 
     public function run() {
@@ -73,8 +74,9 @@ class OBX_Blocks {
      * Handles contact form submissions via AJAX
      */
     public function handle_contact_form_submission() {
-        // Verify nonce
-        if (!check_ajax_referer('contact_form_nonce', 'nonce', false)) {
+        // Verify nonce - check both nonce parameter (from built-in form) and security (from obx_site)
+        if (!check_ajax_referer('contact_form_nonce', 'nonce', false) && 
+            !check_ajax_referer('obx_site_nonce', 'security', false)) {
             wp_send_json_error(array('message' => 'Invalid security token. Please refresh the page and try again.'));
             return;
         }
@@ -153,6 +155,18 @@ class OBX_Blocks {
 
         wp_redirect(add_query_arg('updated', '1', admin_url('admin.php?page=contact-info')));
         exit;
+    }
+
+    /**
+     * Localize the contact form script with necessary data
+     */
+    public function localize_contact_form_script() {
+        if (has_block('obx-blocks/contact')) {
+            wp_localize_script('obx-blocks-contact-view-script', 'obx_blocks', array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('contact_form_nonce')
+            ));
+        }
     }
 }
 

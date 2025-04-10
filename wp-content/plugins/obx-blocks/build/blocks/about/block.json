@@ -1,51 +1,55 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "obx-blocks/about",
   "version": "1.0.0",
   "title": "About Us",
   "category": "obx-blocks",
-  "icon": "groups",
-  "description": "Display your team members with images, names, positions, descriptions, and quotes.",
+  "icon": "info",
+  "description": "A section to describe your company with a heading, text, and CTA on a background image.",
   "supports": {
     "html": false,
     "align": [
       "wide",
       "full"
-    ]
+    ],
+    "anchor": true
   },
   "attributes": {
-    "tagline": {
-      "type": "string",
-      "default": ""
-    },
-    "heading": {
-      "type": "string",
-      "default": ""
-    },
-    "introText": {
-      "type": "string",
-      "default": ""
-    },
-    "teamMembers": {
-      "type": "array",
-      "default": []
+    "anchor": {
+      "type": "string"
     },
     "align": {
       "type": "string",
       "default": "full"
     },
-    "backgroundColor": {
+    "heading": {
       "type": "string",
-      "default": "#ffffff"
+      "default": "We know that life happens in stages."
+    },
+    "content": {
+      "type": "string",
+      "default": "We know that life happens in stages, and at Staged Hampton Roads, we are here to guide you through them. We are passionate about creating beautiful, functional, and organized spaces whether it be to sell or stay."
+    },
+    "leftImage": {
+      "type": "object",
+      "default": {}
+    },
+    "rightImage": {
+      "type": "object",
+      "default": {}
+    },
+    "circleImage": {
+      "type": "object",
+      "default": {}
+    },
+    "useCircleImage": {
+      "type": "boolean",
+      "default": true
     },
     "textColor": {
       "type": "string",
-      "default": ""
-    },
-    "accentColor": {
-      "type": "string",
-      "default": "#a7d1fb"
+      "default": "#333333"
     },
     "textAlign": {
       "type": "string",
@@ -53,12 +57,33 @@
     },
     "contentWidth": {
       "type": "number",
-      "default": 80
+      "default": 60
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Our Services"
+    },
+    "ctaLink": {
+      "type": "string",
+      "default": "#services"
+    },
+    "ctaTarget": {
+      "type": "boolean",
+      "default": false
+    },
+    "ctaPosition": {
+      "type": "string",
+      "default": "center",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
     }
   },
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./editor.css",
-  "style": "file:./style.css",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
   "render": "file:./render.php"
 }

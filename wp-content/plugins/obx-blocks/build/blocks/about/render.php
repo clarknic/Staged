@@ -11,103 +11,101 @@ if (!defined('ABSPATH')) {
 }
 
 // Extract attributes with defaults
-$tagline = $attributes['tagline'] ?? '';
-$heading = $attributes['heading'] ?? '';
-$intro_text = $attributes['introText'] ?? '';
-$team_members = $attributes['teamMembers'] ?? [];
-$align = !empty($attributes['align']) ? $attributes['align'] : 'full';
+$heading = $attributes['heading'] ?? 'We know that life happens in stages.';
+$content = $attributes['content'] ?? '';
+$left_image = $attributes['leftImage'] ?? [];
+$right_image = $attributes['rightImage'] ?? [];
+$circle_image = $attributes['circleImage'] ?? [];
+$use_circle_image = $attributes['useCircleImage'] ?? true;
+$text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '#333333';
 $text_align = !empty($attributes['textAlign']) ? $attributes['textAlign'] : 'center';
-$background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
-$text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
-$accent_color = !empty($attributes['accentColor']) ? $attributes['accentColor'] : '#a7d1fb';
-$content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 80;
+$content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 60;
+$cta_text = !empty($attributes['ctaText']) ? $attributes['ctaText'] : 'Our Services';
+$cta_link = !empty($attributes['ctaLink']) ? $attributes['ctaLink'] : '#services';
+$cta_target = !empty($attributes['ctaTarget']) ? true : false;
+$cta_position = !empty($attributes['ctaPosition']) ? $attributes['ctaPosition'] : 'center';
+$align = !empty($attributes['align']) ? $attributes['align'] : 'full';
+
+// Add anchor ID if it exists
+$anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anchor']) . '"' : '';
 
 // Build the class names
 $class_names = 'obx-about';
 if (!empty($align)) {
     $class_names .= ' align' . $align;
 }
-$class_names .= ' text-' . $text_align;
 
-// Build the inline styles
-$block_style = '';
-if (!empty($background_color)) {
-    $block_style .= "background-color: {$background_color};";
-}
-if (!empty($text_color)) {
-    $block_style .= "color: {$text_color};";
+// Add class if using circle image
+$content_class = 'obx-about__content';
+if ($use_circle_image) {
+    $content_class .= ' obx-about__content--with-circle';
 }
 
-// Heading style with accent color
-$heading_style = '';
-if (!empty($accent_color)) {
-    $heading_style = "background-image: linear-gradient(transparent 60%, {$accent_color} 60%);";
-}
-
-// Container style with content width
-$container_style = "max-width: {$content_width}%;";
+// Set target attribute for CTA link
+$target_attr = $cta_target ? ' target="_blank" rel="noopener noreferrer"' : '';
 
 // Output the HTML
 ?>
-<div class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
-    <div class="obx-about__container" style="<?php echo esc_attr($container_style); ?>">
-        <div class="obx-about__header" style="text-align: <?php echo esc_attr($text_align); ?>">
-            <?php if (!empty($tagline)) : ?>
-                <div class="obx-about__tagline"><?php echo wp_kses_post($tagline); ?></div>
+<div <?php echo $anchor_id; ?> class="<?php echo esc_attr($class_names); ?>">
+    <div class="obx-about__container">
+        <?php if (!empty($left_image) && !empty($left_image['url'])) : ?>
+            <div class="obx-about__image obx-about__image--left">
+                <img 
+                    src="<?php echo esc_url($left_image['url']); ?>" 
+                    alt="<?php echo esc_attr($left_image['alt'] ?? ''); ?>"
+                    class="obx-about__image-img"
+                />
+            </div>
+        <?php else: ?>
+            <!-- Left image not displayed: empty or missing URL -->
+        <?php endif; ?>
+        
+        <div class="<?php echo esc_attr($content_class); ?>" style="max-width: <?php echo esc_attr($content_width); ?>%; text-align: <?php echo esc_attr($text_align); ?>;">
+            <?php if ($use_circle_image) : ?>
+                <div class="obx-about__circle">
+                    <?php if (!empty($circle_image) && !empty($circle_image['url'])) : ?>
+                        <img 
+                            src="<?php echo esc_url($circle_image['url']); ?>" 
+                            alt="<?php echo esc_attr($circle_image['alt'] ?? ''); ?>"
+                            class="obx-about__circle-img"
+                        />
+                    <?php else: ?>
+                        <div class="obx-about__circle-placeholder"></div>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
             
             <?php if (!empty($heading)) : ?>
-                <h2 class="obx-about__heading" <?php echo !empty($heading_style) ? 'style="' . esc_attr($heading_style) . '"' : ''; ?>>
+                <h2 class="obx-about__heading" style="color: <?php echo esc_attr($text_color); ?>;">
                     <?php echo wp_kses_post($heading); ?>
                 </h2>
             <?php endif; ?>
             
-            <?php if (!empty($intro_text)) : ?>
-                <div class="obx-about__intro-text"><?php echo wp_kses_post($intro_text); ?></div>
+            <?php if (!empty($content)) : ?>
+                <div class="obx-about__text" style="color: <?php echo esc_attr($text_color); ?>;">
+                    <?php echo wp_kses_post($content); ?>
+                </div>
+            <?php endif; ?>
+            
+            <?php if (!empty($cta_text)) : ?>
+                <div class="obx-about__cta obx-about__cta--<?php echo esc_attr($cta_position); ?>">
+                    <a href="<?php echo esc_url($cta_link); ?>" class="obx-about__button"<?php echo $target_attr; ?>>
+                        <?php echo esc_html($cta_text); ?>
+                    </a>
+                </div>
             <?php endif; ?>
         </div>
         
-        <?php if (!empty($team_members)) : ?>
-            <div class="obx-about__team">
-                <?php foreach ($team_members as $member) : ?>
-                    <div class="obx-about__member">
-                        <?php if (!empty($member['imageUrl'])) : ?>
-                            <div class="obx-about__member-image-container">
-                                <img 
-                                    src="<?php echo esc_url($member['imageUrl']); ?>" 
-                                    alt="<?php echo esc_attr($member['imageAlt']); ?>" 
-                                    class="obx-about__member-image"
-                                />
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="obx-about__member-content">
-                            <?php if (!empty($member['name'])) : ?>
-                                <h3 class="obx-about__member-name"><?php echo wp_kses_post($member['name']); ?></h3>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($member['position'])) : ?>
-                                <div class="obx-about__member-position"><?php echo wp_kses_post($member['position']); ?></div>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($member['description'])) : ?>
-                                <div class="obx-about__member-description"><?php echo wp_kses_post($member['description']); ?></div>
-                            <?php endif; ?>
-                            
-                            <?php if (!empty($member['quote'])) : ?>
-                                <div class="obx-about__member-quote-container">
-                                    <div class="obx-about__member-quote-icon" style="color: <?php echo esc_attr($accent_color); ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                            <path d="M13 6v6h5.2v4c0 .8-.2 1.4-.5 1.7-.3.4-.8.5-1.5.5H16v2h.7c1.6 0 2.8-.4 3.6-1.2.8-.8 1.2-2 1.2-3.5V6H13zm-9 6h5.2v4c0 .8-.2 1.4-.5 1.7-.3.4-.8.5-1.5.5H7v2h.7c1.6 0 2.8-.4 3.6-1.2.8-.8 1.2-2 1.2-3.5V6H4v6z" fill="currentColor"/>
-                                        </svg>
-                                    </div>
-                                    <div class="obx-about__member-quote"><?php echo wp_kses_post($member['quote']); ?></div>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+        <?php if (!empty($right_image) && !empty($right_image['url'])) : ?>
+            <div class="obx-about__image obx-about__image--right">
+                <img 
+                    src="<?php echo esc_url($right_image['url']); ?>" 
+                    alt="<?php echo esc_attr($right_image['alt'] ?? ''); ?>"
+                    class="obx-about__image-img"
+                />
             </div>
+        <?php else: ?>
+            <!-- Right image not displayed: empty or missing URL -->
         <?php endif; ?>
     </div>
 </div> 

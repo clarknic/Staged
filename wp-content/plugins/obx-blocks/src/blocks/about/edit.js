@@ -6,21 +6,19 @@ import {
     useBlockProps,
     RichText,
     InspectorControls,
-    ColorPalette,
     MediaUpload,
     MediaUploadCheck,
-    BlockControls,
-    BlockAlignmentToolbar,
-    AlignmentToolbar,
+    ColorPalette,
 } from '@wordpress/block-editor';
 import {
     PanelBody,
+    RadioControl,
+    RangeControl,
     Button,
-    BaseControl,
-    TextareaControl,
+    TextControl,
+    ToggleControl,
+    SelectControl,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
-import { plus, trash, quote } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -28,294 +26,374 @@ import { plus, trash, quote } from '@wordpress/icons';
 import './editor.scss';
 
 /**
- * Edit function for the About Us block
+ * The edit function describes the structure of your block in the context of the
+ * editor. This represents what the editor will render when the block is used.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
+ *
+ * @param {Object} props               Block props.
+ * @param {Object} props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Function to update block attributes.
+ * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
     const {
-        tagline,
         heading,
-        introText,
-        teamMembers,
-        backgroundColor,
+        content,
+        leftImage,
+        rightImage,
+        circleImage,
+        useCircleImage,
         textColor,
-        accentColor,
-        align,
         textAlign,
+        contentWidth,
+        ctaText,
+        ctaLink,
+        ctaTarget,
+        ctaPosition,
     } = attributes;
 
-    const [activeMember, setActiveMember] = useState(null);
-
     const blockProps = useBlockProps({
-        className: `obx-about align${align || 'none'} text-${textAlign || 'center'}`,
-        style: {
-            backgroundColor,
-            color: textColor,
-        },
+        className: 'obx-about',
     });
 
-    const addTeamMember = () => {
-        const newMembers = [...teamMembers];
-        newMembers.push({
-            id: `member-${Date.now()}`,
-            imageUrl: '',
-            imageId: 0,
-            imageAlt: '',
-            name: '',
-            position: '',
-            description: '',
-            quote: ''
+    // Handlers for attribute changes
+    const onChangeTextAlign = (value) => {
+        setAttributes({ textAlign: value });
+    };
+
+    const onChangeContentWidth = (value) => {
+        setAttributes({ contentWidth: value });
+    };
+
+    const onSelectLeftImage = (media) => {
+        // Log to help with debugging
+        console.log('Setting left image:', media);
+        setAttributes({
+            leftImage: {
+                id: media.id,
+                url: media.url,
+                alt: media.alt || '',
+            },
         });
-        setAttributes({ teamMembers: newMembers });
     };
 
-    const removeTeamMember = (index) => {
-        const newMembers = [...teamMembers];
-        newMembers.splice(index, 1);
-        setAttributes({ teamMembers: newMembers });
-        setActiveMember(null);
+    const onRemoveLeftImage = () => {
+        setAttributes({
+            leftImage: {},
+        });
     };
 
-    const updateTeamMember = (index, property, value) => {
-        const newMembers = [...teamMembers];
-        newMembers[index] = {
-            ...newMembers[index],
-            [property]: value,
-        };
-        setAttributes({ teamMembers: newMembers });
+    const onSelectRightImage = (media) => {
+        // Log to help with debugging
+        console.log('Setting right image:', media);
+        setAttributes({
+            rightImage: {
+                id: media.id,
+                url: media.url,
+                alt: media.alt || '',
+            },
+        });
+    };
+
+    const onRemoveRightImage = () => {
+        setAttributes({
+            rightImage: {},
+        });
+    };
+
+    const onSelectCircleImage = (media) => {
+        console.log('Setting circle image:', media);
+        setAttributes({
+            circleImage: {
+                id: media.id,
+                url: media.url,
+                alt: media.alt || '',
+            },
+        });
+    };
+
+    const onRemoveCircleImage = () => {
+        setAttributes({
+            circleImage: {},
+        });
+    };
+
+    const toggleCircleImage = () => {
+        setAttributes({ useCircleImage: !useCircleImage });
     };
 
     return (
         <>
-            <BlockControls>
-                <BlockAlignmentToolbar
-                    value={align}
-                    onChange={(newAlign) => setAttributes({ align: newAlign })}
-                    controls={['wide', 'full']}
-                />
-                <AlignmentToolbar
-                    value={textAlign}
-                    onChange={(newAlign) => setAttributes({ textAlign: newAlign })}
-                />
-            </BlockControls>
-            
             <InspectorControls>
-                <PanelBody title={__('About Us Settings', 'obx-blocks')}>
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Background Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={backgroundColor}
-                            onChange={(color) => setAttributes({ backgroundColor: color })}
-                        />
-                    </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Text Color', 'obx-blocks')}
-                        </label>
+                <PanelBody title={__('Layout Settings', 'obx-blocks')}>
+                    <RadioControl
+                        label={__('Text Alignment', 'obx-blocks')}
+                        selected={textAlign}
+                        options={[
+                            { label: __('Left', 'obx-blocks'), value: 'left' },
+                            { label: __('Center', 'obx-blocks'), value: 'center' },
+                            { label: __('Right', 'obx-blocks'), value: 'right' },
+                        ]}
+                        onChange={onChangeTextAlign}
+                    />
+                    <RangeControl
+                        label={__('Content Width (%)', 'obx-blocks')}
+                        value={contentWidth}
+                        onChange={onChangeContentWidth}
+                        min={30}
+                        max={100}
+                    />
+                    <div className="color-settings">
+                        <p>{__('Text Color', 'obx-blocks')}</p>
                         <ColorPalette
                             value={textColor}
                             onChange={(color) => setAttributes({ textColor: color })}
                         />
                     </div>
+                </PanelBody>
+                
+                <PanelBody title={__('Circle Image', 'obx-blocks')}>
+                    <ToggleControl
+                        label={__('Use Circle Image', 'obx-blocks')}
+                        checked={useCircleImage}
+                        onChange={toggleCircleImage}
+                        help={__('Display an image in the circular border at the top of the content', 'obx-blocks')}
+                    />
                     
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Accent Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={accentColor}
-                            onChange={(color) => setAttributes({ accentColor: color })}
+                    {useCircleImage && (
+                        <MediaUploadCheck>
+                            <p className="components-base-control__label">{__('Circle Image', 'obx-blocks')}</p>
+                            <MediaUpload
+                                onSelect={onSelectCircleImage}
+                                allowedTypes={['image']}
+                                value={circleImage?.id}
+                                render={({ open }) => (
+                                    <div className="editor-post-featured-image">
+                                        {circleImage?.url ? (
+                                            <div>
+                                                <img
+                                                    src={circleImage.url}
+                                                    alt={circleImage.alt}
+                                                    style={{ 
+                                                        width: '100%', 
+                                                        marginBottom: '10px',
+                                                        borderRadius: '50%',
+                                                        objectFit: 'cover',
+                                                        aspectRatio: '1/1'
+                                                    }}
+                                                />
+                                                <Button
+                                                    isSecondary
+                                                    className="is-destructive"
+                                                    onClick={onRemoveCircleImage}
+                                                >
+                                                    {__('Remove Image', 'obx-blocks')}
+                                                </Button>
+                                            </div>
+                                        ) : (
+                                            <Button
+                                                isPrimary
+                                                onClick={open}
+                                            >
+                                                {__('Set Circle Image', 'obx-blocks')}
+                                            </Button>
+                                        )}
+                                    </div>
+                                )}
+                            />
+                        </MediaUploadCheck>
+                    )}
+                </PanelBody>
+                
+                <PanelBody title={__('Side Images', 'obx-blocks')}>
+                    <p className="components-base-control__label">{__('Left Image', 'obx-blocks')}</p>
+                    <MediaUploadCheck>
+                        <MediaUpload
+                            onSelect={onSelectLeftImage}
+                            allowedTypes={['image']}
+                            value={leftImage?.id}
+                            render={({ open }) => (
+                                <div className="editor-post-featured-image">
+                                    {leftImage?.url ? (
+                                        <div>
+                                            <img
+                                                src={leftImage.url}
+                                                alt={leftImage.alt}
+                                                style={{ width: '100%', marginBottom: '10px' }}
+                                            />
+                                            <Button
+                                                isSecondary
+                                                className="is-destructive"
+                                                onClick={onRemoveLeftImage}
+                                            >
+                                                {__('Remove Image', 'obx-blocks')}
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            isPrimary
+                                            onClick={open}
+                                        >
+                                            {__('Set Left Image', 'obx-blocks')}
+                                        </Button>
+                                    )}
+                                </div>
+                            )}
                         />
-                    </div>
+                    </MediaUploadCheck>
+                    
+                    <p className="components-base-control__label" style={{ marginTop: '20px' }}>{__('Right Image', 'obx-blocks')}</p>
+                    <MediaUploadCheck>
+                        <MediaUpload
+                            onSelect={onSelectRightImage}
+                            allowedTypes={['image']}
+                            value={rightImage?.id}
+                            render={({ open }) => (
+                                <div className="editor-post-featured-image">
+                                    {rightImage?.url ? (
+                                        <div>
+                                            <img
+                                                src={rightImage.url}
+                                                alt={rightImage.alt}
+                                                style={{ width: '100%', marginBottom: '10px' }}
+                                            />
+                                            <Button
+                                                isSecondary
+                                                className="is-destructive"
+                                                onClick={onRemoveRightImage}
+                                            >
+                                                {__('Remove Image', 'obx-blocks')}
+                                            </Button>
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            isPrimary
+                                            onClick={open}
+                                        >
+                                            {__('Set Right Image', 'obx-blocks')}
+                                        </Button>
+                                    )}
+                                </div>
+                            )}
+                        />
+                    </MediaUploadCheck>
+                </PanelBody>
+                <PanelBody title={__('CTA Button Settings', 'obx-blocks')}>
+                    <TextControl
+                        label={__('Button Text', 'obx-blocks')}
+                        value={ctaText}
+                        onChange={(value) => setAttributes({ ctaText: value })}
+                    />
+                    <TextControl
+                        label={__('Button Link', 'obx-blocks')}
+                        value={ctaLink}
+                        onChange={(value) => setAttributes({ ctaLink: value })}
+                    />
+                    <ToggleControl
+                        label={__('Open in new tab', 'obx-blocks')}
+                        checked={ctaTarget}
+                        onChange={(value) => setAttributes({ ctaTarget: value })}
+                    />
+                    <SelectControl
+                        label={__('Button Alignment', 'obx-blocks')}
+                        value={ctaPosition}
+                        options={[
+                            { label: __('Left', 'obx-blocks'), value: 'left' },
+                            { label: __('Center', 'obx-blocks'), value: 'center' },
+                            { label: __('Right', 'obx-blocks'), value: 'right' },
+                        ]}
+                        onChange={(value) => setAttributes({ ctaPosition: value })}
+                    />
                 </PanelBody>
             </InspectorControls>
 
             <div {...blockProps}>
                 <div className="obx-about__container">
-                    <div className="obx-about__header" style={{ textAlign }}>
-                        <RichText
-                            tagName="div"
-                            className="obx-about__tagline"
-                            value={tagline}
-                            onChange={(value) => setAttributes({ tagline: value })}
-                            placeholder={__('OUR TEAM', 'obx-blocks')}
-                        />
+                    {leftImage?.url ? (
+                        <div className="obx-about__image obx-about__image--left">
+                            <img 
+                                src={leftImage.url} 
+                                alt={leftImage.alt || ''} 
+                                className="obx-about__image-img"
+                            />
+                        </div>
+                    ) : (
+                        <div className="obx-about__image obx-about__image--left obx-about__image--placeholder">
+                            <div style={{padding: '30px', border: '1px dashed #ccc', textAlign: 'center', backgroundColor: '#f0f0f0'}}>
+                                <p>Please add a left image</p>
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div 
+                        className={`obx-about__content ${useCircleImage ? 'obx-about__content--with-circle' : ''}`}
+                        style={{ 
+                            maxWidth: `${contentWidth}%`, 
+                            textAlign: textAlign
+                        }}
+                    >
+                        {useCircleImage && (
+                            <div className="obx-about__circle">
+                                {circleImage?.url ? (
+                                    <img 
+                                        src={circleImage.url}
+                                        alt={circleImage.alt || ''}
+                                        className="obx-about__circle-img"
+                                    />
+                                ) : (
+                                    <div className="obx-about__circle-placeholder"></div>
+                                )}
+                            </div>
+                        )}
+                        
                         <RichText
                             tagName="h2"
                             className="obx-about__heading"
                             value={heading}
                             onChange={(value) => setAttributes({ heading: value })}
-                            placeholder={__('Meet the people behind our success', 'obx-blocks')}
-                            style={{ 
-                                backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none' 
-                            }}
+                            placeholder={__('Enter heading...', 'obx-blocks')}
+                            style={{ color: textColor }}
                         />
                         
                         <RichText
                             tagName="div"
-                            className="obx-about__intro-text"
-                            value={introText}
-                            onChange={(value) => setAttributes({ introText: value })}
-                            placeholder={__('Add an introduction about your team or company...', 'obx-blocks')}
-                            allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                            className="obx-about__text"
+                            value={content}
+                            onChange={(value) => setAttributes({ content: value })}
+                            placeholder={__('Enter content...', 'obx-blocks')}
+                            style={{ color: textColor }}
                         />
+                        
+                        {ctaText && (
+                            <div className={`obx-about__cta obx-about__cta--${ctaPosition}`}>
+                                <a 
+                                    href={ctaLink || '#'}
+                                    className="obx-about__button"
+                                    target={ctaTarget ? '_blank' : '_self'}
+                                    rel={ctaTarget ? 'noopener noreferrer' : ''}
+                                >
+                                    {ctaText}
+                                </a>
+                            </div>
+                        )}
                     </div>
                     
-                    <div className="obx-about__team">
-                        {teamMembers.map((member, index) => (
-                            <div 
-                                key={member.id} 
-                                className={`obx-about__member ${activeMember === index ? 'is-selected' : ''}`}
-                                onClick={() => setActiveMember(index)}
-                            >
-                                <div className="obx-about__member-image-container">
-                                    {member.imageUrl ? (
-                                        <img 
-                                            src={member.imageUrl} 
-                                            alt={member.imageAlt} 
-                                            className="obx-about__member-image"
-                                        />
-                                    ) : (
-                                        <div className="obx-about__member-image-placeholder">
-                                            <MediaUploadCheck>
-                                                <MediaUpload
-                                                    onSelect={(media) => {
-                                                        updateTeamMember(index, 'imageUrl', media.url);
-                                                        updateTeamMember(index, 'imageId', media.id);
-                                                        updateTeamMember(index, 'imageAlt', media.alt || '');
-                                                    }}
-                                                    allowedTypes={['image']}
-                                                    value={member.imageId}
-                                                    render={({ open }) => (
-                                                        <Button
-                                                            onClick={open}
-                                                            className="obx-about__member-image-button"
-                                                        >
-                                                            {__('Add Image', 'obx-blocks')}
-                                                        </Button>
-                                                    )}
-                                                />
-                                            </MediaUploadCheck>
-                                        </div>
-                                    )}
-                                    {member.imageUrl && (
-                                        <div className="obx-about__member-image-actions">
-                                            <MediaUploadCheck>
-                                                <MediaUpload
-                                                    onSelect={(media) => {
-                                                        updateTeamMember(index, 'imageUrl', media.url);
-                                                        updateTeamMember(index, 'imageId', media.id);
-                                                        updateTeamMember(index, 'imageAlt', media.alt || '');
-                                                    }}
-                                                    allowedTypes={['image']}
-                                                    value={member.imageId}
-                                                    render={({ open }) => (
-                                                        <Button
-                                                            onClick={open}
-                                                            variant="secondary"
-                                                            isSmall
-                                                        >
-                                                            {__('Replace', 'obx-blocks')}
-                                                        </Button>
-                                                    )}
-                                                />
-                                            </MediaUploadCheck>
-                                            <Button
-                                                onClick={() => {
-                                                    updateTeamMember(index, 'imageUrl', '');
-                                                    updateTeamMember(index, 'imageId', 0);
-                                                    updateTeamMember(index, 'imageAlt', '');
-                                                }}
-                                                variant="secondary"
-                                                isSmall
-                                                isDestructive
-                                            >
-                                                {__('Remove', 'obx-blocks')}
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="obx-about__member-content">
-                                    <RichText
-                                        tagName="h3"
-                                        className="obx-about__member-name"
-                                        value={member.name}
-                                        onChange={(value) => updateTeamMember(index, 'name', value)}
-                                        placeholder={__('Team Member Name', 'obx-blocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
-                                    />
-                                    <RichText
-                                        tagName="div"
-                                        className="obx-about__member-position"
-                                        value={member.position}
-                                        onChange={(value) => updateTeamMember(index, 'position', value)}
-                                        placeholder={__('Position', 'obx-blocks')}
-                                        allowedFormats={['core/bold', 'core/italic']}
-                                    />
-                                    <RichText
-                                        tagName="div"
-                                        className="obx-about__member-description"
-                                        value={member.description}
-                                        onChange={(value) => updateTeamMember(index, 'description', value)}
-                                        placeholder={__('Short description...', 'obx-blocks')}
-                                        allowedFormats={['core/bold', 'core/italic', 'core/link']}
-                                    />
-                                    
-                                    {member.quote && (
-                                        <div className="obx-about__member-quote-container">
-                                            <div className="obx-about__member-quote-icon" style={{ color: accentColor }}>
-                                                {quote}
-                                            </div>
-                                            <RichText
-                                                tagName="div"
-                                                className="obx-about__member-quote"
-                                                value={member.quote}
-                                                onChange={(value) => updateTeamMember(index, 'quote', value)}
-                                                placeholder={__('Personal quote...', 'obx-blocks')}
-                                                allowedFormats={['core/bold', 'core/italic']}
-                                            />
-                                        </div>
-                                    )}
-                                    
-                                    <div className="obx-about__member-actions">
-                                        {!member.quote && (
-                                            <Button
-                                                variant="secondary"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    updateTeamMember(index, 'quote', '');
-                                                }}
-                                                className="obx-about__member-add-quote"
-                                                icon={quote}
-                                            >
-                                                {__('Add Quote', 'obx-blocks')}
-                                            </Button>
-                                        )}
-                                        <Button
-                                            isDestructive
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                removeTeamMember(index);
-                                            }}
-                                            className="obx-about__member-remove"
-                                        >
-                                            {__('Remove Member', 'obx-blocks')}
-                                        </Button>
-                                    </div>
-                                </div>
+                    {rightImage?.url ? (
+                        <div className="obx-about__image obx-about__image--right">
+                            <img 
+                                src={rightImage.url} 
+                                alt={rightImage.alt || ''} 
+                                className="obx-about__image-img"
+                            />
+                        </div>
+                    ) : (
+                        <div className="obx-about__image obx-about__image--right obx-about__image--placeholder">
+                            <div style={{padding: '30px', border: '1px dashed #ccc', textAlign: 'center', backgroundColor: '#f0f0f0'}}>
+                                <p>Please add a right image</p>
                             </div>
-                        ))}
-                        
-                        <Button
-                            className="obx-about__add-button"
-                            icon={plus}
-                            onClick={addTeamMember}
-                        >
-                            {__('Add Team Member', 'obx-blocks')}
-                        </Button>
-                    </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

@@ -2,73 +2,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/plus.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/plus.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * WordPress dependencies
- */
-
-const plus = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M11 12.5V17.5H12.5V12.5H17.5V11H12.5V6H11V11H6V12.5H11Z"
-}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (plus);
-//# sourceMappingURL=plus.js.map
-
-/***/ }),
-
-/***/ "./node_modules/@wordpress/icons/build-module/library/quote.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/quote.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/primitives */ "@wordpress/primitives");
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-/**
- * WordPress dependencies
- */
-
-const quote = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  viewBox: "0 0 24 24",
-  xmlns: "http://www.w3.org/2000/svg"
-}, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M13 6v6h5.2v4c0 .8-.2 1.4-.5 1.7-.6.6-1.6.6-2.5.5h-.3v1.5h.5c1 0 2.3-.1 3.3-1 .6-.6 1-1.6 1-2.8V6H13zm-9 6h5.2v4c0 .8-.2 1.4-.5 1.7-.6.6-1.6.6-2.5.5h-.3v1.5h.5c1 0 2.3-.1 3.3-1 .6-.6 1-1.6 1-2.8V6H4v6z"
-}));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (quote);
-//# sourceMappingURL=quote.js.map
-
-/***/ }),
-
 /***/ "./src/blocks/about/block.json":
 /*!*************************************!*\
   !*** ./src/blocks/about/block.json ***!
   \*************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/about","version":"1.0.0","title":"About Us","category":"obx-blocks","icon":"groups","description":"Display your team members with images, names, positions, descriptions, and quotes.","supports":{"html":false,"align":["wide","full"]},"attributes":{"tagline":{"type":"string","default":""},"heading":{"type":"string","default":""},"introText":{"type":"string","default":""},"teamMembers":{"type":"array","default":[]},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string","default":"#ffffff"},"textColor":{"type":"string","default":""},"accentColor":{"type":"string","default":"#a7d1fb"},"textAlign":{"type":"string","default":"center"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./editor.css","style":"file:./style.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"obx-blocks/about","version":"1.0.0","title":"About Us","category":"obx-blocks","icon":"info","description":"A section to describe your company with a heading, text, and CTA on a background image.","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"align":{"type":"string","default":"full"},"heading":{"type":"string","default":"We know that life happens in stages."},"content":{"type":"string","default":"We know that life happens in stages, and at Staged Hampton Roads, we are here to guide you through them. We are passionate about creating beautiful, functional, and organized spaces whether it be to sell or stay."},"leftImage":{"type":"object","default":{}},"rightImage":{"type":"object","default":{}},"circleImage":{"type":"object","default":{}},"useCircleImage":{"type":"boolean","default":true},"textColor":{"type":"string","default":"#333333"},"textAlign":{"type":"string","default":"center"},"contentWidth":{"type":"number","default":60},"ctaText":{"type":"string","default":"Our Services"},"ctaLink":{"type":"string","default":"#services"},"ctaTarget":{"type":"boolean","default":false},"ctaPosition":{"type":"string","default":"center","enum":["left","center","right"]}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -90,17 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/quote.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/about/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/about/editor.scss");
 
 /**
  * WordPress dependencies
  */
-
-
 
 
 
@@ -111,255 +45,335 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Edit function for the About Us block
+ * The edit function describes the structure of your block in the context of the
+ * editor. This represents what the editor will render when the block is used.
+ *
+ * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
+ *
+ * @param {Object} props               Block props.
+ * @param {Object} props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Function to update block attributes.
+ * @return {WPElement} Element to render.
  */
 function Edit({
   attributes,
   setAttributes
 }) {
   const {
-    tagline,
     heading,
-    introText,
-    teamMembers,
-    backgroundColor,
+    content,
+    leftImage,
+    rightImage,
+    circleImage,
+    useCircleImage,
     textColor,
-    accentColor,
-    align,
-    textAlign
+    textAlign,
+    contentWidth,
+    ctaText,
+    ctaLink,
+    ctaTarget,
+    ctaPosition
   } = attributes;
-  const [activeMember, setActiveMember] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-    className: `obx-about align${align || 'none'} text-${textAlign || 'center'}`,
-    style: {
-      backgroundColor,
-      color: textColor
-    }
+    className: 'obx-about'
   });
-  const addTeamMember = () => {
-    const newMembers = [...teamMembers];
-    newMembers.push({
-      id: `member-${Date.now()}`,
-      imageUrl: '',
-      imageId: 0,
-      imageAlt: '',
-      name: '',
-      position: '',
-      description: '',
-      quote: ''
-    });
+
+  // Handlers for attribute changes
+  const onChangeTextAlign = value => {
     setAttributes({
-      teamMembers: newMembers
+      textAlign: value
     });
   };
-  const removeTeamMember = index => {
-    const newMembers = [...teamMembers];
-    newMembers.splice(index, 1);
+  const onChangeContentWidth = value => {
     setAttributes({
-      teamMembers: newMembers
-    });
-    setActiveMember(null);
-  };
-  const updateTeamMember = (index, property, value) => {
-    const newMembers = [...teamMembers];
-    newMembers[index] = {
-      ...newMembers[index],
-      [property]: value
-    };
-    setAttributes({
-      teamMembers: newMembers
+      contentWidth: value
     });
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockAlignmentToolbar, {
-    value: align,
-    onChange: newAlign => setAttributes({
-      align: newAlign
-    }),
-    controls: ['wide', 'full']
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
-    value: textAlign,
-    onChange: newAlign => setAttributes({
-      textAlign: newAlign
-    })
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('About Us Settings', 'obx-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-base-control"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "components-base-control__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Background Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-    value: backgroundColor,
-    onChange: color => setAttributes({
-      backgroundColor: color
-    })
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-base-control"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
-    className: "components-base-control__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
+  const onSelectLeftImage = media => {
+    // Log to help with debugging
+    console.log('Setting left image:', media);
+    setAttributes({
+      leftImage: {
+        id: media.id,
+        url: media.url,
+        alt: media.alt || ''
+      }
+    });
+  };
+  const onRemoveLeftImage = () => {
+    setAttributes({
+      leftImage: {}
+    });
+  };
+  const onSelectRightImage = media => {
+    // Log to help with debugging
+    console.log('Setting right image:', media);
+    setAttributes({
+      rightImage: {
+        id: media.id,
+        url: media.url,
+        alt: media.alt || ''
+      }
+    });
+  };
+  const onRemoveRightImage = () => {
+    setAttributes({
+      rightImage: {}
+    });
+  };
+  const onSelectCircleImage = media => {
+    console.log('Setting circle image:', media);
+    setAttributes({
+      circleImage: {
+        id: media.id,
+        url: media.url,
+        alt: media.alt || ''
+      }
+    });
+  };
+  const onRemoveCircleImage = () => {
+    setAttributes({
+      circleImage: {}
+    });
+  };
+  const toggleCircleImage = () => {
+    setAttributes({
+      useCircleImage: !useCircleImage
+    });
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout Settings', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RadioControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text Alignment', 'obx-blocks'),
+    selected: textAlign,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Left', 'obx-blocks'),
+      value: 'left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Center', 'obx-blocks'),
+      value: 'center'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right', 'obx-blocks'),
+      value: 'right'
+    }],
+    onChange: onChangeTextAlign
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width (%)', 'obx-blocks'),
+    value: contentWidth,
+    onChange: onChangeContentWidth,
+    min: 30,
+    max: 100
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "color-settings"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Text Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
     value: textColor,
     onChange: color => setAttributes({
       textColor: color
     })
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "components-base-control"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Circle Image', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Use Circle Image', 'obx-blocks'),
+    checked: useCircleImage,
+    onChange: toggleCircleImage,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Display an image in the circular border at the top of the content', 'obx-blocks')
+  }), useCircleImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "components-base-control__label"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Accent Color', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.ColorPalette, {
-    value: accentColor,
-    onChange: color => setAttributes({
-      accentColor: color
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Circle Image', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectCircleImage,
+    allowedTypes: ['image'],
+    value: circleImage?.id,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "editor-post-featured-image"
+    }, circleImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: circleImage.url,
+      alt: circleImage.alt,
+      style: {
+        width: '100%',
+        marginBottom: '10px',
+        borderRadius: '50%',
+        objectFit: 'cover',
+        aspectRatio: '1/1'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isSecondary: true,
+      className: "is-destructive",
+      onClick: onRemoveCircleImage
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'obx-blocks'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isPrimary: true,
+      onClick: open
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Circle Image', 'obx-blocks')))
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Side Images', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "components-base-control__label"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Left Image', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectLeftImage,
+    allowedTypes: ['image'],
+    value: leftImage?.id,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "editor-post-featured-image"
+    }, leftImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: leftImage.url,
+      alt: leftImage.alt,
+      style: {
+        width: '100%',
+        marginBottom: '10px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isSecondary: true,
+      className: "is-destructive",
+      onClick: onRemoveLeftImage
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'obx-blocks'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isPrimary: true,
+      onClick: open
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Left Image', 'obx-blocks')))
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "components-base-control__label",
+    style: {
+      marginTop: '20px'
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right Image', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
+    onSelect: onSelectRightImage,
+    allowedTypes: ['image'],
+    value: rightImage?.id,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "editor-post-featured-image"
+    }, rightImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: rightImage.url,
+      alt: rightImage.alt,
+      style: {
+        width: '100%',
+        marginBottom: '10px'
+      }
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isSecondary: true,
+      className: "is-destructive",
+      onClick: onRemoveRightImage
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'obx-blocks'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+      isPrimary: true,
+      onClick: open
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Right Image', 'obx-blocks')))
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('CTA Button Settings', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text', 'obx-blocks'),
+    value: ctaText,
+    onChange: value => setAttributes({
+      ctaText: value
     })
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Link', 'obx-blocks'),
+    value: ctaLink,
+    onChange: value => setAttributes({
+      ctaLink: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Open in new tab', 'obx-blocks'),
+    checked: ctaTarget,
+    onChange: value => setAttributes({
+      ctaTarget: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Alignment', 'obx-blocks'),
+    value: ctaPosition,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Left', 'obx-blocks'),
+      value: 'left'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Center', 'obx-blocks'),
+      value: 'center'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Right', 'obx-blocks'),
+      value: 'right'
+    }],
+    onChange: value => setAttributes({
+      ctaPosition: value
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "obx-about__container"
+  }, leftImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__image obx-about__image--left"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: leftImage.url,
+    alt: leftImage.alt || '',
+    className: "obx-about__image-img"
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__image obx-about__image--left obx-about__image--placeholder"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__header",
     style: {
-      textAlign
+      padding: '30px',
+      border: '1px dashed #ccc',
+      textAlign: 'center',
+      backgroundColor: '#f0f0f0'
     }
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__tagline",
-    value: tagline,
-    onChange: value => setAttributes({
-      tagline: value
-    }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('OUR TEAM', 'obx-blocks')
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Please add a left image"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `obx-about__content ${useCircleImage ? 'obx-about__content--with-circle' : ''}`,
+    style: {
+      maxWidth: `${contentWidth}%`,
+      textAlign: textAlign
+    }
+  }, useCircleImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__circle"
+  }, circleImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: circleImage.url,
+    alt: circleImage.alt || '',
+    className: "obx-about__circle-img"
+  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__circle-placeholder"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h2",
     className: "obx-about__heading",
     value: heading,
     onChange: value => setAttributes({
       heading: value
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Meet the people behind our success', 'obx-blocks'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter heading...', 'obx-blocks'),
     style: {
-      backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none'
+      color: textColor
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
-    className: "obx-about__intro-text",
-    value: introText,
+    className: "obx-about__text",
+    value: content,
     onChange: value => setAttributes({
-      introText: value
+      content: value
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add an introduction about your team or company...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__team"
-  }, teamMembers.map((member, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    key: member.id,
-    className: `obx-about__member ${activeMember === index ? 'is-selected' : ''}`,
-    onClick: () => setActiveMember(index)
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-container"
-  }, member.imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: member.imageUrl,
-    alt: member.imageAlt,
-    className: "obx-about__member-image"
-  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-placeholder"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-    onSelect: media => {
-      updateTeamMember(index, 'imageUrl', media.url);
-      updateTeamMember(index, 'imageId', media.id);
-      updateTeamMember(index, 'imageAlt', media.alt || '');
-    },
-    allowedTypes: ['image'],
-    value: member.imageId,
-    render: ({
-      open
-    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      onClick: open,
-      className: "obx-about__member-image-button"
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image', 'obx-blocks'))
-  }))), member.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-actions"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
-    onSelect: media => {
-      updateTeamMember(index, 'imageUrl', media.url);
-      updateTeamMember(index, 'imageId', media.id);
-      updateTeamMember(index, 'imageAlt', media.alt || '');
-    },
-    allowedTypes: ['image'],
-    value: member.imageId,
-    render: ({
-      open
-    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      onClick: open,
-      variant: "secondary",
-      isSmall: true
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace', 'obx-blocks'))
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => {
-      updateTeamMember(index, 'imageUrl', '');
-      updateTeamMember(index, 'imageId', 0);
-      updateTeamMember(index, 'imageAlt', '');
-    },
-    variant: "secondary",
-    isSmall: true,
-    isDestructive: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'obx-blocks')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-content"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "h3",
-    className: "obx-about__member-name",
-    value: member.name,
-    onChange: value => updateTeamMember(index, 'name', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Team Member Name', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__member-position",
-    value: member.position,
-    onChange: value => updateTeamMember(index, 'position', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Position', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__member-description",
-    value: member.description,
-    onChange: value => updateTeamMember(index, 'description', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Short description...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  }), member.quote && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-quote-container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-quote-icon",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter content...', 'obx-blocks'),
     style: {
-      color: accentColor
+      color: textColor
     }
-  }, _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__member-quote",
-    value: member.quote,
-    onChange: value => updateTeamMember(index, 'quote', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Personal quote...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-actions"
-  }, !member.quote && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    variant: "secondary",
-    onClick: e => {
-      e.stopPropagation();
-      updateTeamMember(index, 'quote', '');
-    },
-    className: "obx-about__member-add-quote",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Quote', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    isDestructive: true,
-    onClick: e => {
-      e.stopPropagation();
-      removeTeamMember(index);
-    },
-    className: "obx-about__member-remove"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Member', 'obx-blocks')))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    className: "obx-about__add-button",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
-    onClick: addTeamMember
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Team Member', 'obx-blocks'))))));
+  }), ctaText && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: `obx-about__cta obx-about__cta--${ctaPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: ctaLink || '#',
+    className: "obx-about__button",
+    target: ctaTarget ? '_blank' : '_self',
+    rel: ctaTarget ? 'noopener noreferrer' : ''
+  }, ctaText))), rightImage?.url ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__image obx-about__image--right"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: rightImage.url,
+    alt: rightImage.alt || '',
+    className: "obx-about__image-img"
+  })) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__image obx-about__image--right obx-about__image--placeholder"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      padding: '30px',
+      border: '1px dashed #ccc',
+      textAlign: 'center',
+      backgroundColor: '#f0f0f0'
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Please add a right image"))))));
 }
 
 /***/ }),
@@ -401,11 +415,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Register the block
+ * Register block
  */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_2__.name, {
+  ..._block_json__WEBPACK_IMPORTED_MODULE_2__,
   edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
-  save: () => null // Server-side rendering with render.php
+  save: () => null // Server-side rendered
 });
 
 /***/ }),
@@ -452,16 +467,6 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["element"];
-
-/***/ }),
-
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -469,16 +474,6 @@ module.exports = window["wp"]["element"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "@wordpress/primitives":
-/*!************************************!*\
-  !*** external ["wp","primitives"] ***!
-  \************************************/
-/***/ ((module) => {
-
-module.exports = window["wp"]["primitives"];
 
 /***/ }),
 

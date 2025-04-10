@@ -28,6 +28,7 @@
 // Import page-specific styles
 @use 'pages/home';
 @use 'pages/blog';
+@use 'pages/page-default';
 
 // Import utilities
 @use 'utilities/helpers';

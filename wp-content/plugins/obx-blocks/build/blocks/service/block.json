@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "obx-blocks/service",
+  "version": "1.0.0",
+  "title": "Service",
+  "category": "obx-blocks",
+  "icon": "layout",
+  "description": "A block to display service information with heading, subheading, image and content",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "innerBlocks": true
+  },
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
+    "image": {
+      "type": "object",
+      "default": null
+    },
+    "isReversed": {
+      "type": "boolean",
+      "default": false
+    },
+    "ctaTitle": {
+      "type": "string",
+      "default": "Book Call"
+    },
+    "ctaLink": {
+      "type": "string",
+      "default": "#"
+    },
+    "ctaTarget": {
+      "type": "boolean",
+      "default": false
+    },
+    "allowedBlocks": {
+      "type": "array",
+      "default": [
+        "core/heading",
+        "core/paragraph"
+      ]
+    },
+    "ctaPosition": {
+      "type": "string",
+      "default": "left",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

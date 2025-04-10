@@ -4,7 +4,7 @@
 
 /* Typography */
 body {
-  font-family: $font-primary;
+  font-family: var(--font-primary);
   font-size: $font-size-base;
   line-height: $line-height-base;
   color: $color-text;

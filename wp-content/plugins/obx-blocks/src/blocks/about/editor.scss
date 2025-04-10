@@ -4,10 +4,74 @@
 
 @use "sass:color";
 @use "../../scss/index" as *;
-@use "./style.scss" as *;
+@import './style.scss';
 
 // Editor-specific styles
 .obx-about {
+    // Override default editor container width
+    &.wp-block-obx-blocks-about {
+      max-width: 100% !important;
+    }
+    
+    &__container {
+        position: relative;
+        z-index: 1;
+        border: 1px dashed #ddd;
+        padding: 20px;
+    }
+    
+    &__content {
+        padding: $spacing-xl;
+        
+        // Add border in the editor to help visualize the content area
+        border: 1px dashed #ccc;
+        border-radius: $border-radius-md;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    &__image {
+        border: 1px dashed #ccc;
+        min-height: 200px;
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &--placeholder {
+            background-color: #f5f5f5;
+        }
+    }
+    
+    .components-button.is-destructive {
+        color: $color-text-inverse;
+        background-color: #d94f4f;
+        
+        &:hover {
+            background-color: #c23d3d;
+        }
+    }
+    
+    // Editor color settings
+    .color-settings {
+        margin-top: $spacing-md;
+        margin-bottom: $spacing-md;
+        
+        p {
+            margin-bottom: $spacing-xs;
+            font-weight: $font-weight-medium;
+        }
+    }
+    
+    // Editor range control
+    .components-range-control {
+        margin-bottom: $spacing-md;
+    }
+    
+    // Editor image selection
+    .editor-post-featured-image {
+        margin-bottom: $spacing-md;
+    }
+
   &__member {
     position: relative;
     

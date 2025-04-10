@@ -6,199 +6,264 @@
 @use "../../scss/index" as *;
 
 .obx-about {
-  & {
-    padding: $spacing-xl $spacing-lg;
-  }
-  
-  @include section-padding;
-  @include alignment-classes;
-  @include text-alignment-classes('obx-about');
-  
-  &__container {
-    & {
-      max-width: $container-max-width;
-    }
-    @include responsive-container;
-  }
-  
-  &__header {
-    & {
-      text-align: center;
-      margin-bottom: $spacing-3xl;
-    }
-  }
-  
-  &__tagline {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: $spacing-md;
-      color: $color-text-secondary;
-    }
-  }
-  
-  &__heading {
-    & {
-      font-weight: $font-weight-bold;
-      line-height: $line-height-tight;
-      margin: 0 auto;
-      max-width: 800px;
-    }
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    @include heading-highlight;
-  }
-  
-  &__intro-text {
-    & {
-      max-width: 800px;
-      margin: $spacing-xl auto 0;
-      font-size: $font-size-md;
-      line-height: $line-height-relaxed;
-      color: $color-text-tertiary;
+    position: relative;
+    margin: 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    min-height: 600px;
+    background-color: rgb(243,237,225); /* Default background color instead of overlay */
+    
+    &__container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        position: relative;
+        z-index: 1;
+        flex-wrap: nowrap; /* Ensure items don't wrap */
+        
+        @media (max-width: $breakpoint-md) {
+            flex-direction: column;
+            gap: $spacing-lg;
+        }
     }
     
-    @media (max-width: $breakpoint-md) {
-      font-size: $font-size-base;
-      padding: 0 $spacing-md;
+    &__image {
+        flex: 0 0 25%;
+        padding: 0;
+        max-width: 25%; /* Ensure images don't expand beyond their container */
+        
+        &--left {
+            @media (max-width: $breakpoint-md) {
+                order: 1;
+            }
+        }
+        
+        &--right {
+            @media (max-width: $breakpoint-md) {
+                order: 3;
+            }
+        }
+        
+        img {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        
+        @media (max-width: $breakpoint-md) {
+            flex: 0 0 50%;
+            max-width: 300px;
+        }
     }
     
-    p {
-      & {
+    &__content {
+        flex: 1 1 auto; /* Allow content to grow but maintain size */
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+        padding: $spacing-xl;
+        position: relative;
+        text-align: center;
+        max-width: 50%; /* Prevent content from taking up too much space */
+        align-items: center;
+
+        & > * {
+            max-width: 400px;
+        }
+
+        @media (max-width: $breakpoint-md) {
+            order: 2;
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 140px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'%3E%3Ccircle cx='50' cy='50' r='49' stroke='%23C4A468' stroke-width='2'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            z-index: -1;
+        }
+        
+        // When using actual image in circle
+        &--with-circle {
+            &::before {
+                display: none; // Hide the SVG circle
+            }
+        }
+    }
+    
+    &__circle {
+        position: absolute;
+        left: 50%;
+        top: $spacing-md;
+        transform: translateX(-50%);
+        width: 194px;
+        height: 194px;
+        border-radius: 50%;
+        overflow: hidden;
+        &::before {
+            content: "";
+            display: block;
+            padding-bottom: 100%; // Maintain perfect square aspect ratio
+        }
+        
+        &-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        &-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+    
+    &__heading {
+        font-family: var(--font-primary, $font-heading);
+        font-size: 28px;
+        font-weight: 100;
+        color: $color-text;
+        margin-top: $spacing-md;
+        margin-bottom: $spacing-sm;
+        line-height: $line-height-tight;
+        position: relative;
+        z-index: 1;
+        
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-2xl;
+        }
+    }
+    
+    &__text {
+        font-family: var(--font-primary, $font-body);
+        font-size: 17px;
+        font-weight: 100;
+        line-height: 2em;
+        margin-top: $spacing-lg;
         margin-bottom: $spacing-md;
-      }
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-  
-  &__team {
-    & {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: $spacing-2xl;
+        color: $color-text;
+        text-align: left;
+        position: relative;
+        
+        &::after {
+            content: "";
+            display: block;
+            width: 75%;
+            height: 1px;
+            background-color: var(--color-accent, $color-accent);
+            margin: $spacing-lg auto 0;
+        }
+        
+        @media (max-width: $breakpoint-sm) {
+            font-size: $font-size-base;
+        }
     }
     
+    &__cta {
+        display: flex;
+        margin-top: 0;
+        width: 100%;
+        
+        &--left {
+            justify-content: flex-start !important;
+        }
+        
+        &--center {
+            justify-content: center !important;
+        }
+        
+        &--right {
+            justify-content: flex-end !important;
+        }
+        
+        @media (max-width: $breakpoint-sm) {
+            &--left,
+            &--center,
+            &--right {
+                justify-content: center;
+            }
+        }
+    }
+    
+    &__button {
+        display: inline-block;
+        padding: 0;
+        border: 1px solid var(--color-text);
+        background-color: transparent;
+        color: var(--color-text);
+        text-decoration: none;
+        font-family: var(--font-primary, $font-body);
+        font-size: 15px;
+        line-height: 36px;
+        font-weight: 100;
+        letter-spacing: 1px;
+        transition: all $transition-normal;
+        width: 220px;
+        text-align: center;
+        
+        &:hover {
+            background-color: var(--color-button-hover);
+            color: white;
+            border-color: var(--color-light);
+            transform: translateY(-2px);
+            box-shadow: $box-shadow-sm;
+        }
+    }
+    
+    // Responsive adjustments
     @media (max-width: $breakpoint-md) {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: $spacing-xl;
+        padding: $spacing-lg 0;
+        min-height: 500px;
+        
+        &__content {
+            padding: $spacing-lg;
+        }
+        
+        &__circle {
+            width: 120px;
+            height: 120px;
+        }
     }
     
     @media (max-width: $breakpoint-sm) {
-      grid-template-columns: 1fr;
+        padding: $spacing-md 0;
+        min-height: 400px;
+        
+        &__content {
+            padding: $spacing-md;
+            
+            &::before {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        &__circle {
+            width: 100px;
+            height: 100px;
+        }
     }
-  }
-  
-  &__member {
-    & {
-      background-color: $color-background-primary;
-      border-radius: $border-radius-md;
-      overflow: hidden;
-      box-shadow: $box-shadow-md;
-    }
-    @include flex-column;
-    @include hover-lift;
-  }
-  
-  &__member-image-container {
-    & {
-      position: relative;
-      width: 100%;
-      padding-top: 100%; // 1:1 aspect ratio for team member photos
-      overflow: hidden;
-    }
-  }
-  
-  &__member-image {
-    & {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform $transition-slow;
-    }
-    
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-  
-  &__member-content {
-    & {
-      padding: $spacing-lg;
-      flex-grow: 1;
-    }
-    @include flex-column;
-  }
-  
-  &__member-name {
-    & {
-      font-size: $font-size-xl;
-      font-weight: $font-weight-bold;
-      margin-bottom: $spacing-xs;
-      line-height: $line-height-tight;
-    }
-  }
-  
-  &__member-position {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-semibold;
-      color: $color-text-secondary;
-      margin-bottom: $spacing-md;
-    }
-  }
-  
-  &__member-description {
-    & {
-      font-size: $font-size-sm;
-      line-height: $line-height-normal;
-      color: $color-text-secondary;
-      margin-bottom: $spacing-lg;
-    }
-  }
-  
-  &__member-quote-container {
-    & {
-      position: relative;
-      padding: $spacing-lg;
-      background-color: $color-background-secondary;
-      border-radius: $border-radius-md;
-      margin-top: auto;
-    }
-  }
-  
-  &__member-quote-icon {
-    & {
-      position: absolute;
-      top: -12px;
-      left: 20px;
-      background-color: $color-background-primary;
-      border-radius: 50%;
-      padding: 5px;
-      box-shadow: $box-shadow-sm;
-    }
-    
-    svg {
-      & {
-        display: block;
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-  
-  &__member-quote {
-    & {
-      font-size: $font-size-base;
-      line-height: $line-height-normal;
-      font-style: italic;
-      color: $color-text-primary;
-    }
-  }
 } 

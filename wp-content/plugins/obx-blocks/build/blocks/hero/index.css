@@ -1,0 +1,310 @@
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/hero/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Hero block editor styles
+ */
+/**
+ * Hero block styles for both editor and frontend
+ */
+.obx-hero {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  overflow: hidden;
+}
+.obx-hero.alignfull {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+@media (max-width: 992px) {
+  .obx-hero.alignfull {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.obx-hero.alignwide {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 768px) {
+  .obx-hero {
+    min-height: 400px;
+    padding: 40px 20px;
+  }
+}
+.obx-hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform-origin: center;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+.obx-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.obx-hero__container {
+  width: 100%;
+  z-index: 1;
+  color: #23282d;
+  max-width: 1140px;
+}
+.obx-hero__container {
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .obx-hero__container {
+    max-width: 100% !important;
+  }
+}
+.obx-hero__content {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  padding: 0 20px;
+  color: inherit;
+  text-align: center;
+}
+.obx-hero__content {
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .obx-hero__content {
+    max-width: 100% !important;
+  }
+}
+.obx-hero__content.text-left {
+  text-align: left;
+}
+.obx-hero__content.text-left .obx-hero__buttons {
+  justify-content: flex-start;
+}
+.obx-hero__content.text-center {
+  text-align: center;
+}
+.obx-hero__content.text-center .obx-hero__buttons {
+  justify-content: center;
+}
+.obx-hero__content.text-right {
+  text-align: right;
+}
+.obx-hero__content.text-right .obx-hero__buttons {
+  justify-content: flex-end;
+}
+.obx-hero__title {
+  font-size: 4.5rem;
+  font-family: var(--font-catalonia);
+  font-weight: 100;
+  margin: 9rem 0 2rem;
+  color: inherit;
+}
+.obx-hero__text {
+  font-family: var(--font-futura-light);
+  text-transform: uppercase;
+  font-size: 3.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  margin-top: 2.7rem;
+  font-weight: 100;
+  color: inherit;
+}
+.obx-hero__buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 80px;
+}
+.obx-hero__buttons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 264px;
+  height: 43px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: background-color 0.4s ease;
+  touch-action: manipulation;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 1rem;
+  color: var(--color-text);
+}
+.obx-hero__buttons a:hover {
+  color: var(--color-text);
+  background-color: white;
+}
+@media (max-width: 992px) {
+  .obx-hero__buttons a {
+    flex-direction: column;
+    align-items: center;
+  }
+  .obx-hero__buttons a.text-left {
+    align-items: flex-start;
+  }
+  .obx-hero__buttons a.text-right {
+    align-items: flex-end;
+  }
+}
+.obx-hero.has-background-image .obx-hero__container {
+  color: #ffffff;
+}
+.obx-hero.has-background-image .obx-hero__title,
+.obx-hero.has-background-image .obx-hero__text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.obx-hero[style*=color] .obx-hero__container,
+.obx-hero[style*=color] .obx-hero__content,
+.obx-hero[style*=color] .obx-hero__title,
+.obx-hero[style*=color] .obx-hero__text {
+  color: inherit;
+}
+.obx-hero[style*=color] .obx-hero__button--secondary {
+  color: inherit;
+  border-color: currentColor;
+}
+
+.obx-hero__background-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-color: #f8f8f8;
+}
+.obx-hero__background-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.obx-hero__background-button {
+  z-index: 10;
+}
+.obx-hero__background-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #0073aa;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.obx-hero__background-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.obx-hero__background-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.obx-hero .components-button.is-primary {
+  background-color: #0073aa;
+  color: #23282d;
+}
+.obx-hero .components-button.is-primary:hover {
+  background-color: rgb(0, 80.5, 119);
+}
+
+.wp-block-obx-blocks-hero {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.wp-block-obx-blocks-hero .block-editor-block-list__block {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.wp-block-obx-blocks-hero .editor-post-featured-image {
+  margin-bottom: 20px;
+}
+.wp-block-obx-blocks-hero .editor-post-featured-image img {
+  max-height: 150px;
+  width: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+.wp-block-obx-blocks-hero .components-base-control {
+  margin-bottom: 40px;
+}
+.wp-block-obx-blocks-hero .obx-hero__content .block-editor-rich-text__editable:focus {
+  outline: 1px dotted rgb(90.78125, 103.75, 116.71875);
+}
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link {
+  display: inline-block;
+  padding: 10px 40px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  background-color: #0073aa;
+  color: #ffffff !important;
+}
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button:hover, .wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button:focus,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link:hover,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link:focus {
+  background: rgba(0, 115, 170, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px 0 rgba(0, 115, 170, 0.2);
+  transform: translateY(-2px);
+  border: 1px solid white;
+}
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button.obx-button-ghost,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link.obx-button-ghost {
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff !important;
+}
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button.obx-button-ghost:hover, .wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button.obx-button-ghost:focus,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link.obx-button-ghost:hover,
+.wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link.obx-button-ghost:focus {
+  background: white;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px 0 white;
+}
+.wp-block-obx-blocks-hero .block-editor-block-list__block {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.wp-block-obx-blocks-hero .obx-hero__overlay {
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=index.css.map*/

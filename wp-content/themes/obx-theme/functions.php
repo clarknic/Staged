@@ -332,3 +332,8 @@ function obx_theme_widgets_init() {
         )
     );
 }
+
+/**
+ * Include post-related functions
+ */
+require get_template_directory() . '/inc/post-functions.php'; 

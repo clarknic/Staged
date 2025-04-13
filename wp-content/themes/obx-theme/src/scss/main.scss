@@ -19,16 +19,18 @@
 @use 'layout/grid';
 @use 'layout/navigation';
 @use 'layout/content';
-
+@use 'layout/post';
 
 // Import components
 @use 'components/buttons';
 @use 'components/forms';
+@use 'components/search' as search-component;
 
 // Import page-specific styles
 @use 'pages/home';
 @use 'pages/blog';
 @use 'pages/page-default';
+@use 'pages/search' as search-results;
 
 // Import utilities
 @use 'utilities/helpers';

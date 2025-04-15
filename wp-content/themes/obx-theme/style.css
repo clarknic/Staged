@@ -9,6 +9,38 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: obx-theme
 */
+/** Fonts */
+@font-face {
+    font-family: 'Futura Light';
+    src: url('./src/fonts/futura-lt-w01-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Futura Book';
+    src: url('./src/fonts/futura-lt-w01-book.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Helvetica Roman';
+    src: url('./src/fonts/helvetica-w01-roman.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catalonia';
+    src: url('./src/fonts/Cattalonia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* Modern CSS Reset */
 *,

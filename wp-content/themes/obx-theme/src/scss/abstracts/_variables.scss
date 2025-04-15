@@ -33,40 +33,6 @@ $container-width: 1140px;
 $container-padding: 15px;
 
 
-// Font faces
-@font-face {
-    font-family: 'Futura Light';
-    src: url('/wp-content/themes/obx-theme/src/fonts/futura-lt-w01-light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Futura Book';
-    src: url('/wp-content/themes/obx-theme/src/fonts/futura-lt-w01-book.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Helvetica Roman';
-    src: url('/wp-content/themes/obx-theme/src/fonts/helvetica-w01-roman.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Catalonia';
-    src: url('/wp-content/themes/obx-theme/src/fonts/Cattalonia.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-
 :root {
     --color-footer-background: #c4a46833;
     --color-background: #FAF5EF;

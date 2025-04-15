@@ -20,10 +20,10 @@ function obx_theme_scripts() {
     );
 
     // Then enqueue main.css with dependency on style.css
-    if (file_exists(get_template_directory() . '/dist/css/main.css')) {
+    if (file_exists(get_template_directory() . '/build/index.css')) {
         wp_enqueue_style(
             'obx-theme-main',
-            get_template_directory_uri() . '/dist/css/main.css',
+            get_template_directory_uri() . '/build/index.css',
             array('obx-theme-style'),
             wp_get_theme()->get('Version')
         );
@@ -36,10 +36,10 @@ function obx_theme_scripts() {
     );
 
     // Enqueue JavaScript if it exists
-    if (file_exists(get_template_directory() . '/dist/js/main.js')) {
+    if (file_exists(get_template_directory() . '/build/index.js')) {
         wp_enqueue_script(
             'obx-theme-script',
-            get_template_directory_uri() . '/dist/js/main.js',
+            get_template_directory_uri() . '/build/index.js',
             array(),
             wp_get_theme()->get('Version'),
             true
@@ -49,15 +49,6 @@ function obx_theme_scripts() {
         wp_localize_script('obx-theme-script', 'obx_site', $site_data);
     }
     
-    // Enqueue main JavaScript file as a module
-    wp_enqueue_script(
-        'obx-theme-main',
-        get_template_directory_uri() . '/src/js/main.js',
-        array('jquery'),
-        wp_get_theme()->get('Version'),
-        true
-    );
-    
     // Add type="module" to the script tag
     add_filter('script_loader_tag', function($tag, $handle) {
         if ('obx-theme-main' === $handle) {
@@ -66,10 +57,7 @@ function obx_theme_scripts() {
         return $tag;
     }, 10, 2);
     
-    // Also localize the module script in case main.js isn't loaded
-    if (!file_exists(get_template_directory() . '/dist/js/main.js')) {
-        wp_localize_script('obx-theme-main', 'obx_site', $site_data);
-    }
+    
 }
 add_action('wp_enqueue_scripts', 'obx_theme_scripts');
 

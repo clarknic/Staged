@@ -1,18 +1,15 @@
 {
-  "name": "obx-theme",
+  "name": "staged",
   "version": "1.0.0",
-  "description": "OBX Web Lab Theme for Staged",
-  "main": "index.js",
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "description": "Webpack fro Staged OBX Theme",
+  "main": "build/index.js",
   "scripts": {
-    "start": "NODE_OPTIONS='--max-old-space-size=16384' sass --watch src/scss:dist/css --style=compressed --source-map --load-path=../../plugins/obx-blocks/src/scss",
-    "build": "NODE_OPTIONS='--max-old-space-size=16384' sass src/scss:dist/css --style=compressed --no-source-map --load-path=../../plugins/obx-blocks/src/scss"
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
   },
-  "author": "OBX Web Lab",
-  "license": "GPL-2.0-or-later",
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "sass": "^1.69.7"
+    "@wordpress/scripts": "^30.15.0"
   }
 }

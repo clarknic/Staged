@@ -3,11 +3,12 @@
  */
 
 // Import styles
+import './scss/index.scss';
 
 // Import components
-import navigation from './components/navigation.js';
-import PostLikes from './components/post-likes.js';
-import SearchForm from './components/search-form.js';
+import navigation from './js/components/navigation.js';
+import PostLikes from './js/components/post-likes.js';
+import SearchForm from './js/components/search-form.js';
 
 // DOM ready
 document.addEventListener('DOMContentLoaded', function() {

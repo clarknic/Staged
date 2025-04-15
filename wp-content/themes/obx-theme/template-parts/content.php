@@ -36,6 +36,14 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
 
+	<?php 
+	// Check if TOC is enabled for this post (default is yes)
+	$enable_toc = get_post_meta(get_the_ID(), 'obx-enable-toc', true);
+	if ($enable_toc !== 'no' && is_singular()) {
+		echo do_shortcode('[obx_toc]');
+	}
+	?>
+
 	<div class="entry-content">
 		<?php
 		if ( is_singular() ) :

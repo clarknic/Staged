@@ -9,6 +9,7 @@ import './scss/index.scss';
 import navigation from './js/components/navigation.js';
 import PostLikes from './js/components/post-likes.js';
 import SearchForm from './js/components/search-form.js';
+import initSmoothScroll from './js/components/smooth-scroll.js';
 
 // DOM ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -22,4 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize search form
   SearchForm();
+  
+  // Initialize smooth scroll
+  initSmoothScroll();
 }); 

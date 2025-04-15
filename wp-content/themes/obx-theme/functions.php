@@ -61,29 +61,6 @@ function obx_theme_scripts() {
 }
 add_action('wp_enqueue_scripts', 'obx_theme_scripts');
 
-/**
- * Enqueue admin scripts and styles
- */
-function obx_theme_admin_scripts() {
-    if (file_exists(get_template_directory() . '/dist/js/admin.js')) {
-        wp_enqueue_script(
-            'obx-theme-admin-script',
-            get_template_directory_uri() . '/dist/js/admin.js',
-            array('wp-api'),
-            wp_get_theme()->get('Version'),
-            true
-        );
-    }
-    if (file_exists(get_template_directory() . '/dist/css/admin.css')) {
-        wp_enqueue_style(
-            'obx-theme-admin-style',
-            get_template_directory_uri() . '/dist/css/admin.css',
-            array(),
-            wp_get_theme()->get('Version')
-        );
-    }
-}
-add_action('admin_enqueue_scripts', 'obx_theme_admin_scripts');
 
 /**
  * Add theme support
@@ -324,4 +301,36 @@ function obx_theme_widgets_init() {
 /**
  * Include post-related functions
  */
-require get_template_directory() . '/inc/post-functions.php'; 
+require get_template_directory() . '/inc/post-functions.php';
+
+/**
+ * Include table of contents functions
+ */
+require get_template_directory() . '/inc/toc-functions.php';
+
+/**
+ * Enqueue block editor assets
+ */
+function obx_theme_block_editor_assets() {
+    // Enqueue editor styles
+    if (file_exists(get_template_directory() . '/build/editor.css')) {
+        wp_enqueue_style(
+            'obx-theme-editor-style',
+            get_template_directory_uri() . '/build/editor.css',
+            array(),
+            wp_get_theme()->get('Version')
+        );
+    }
+    
+    // Enqueue editor scripts
+    if (file_exists(get_template_directory() . '/build/editor.js')) {
+        wp_enqueue_script(
+            'obx-theme-editor-script',
+            get_template_directory_uri() . '/build/editor.js',
+            array('wp-blocks', 'wp-dom-ready', 'wp-edit-post'),
+            wp_get_theme()->get('Version'),
+            true
+        );
+    }
+}
+add_action('enqueue_block_editor_assets', 'obx_theme_block_editor_assets'); 

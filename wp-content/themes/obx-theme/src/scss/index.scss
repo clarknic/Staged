@@ -25,6 +25,7 @@
 @use 'components/buttons';
 @use 'components/forms';
 @use 'components/search' as search-component;
+@use 'components/table-of-contents';
 
 // Import page-specific styles
 @use 'pages/home';

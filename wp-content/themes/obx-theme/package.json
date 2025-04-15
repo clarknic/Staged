@@ -1,15 +1,16 @@
 {
   "name": "staged",
   "version": "1.0.0",
-  "description": "Webpack fro Staged OBX Theme",
+  "description": "Webpack for Staged OBX Theme",
   "main": "build/index.js",
   "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start"
+    "build": "wp-scripts build src/index.js src/editor.js",
+    "start": "wp-scripts start src/index.js src/editor.js"
   },
-  "author": "",
+  "author": "Yevhen",
   "license": "ISC",
   "devDependencies": {
-    "@wordpress/scripts": "^30.15.0"
+    "@wordpress/scripts": "^30.15.0",
+    "copy-webpack-plugin": "^11.0.0"
   }
 }

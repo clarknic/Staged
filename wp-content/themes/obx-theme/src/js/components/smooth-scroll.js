@@ -44,6 +44,9 @@ function initStickyToc() {
   const stickyToc = toc.cloneNode(true);
   stickyToc.classList.add('obx-toc-sticky');
   
+  // Store original title text
+  let originalTitleText = 'In this article';
+  
   // Remove the original container if it exists
   const originalContainer = stickyToc.querySelector('.obx-toc-container');
   if (originalContainer) {
@@ -65,7 +68,8 @@ function initStickyToc() {
     // Make the title more compact for the sticky version
     const tocTitle = container.querySelector('.obx-toc-title');
     if (tocTitle) {
-      tocTitle.innerText = 'In this article';
+      tocTitle.innerText = originalTitleText;
+      originalTitleText = tocTitle.innerText;
     }
     
     // Add toggle button to the container (before any other content)
@@ -78,7 +82,8 @@ function initStickyToc() {
     // Make the title more compact for the sticky version
     const tocTitle = stickyToc.querySelector('.obx-toc-title');
     if (tocTitle) {
-      tocTitle.innerText = 'In this article';
+      tocTitle.innerText = originalTitleText;
+      originalTitleText = tocTitle.innerText;
     }
     
     // Add a toggle button to expand/collapse on mobile
@@ -90,6 +95,11 @@ function initStickyToc() {
     stickyToc.prepend(toggleButton);
   }
   
+  // Add progress indicator element
+  const progressBar = document.createElement('div');
+  progressBar.className = 'obx-toc-sticky-progress';
+  stickyToc.appendChild(progressBar);
+  
   // Add the sticky TOC to the page
   document.body.appendChild(stickyToc);
   
@@ -98,17 +108,48 @@ function initStickyToc() {
   let tocTopPosition = tocRect.top + window.pageYOffset;
   let tocBottomPosition = tocRect.bottom + window.pageYOffset;
   
+  // Function to check if screen is smaller than 1500px
+  function isSmallScreen() {
+    return window.innerWidth < 1500;
+  }
+  
   // Handle toggle click
   const toggleButton = stickyToc.querySelector('.obx-toc-toggle');
   if (toggleButton) {
     toggleButton.addEventListener('click', () => {
       stickyToc.classList.toggle('obx-toc-expanded');
+      
+      // When expanded, restore the original title
+      const tocTitle = stickyToc.querySelector('.obx-toc-title');
+      if (tocTitle) {
+        if (stickyToc.classList.contains('obx-toc-expanded')) {
+          tocTitle.innerText = originalTitleText;
+        } else if (isSmallScreen()) {
+          // When collapsed, display active item text if available and only on smaller screens
+          const activeItem = stickyToc.querySelector('.obx-toc-list a.active');
+          if (activeItem) {
+            tocTitle.innerText = activeItem.innerText;
+          } else {
+            tocTitle.innerText = originalTitleText;
+          }
+        }
+      }
     });
   }
   
-  // Update sticky TOC position on scroll
+  // Update scroll progress and sticky TOC position on scroll
   window.addEventListener('scroll', () => {
     const scrollPosition = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+    
+    // Calculate scroll progress (0 to 100%)
+    const scrollPercent = (scrollPosition / (docHeight - windowHeight)) * 100;
+    
+    // Update progress bar width based on scroll percentage only for smaller screens
+    if (progressBar && isSmallScreen()) {
+      progressBar.style.width = `${scrollPercent}%`;
+    }
     
     // Show sticky TOC only when scrolled past the BOTTOM of the original TOC
     if (scrollPosition > tocBottomPosition) {
@@ -124,7 +165,7 @@ function initStickyToc() {
 
       const contentBottomPosition = contentBottomPositionFooter + footerHeight;
       // Only hide when we're almost at the footer, not when just viewing the last heading
-      if (scrollPosition + window.innerHeight > contentBottomPosition - 20) {
+      if (scrollPosition + windowHeight > contentBottomPosition - 20) {
         stickyToc.classList.remove('obx-toc-visible');
       }
     } else {
@@ -132,12 +173,40 @@ function initStickyToc() {
     }
   });
   
-  // Update position on window resize
+  // Handle window resize - update progress bar visibility and title text
   window.addEventListener('resize', () => {
     // Recalculate TOC position on resize
     const updatedTocRect = toc.getBoundingClientRect();
     tocTopPosition = updatedTocRect.top + window.pageYOffset;
     tocBottomPosition = updatedTocRect.bottom + window.pageYOffset;
+    
+    // Update progress bar width immediately on resize if needed
+    if (progressBar) {
+      if (isSmallScreen()) {
+        const scrollPosition = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const scrollPercent = (scrollPosition / (docHeight - windowHeight)) * 100;
+        progressBar.style.width = `${scrollPercent}%`;
+      } else {
+        progressBar.style.width = '0';
+      }
+    }
+    
+    // Update title text based on screen size
+    const tocTitle = stickyToc.querySelector('.obx-toc-title');
+    if (tocTitle && !stickyToc.classList.contains('obx-toc-expanded')) {
+      if (isSmallScreen()) {
+        // On small screens, show active item text if available
+        const activeItem = stickyToc.querySelector('.obx-toc-list a.active');
+        if (activeItem) {
+          tocTitle.innerText = activeItem.innerText;
+        }
+      } else {
+        // On larger screens, always show the original title
+        tocTitle.innerText = originalTitleText;
+      }
+    }
   });
 }
 
@@ -149,6 +218,18 @@ function initActiveTocItem() {
   const stickyToc = document.querySelector('.obx-toc-sticky');
   
   if (!toc) return;
+  
+  // Function to check if screen is smaller than 1500px
+  function isSmallScreen() {
+    return window.innerWidth < 1500;
+  }
+  
+  // Store original title text for the sticky TOC
+  let originalTitleText = 'In this article';
+  const stickyTocTitle = stickyToc ? stickyToc.querySelector('.obx-toc-title') : null;
+  if (stickyTocTitle) {
+    originalTitleText = stickyTocTitle.innerText;
+  }
   
   // Get all headings that match the TOC links
   const tocLinks = document.querySelectorAll('.obx-toc-list a');
@@ -186,6 +267,11 @@ function initActiveTocItem() {
       const stickyLink = stickyToc.querySelector(`a[href="${activeHeadingHref}"]`);
       if (stickyLink) {
         stickyLink.classList.add('active');
+        
+        // Update the sticky TOC title with the active item text if collapsed and only on small screens
+        if (stickyTocTitle && !stickyToc.classList.contains('obx-toc-expanded') && isSmallScreen()) {
+          stickyTocTitle.innerText = headings[0].link.innerText;
+        }
       }
     }
   }
@@ -263,6 +349,11 @@ function initActiveTocItem() {
           const activeStickyLink = stickyToc.querySelector(`a[href="${activeHeadingHref}"]`);
           if (activeStickyLink) {
             activeStickyLink.classList.add('active');
+            
+            // Update the sticky TOC title with the active item text if collapsed and only on small screens
+            if (stickyTocTitle && !stickyToc.classList.contains('obx-toc-expanded') && isSmallScreen()) {
+              stickyTocTitle.innerText = activeHeading.link.innerText;
+            }
           }
         }
       }
@@ -294,6 +385,11 @@ function smoothScroll(e) {
   
   if (!targetElement) return;
   
+  // Function to check if screen is smaller than 1500px
+  function isSmallScreen() {
+    return window.innerWidth < 1500;
+  }
+  
   // Get all TOC links
   const tocLinks = document.querySelectorAll('.obx-toc-list a');
   
@@ -314,6 +410,12 @@ function smoothScroll(e) {
     const stickyLink = stickyToc.querySelector(`a[href="${href}"]`);
     if (stickyLink) {
       stickyLink.classList.add('active');
+    }
+    
+    // Update the title with active item text if collapsed and only on small screens
+    const stickyTocTitle = stickyToc.querySelector('.obx-toc-title');
+    if (stickyTocTitle && !stickyToc.classList.contains('obx-toc-expanded') && isSmallScreen()) {
+      stickyTocTitle.innerText = this.innerText;
     }
     
     // Close the expanded TOC on mobile after clicking a link

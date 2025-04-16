@@ -82,7 +82,7 @@
   display: none; // Hidden by default
   position: fixed;
   z-index: 100;
-  padding: 0.75rem 1rem;
+  padding: 8px 1rem 12px;
   background: var(--color-gold-light, #f5eee1);
   border-radius: 4px;
   border-left: 4px solid var(--color-accent, #c4a468);
@@ -113,6 +113,10 @@
     align-items: center;
     justify-content: space-between;
     user-select: none; // Prevent text selection on click
+    transition: color 0.25s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   // Compact list items
@@ -179,6 +183,18 @@
     }
   }
   
+  // Progress indicator (hidden by default on large screens)
+  &-progress {
+    display: none; // Hide progress bar on desktop by default
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background-color: var(--color-accent, #c4a468);
+    transition: width 0.2s ease-out;
+  }
+  
   // When TOC is visible (scrolled past the original)
   &.obx-toc-visible {
     display: block;
@@ -216,9 +232,12 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100%;
     border-radius: 0;
     border-left: none;
-    border-bottom: 4px solid var(--color-accent, #c4a468);
+    border-bottom: none; // Remove default border-bottom
     margin: 0;
     min-height: 36px;
+    position: fixed;
+    // Collapsed by default on smaller screens
+    padding: 8px 0 12px;
     
     // Constrain width of content to match content zone
     &-container {
@@ -227,9 +246,6 @@ h1, h2, h3, h4, h5, h6 {
       padding: 0;
       position: relative;
     }
-    
-    // Collapsed by default on smaller screens
-    padding: 0.5rem 0;
     
     .obx-toc-toggle {
       display: block; // Show toggle on smaller screens
@@ -241,10 +257,23 @@ h1, h2, h3, h4, h5, h6 {
       margin-bottom: 0;
       padding-right: 30px; // Space for toggle button
       line-height: 36px;
+      max-width: calc(100% - 30px); // Leave space for toggle button
     }
     
     .obx-toc-list {
       max-height: 0; // Hide list by default on smaller screens
+    }
+    
+    // Progress indicator - only show on smaller screens
+    &-progress {
+      display: block; // Show progress bar for responsive layout
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      width: 0;
+      background-color: var(--color-accent, #c4a468);
+      z-index: 2;
     }
     
     // When TOC is expanded
@@ -257,6 +286,10 @@ h1, h2, h3, h4, h5, h6 {
       
       .obx-toc-toggle-icon:before {
         transform: rotate(0);
+      }
+      
+      .obx-toc-title {
+        color: var(--color-text, #414141); // Reset color when expanded
       }
     }
   }
@@ -288,6 +321,7 @@ h1, h2, h3, h4, h5, h6 {
     
     .obx-toc-title {
       padding-left: 20px;
+      font-size: 1rem;
     }
     
     .obx-toc-list {

@@ -962,6 +962,7 @@ body.menu-open {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #666;
+  justify-content: space-between;
 }
 .single.single-post article.post .post-stats span {
   display: flex;
@@ -1416,7 +1417,7 @@ label {
   display: none;
   position: fixed;
   z-index: 100;
-  padding: 0.75rem 1rem;
+  padding: 8px 1rem 12px;
   background: var(--color-gold-light, #f5eee1);
   border-radius: 4px;
   border-right: 4px solid var(--color-accent, #c4a468);
@@ -1445,6 +1446,10 @@ label {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .obx-toc-sticky .obx-toc-list {
   max-height: 0;
@@ -1497,6 +1502,16 @@ label {
 .obx-toc-sticky .obx-toc-toggle-icon:before {
   transform: rotate(-90deg);
 }
+.obx-toc-sticky-progress {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 4px;
+  width: 0;
+  background-color: var(--color-accent, #c4a468);
+  transition: width 0.2s ease-out;
+}
 .obx-toc-sticky.obx-toc-visible {
   display: block;
   transform: translateY(0);
@@ -1527,10 +1542,11 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100%;
     border-radius: 0;
     border-right: none;
-    border-bottom: 4px solid var(--color-accent, #c4a468);
+    border-bottom: none;
     margin: 0;
     min-height: 36px;
-    padding: 0.5rem 0;
+    position: fixed;
+    padding: 8px 0 12px;
   }
   .obx-toc-sticky-container {
     max-width: 940px;
@@ -1547,9 +1563,20 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     padding-left: 30px;
     line-height: 36px;
+    max-width: calc(100% - 30px);
   }
   .obx-toc-sticky .obx-toc-list {
     max-height: 0;
+  }
+  .obx-toc-sticky-progress {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 4px;
+    width: 0;
+    background-color: var(--color-accent, #c4a468);
+    z-index: 2;
   }
   .obx-toc-sticky.obx-toc-expanded .obx-toc-list {
     max-height: 300px;
@@ -1557,6 +1584,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   .obx-toc-sticky.obx-toc-expanded .obx-toc-toggle-icon:before {
     transform: rotate(0);
+  }
+  .obx-toc-sticky.obx-toc-expanded .obx-toc-title {
+    color: var(--color-text, #414141);
   }
 }
 @media (max-width: 1200px) {
@@ -1577,6 +1607,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .obx-toc-sticky .obx-toc-title {
     padding-right: 20px;
+    font-size: 1rem;
   }
   .obx-toc-sticky .obx-toc-list {
     padding-right: 20px;

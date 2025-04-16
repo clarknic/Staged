@@ -325,6 +325,7 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initStickyToc();
+  initActiveTocItem();
 });
 
 /**
@@ -388,14 +389,14 @@ function initStickyToc() {
   window.addEventListener('scroll', () => {
     const scrollPosition = window.pageYOffset;
 
-    // Show sticky TOC when scrolled past the original TOC
-    if (scrollPosition > tocTopPosition) {
+    // Show sticky TOC only when scrolled past the BOTTOM of the original TOC
+    if (scrollPosition > tocBottomPosition) {
       stickyToc.classList.add('obx-toc-visible');
 
       // Check if we should hide it when we reach footer or content end
       // But only if we're very close to the bottom of the page
       const contentBottomPositionFooter = document.querySelector('.site-footer') ? document.querySelector('.site-footer').offsetTop : document.body.scrollHeight;
-      const footerHeight = document.querySelector('.site-footer').offsetHeight;
+      const footerHeight = document.querySelector('.site-footer') ? document.querySelector('.site-footer').offsetHeight : 0;
       const contentBottomPosition = contentBottomPositionFooter + footerHeight;
       // Only hide when we're almost at the footer, not when just viewing the last heading
       if (scrollPosition + window.innerHeight > contentBottomPosition - 20) {
@@ -416,6 +417,136 @@ function initStickyToc() {
 }
 
 /**
+ * Initialize active TOC item tracking
+ */
+function initActiveTocItem() {
+  const toc = document.querySelector('.obx-toc');
+  const stickyToc = document.querySelector('.obx-toc-sticky');
+  if (!toc) return;
+
+  // Get all headings that match the TOC links
+  const tocLinks = document.querySelectorAll('.obx-toc-list a');
+  const headings = [];
+
+  // Store whether user is currently scrolling via click
+  // This helps prevent flickering during programmatic scrolling
+  let isScrollingProgrammatically = false;
+  let scrollTimeout;
+  let activeHeadingHref = null;
+
+  // Build an array of heading elements and their positions
+  tocLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const heading = document.querySelector(href);
+      if (heading) {
+        headings.push({
+          element: heading,
+          link: link
+        });
+      }
+    }
+  });
+  if (headings.length === 0) return;
+
+  // Add active class initially to the first item
+  if (headings.length > 0 && headings[0].link) {
+    activeHeadingHref = headings[0].link.getAttribute('href');
+    headings[0].link.classList.add('active');
+
+    // Also add to sticky TOC if it exists
+    if (stickyToc) {
+      const stickyLink = stickyToc.querySelector(`a[href="${activeHeadingHref}"]`);
+      if (stickyLink) {
+        stickyLink.classList.add('active');
+      }
+    }
+  }
+
+  // Debounce function to avoid excessive calculations
+  function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  // Update active TOC item
+  function updateActiveTocItem() {
+    // Skip updating during programmatic scrolling
+    if (isScrollingProgrammatically) return;
+
+    // Get current scroll position
+    const scrollPos = window.scrollY;
+    const headerOffset = 100; // Offset for fixed header
+
+    // Find the heading that is currently in view
+    let activeHeading = null;
+
+    // Loop through headings from bottom to top to find the first one above the viewport
+    for (let i = headings.length - 1; i >= 0; i--) {
+      const heading = headings[i].element;
+      const headingTop = heading.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      if (scrollPos >= headingTop) {
+        activeHeading = headings[i];
+        break;
+      }
+    }
+
+    // If we're at the very top of the page before any headings
+    if (!activeHeading && headings.length > 0 && scrollPos < headings[0].element.getBoundingClientRect().top + window.pageYOffset) {
+      activeHeading = headings[0];
+    }
+
+    // If we're at the very bottom of the page
+    if (!activeHeading && headings.length > 0 && scrollPos + window.innerHeight >= document.body.scrollHeight - 50) {
+      activeHeading = headings[headings.length - 1];
+    }
+
+    // Update active class only if the active heading has changed
+    if (activeHeading) {
+      const newActiveHref = activeHeading.link.getAttribute('href');
+
+      // Only update if the active heading has changed
+      if (newActiveHref !== activeHeadingHref) {
+        activeHeadingHref = newActiveHref;
+
+        // Remove active class from all links
+        tocLinks.forEach(link => {
+          link.classList.remove('active');
+        });
+
+        // Add active class to current link
+        activeHeading.link.classList.add('active');
+
+        // Also update the sticky TOC if it exists
+        if (stickyToc) {
+          const stickyLinks = stickyToc.querySelectorAll('.obx-toc-list a');
+          stickyLinks.forEach(link => {
+            link.classList.remove('active');
+          });
+          const activeStickyLink = stickyToc.querySelector(`a[href="${activeHeadingHref}"]`);
+          if (activeStickyLink) {
+            activeStickyLink.classList.add('active');
+          }
+        }
+      }
+    }
+  }
+
+  // Create debounced version of the update function
+  const debouncedUpdateActiveTocItem = debounce(updateActiveTocItem, 20);
+
+  // Track active heading on scroll
+  window.addEventListener('scroll', debouncedUpdateActiveTocItem);
+}
+
+/**
  * Smooth scroll event handler
  * 
  * @param {Event} e Click event
@@ -430,6 +561,34 @@ function smoothScroll(e) {
   // Find the target element
   const targetElement = document.querySelector(href);
   if (!targetElement) return;
+
+  // Get all TOC links
+  const tocLinks = document.querySelectorAll('.obx-toc-list a');
+
+  // Update active TOC item immediately on click to prevent flickering
+  tocLinks.forEach(link => {
+    link.classList.remove('active');
+  });
+  this.classList.add('active');
+
+  // Update active item in sticky TOC
+  const stickyToc = document.querySelector('.obx-toc-sticky');
+  if (stickyToc) {
+    const stickyLinks = stickyToc.querySelectorAll('.obx-toc-list a');
+    stickyLinks.forEach(link => {
+      link.classList.remove('active');
+    });
+    const stickyLink = stickyToc.querySelector(`a[href="${href}"]`);
+    if (stickyLink) {
+      stickyLink.classList.add('active');
+    }
+
+    // Close the expanded TOC on mobile after clicking a link
+    stickyToc.classList.remove('obx-toc-expanded');
+  }
+
+  // Set flag to prevent scroll handler from changing active item during animation
+  window.isScrollingProgrammatically = true;
 
   // Calculate position for scrolling
   // Subtract a bit from the top to account for fixed headers
@@ -452,11 +611,10 @@ function smoothScroll(e) {
     targetElement.classList.remove('highlight-target');
   }, 1500);
 
-  // Close the expanded TOC on mobile after clicking a link
-  const stickyToc = document.querySelector('.obx-toc-sticky');
-  if (stickyToc) {
-    stickyToc.classList.remove('obx-toc-expanded');
-  }
+  // Reset scroll flag after animation completes
+  setTimeout(() => {
+    window.isScrollingProgrammatically = false;
+  }, 1000); // Slightly longer than typical scroll animation
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initSmoothScroll);
 

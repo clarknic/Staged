@@ -306,7 +306,7 @@ require get_template_directory() . '/inc/post-functions.php';
 /**
  * Include table of contents functions
  */
-require get_template_directory() . '/inc/toc-functions.php';
+require_once get_template_directory() . '/inc/toc-functions.php';
 
 /**
  * Enqueue block editor assets

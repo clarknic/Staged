@@ -77,6 +77,20 @@ function initStickyToc() {
     // Show sticky TOC when scrolled past the original TOC
     if (scrollPosition > tocTopPosition) {
       stickyToc.classList.add('obx-toc-visible');
+      
+      // Check if we should hide it when we reach footer or content end
+      // But only if we're very close to the bottom of the page
+      const contentBottomPositionFooter = document.querySelector('.site-footer') 
+        ? document.querySelector('.site-footer').offsetTop
+        : document.body.scrollHeight;
+      
+      const footerHeight = document.querySelector('.site-footer').offsetHeight;
+
+      const contentBottomPosition = contentBottomPositionFooter + footerHeight;
+      // Only hide when we're almost at the footer, not when just viewing the last heading
+      if (scrollPosition + window.innerHeight > contentBottomPosition - 20) {
+        stickyToc.classList.remove('obx-toc-visible');
+      }
     } else {
       stickyToc.classList.remove('obx-toc-visible');
     }

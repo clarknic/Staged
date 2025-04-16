@@ -1552,6 +1552,118 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 /**
+ * Lightbox component styles
+ */
+.obx-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.obx-lightbox-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.obx-lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.obx-lightbox-image {
+  max-width: 100%;
+  max-height: 80vh;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.obx-lightbox-caption {
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  max-width: 80%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.obx-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.obx-lightbox-close:hover {
+  opacity: 1;
+}
+.obx-lightbox.obx-lightbox-active {
+  opacity: 1;
+  visibility: visible;
+}
+.obx-lightbox.obx-lightbox-active .obx-lightbox-image {
+  transform: scale(1);
+}
+.obx-lightbox.obx-lightbox-active .obx-lightbox-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wp-block-image a[href$=".jpg"] img,
+.wp-block-image a[href$=".jpeg"] img,
+.wp-block-image a[href$=".png"] img,
+.wp-block-image a[href$=".gif"] img,
+.wp-block-image a[href$=".webp"] img {
+  cursor: zoom-in;
+  transition: opacity 0.2s ease;
+}
+.wp-block-image a[href$=".jpg"] img:hover,
+.wp-block-image a[href$=".jpeg"] img:hover,
+.wp-block-image a[href$=".png"] img:hover,
+.wp-block-image a[href$=".gif"] img:hover,
+.wp-block-image a[href$=".webp"] img:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .obx-lightbox-close {
+    top: 10px;
+    right: 10px;
+  }
+  .obx-lightbox-caption {
+    font-size: 0.9rem;
+  }
+}
+/**
  * Main Stylesheet
  */
 .home-hero {

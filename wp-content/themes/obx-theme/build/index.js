@@ -2,6 +2,120 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/js/components/lightbox.js":
+/*!***************************************!*\
+  !*** ./src/js/components/lightbox.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Lightbox Component
+ * 
+ * Intercepts clicks on core image blocks that link to the image file
+ * and displays them in a lightbox instead of navigating to the file.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initLightbox();
+});
+
+/**
+ * Initialize lightbox functionality
+ */
+function initLightbox() {
+  // Create lightbox container
+  const lightboxContainer = document.createElement('div');
+  lightboxContainer.className = 'obx-lightbox';
+  lightboxContainer.setAttribute('aria-hidden', 'true');
+  lightboxContainer.innerHTML = `
+    <div class="obx-lightbox-overlay"></div>
+    <button class="obx-lightbox-close" aria-label="Close lightbox">&times;</button>
+    <div class="obx-lightbox-content">
+      <img src="" alt="" class="obx-lightbox-image">
+      <div class="obx-lightbox-caption"></div>
+    </div>
+  `;
+  document.body.appendChild(lightboxContainer);
+
+  // Get all core image blocks with links
+  const imageLinks = document.querySelectorAll('.wp-block-image a[href$=".jpg"], .wp-block-image a[href$=".jpeg"], .wp-block-image a[href$=".png"], .wp-block-image a[href$=".gif"], .wp-block-image a[href$=".webp"]');
+
+  // Lightbox elements
+  const lightbox = document.querySelector('.obx-lightbox');
+  const lightboxImage = lightbox.querySelector('.obx-lightbox-image');
+  const lightboxCaption = lightbox.querySelector('.obx-lightbox-caption');
+  const closeButton = lightbox.querySelector('.obx-lightbox-close');
+  const overlay = lightbox.querySelector('.obx-lightbox-overlay');
+
+  // Intercept clicks on image links
+  imageLinks.forEach(link => {
+    // Prevent default link behavior
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      openLightbox(link);
+    });
+  });
+
+  // Open lightbox with the clicked image
+  function openLightbox(link) {
+    // Get image source
+    const imageSrc = link.getAttribute('href');
+    const thumbnailImage = link.querySelector('img');
+    const caption = thumbnailImage.getAttribute('alt') || '';
+
+    // Set image and caption
+    lightboxImage.src = imageSrc;
+    lightboxCaption.textContent = caption;
+
+    // Show lightbox
+    lightbox.classList.add('obx-lightbox-active');
+    lightbox.setAttribute('aria-hidden', 'false');
+
+    // Disable body scroll
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close lightbox
+  function closeLightbox() {
+    lightbox.classList.remove('obx-lightbox-active');
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    // Clear image source after transition
+    setTimeout(() => {
+      lightboxImage.src = '';
+      lightboxCaption.textContent = '';
+    }, 300);
+
+    // Re-enable body scroll
+    document.body.style.overflow = '';
+  }
+
+  // Event listeners
+  closeButton.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', closeLightbox);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('obx-lightbox-active')) return;
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+
+  // Prevent zooming on mobile double-tap
+  lightboxImage.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initLightbox);
+
+/***/ }),
+
 /***/ "./src/js/components/navigation.js":
 /*!*****************************************!*\
   !*** ./src/js/components/navigation.js ***!
@@ -277,6 +391,16 @@ function initStickyToc() {
     // Show sticky TOC when scrolled past the original TOC
     if (scrollPosition > tocTopPosition) {
       stickyToc.classList.add('obx-toc-visible');
+
+      // Check if we should hide it when we reach footer or content end
+      // But only if we're very close to the bottom of the page
+      const contentBottomPositionFooter = document.querySelector('.site-footer') ? document.querySelector('.site-footer').offsetTop : document.body.scrollHeight;
+      const footerHeight = document.querySelector('.site-footer').offsetHeight;
+      const contentBottomPosition = contentBottomPositionFooter + footerHeight;
+      // Only hide when we're almost at the footer, not when just viewing the last heading
+      if (scrollPosition + window.innerHeight > contentBottomPosition - 20) {
+        stickyToc.classList.remove('obx-toc-visible');
+      }
     } else {
       stickyToc.classList.remove('obx-toc-visible');
     }
@@ -418,6 +542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_post_likes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/components/post-likes.js */ "./src/js/components/post-likes.js");
 /* harmony import */ var _js_components_search_form_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/components/search-form.js */ "./src/js/components/search-form.js");
 /* harmony import */ var _js_components_smooth_scroll_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/components/smooth-scroll.js */ "./src/js/components/smooth-scroll.js");
+/* harmony import */ var _js_components_lightbox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/components/lightbox.js */ "./src/js/components/lightbox.js");
 /**
  * Main frontend JavaScript file
  */
@@ -426,6 +551,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Import components
+
 
 
 
@@ -446,6 +572,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initialize smooth scroll
   (0,_js_components_smooth_scroll_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
+
+  // Initialize lightbox
+  (0,_js_components_lightbox_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 })();
 

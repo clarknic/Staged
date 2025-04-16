@@ -37,8 +37,8 @@
                      data-post-id="<?php the_ID(); ?>" 
                      width="16" height="16" 
                      viewBox="0 0 24 24" 
-                     fill="<?php echo has_user_liked_post() ? '#ff4757' : 'none'; ?>" 
-                     stroke="#ff4757" 
+                     fill="<?php echo has_user_liked_post() ? '#c4a468' : 'none'; ?>" 
+                     stroke="#c4a468" 
                      stroke-width="2" 
                      stroke-linecap="round" 
                      stroke-linejoin="round">

@@ -28,8 +28,6 @@ export default function navigation() {
       // Update aria-expanded attribute
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', !isExpanded);
-      
-      console.log('Menu toggled:', mainNav.classList.contains('is-open'));
     });
   }
 } 

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initStickyToc();
   initActiveTocItem();
+  initScrollToTop();
 });
 
 /**
@@ -450,6 +451,24 @@ function smoothScroll(e) {
   setTimeout(() => {
     window.isScrollingProgrammatically = false;
   }, 1000); // Slightly longer than typical scroll animation
+}
+
+/**
+ * Initialize scroll to top functionality
+ */
+function initScrollToTop() {
+  const scrollToTopButton = document.querySelector('.site-footer__scroll-top');
+  
+  if (scrollToTopButton) {
+    scrollToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
 }
 
 export default initSmoothScroll; 

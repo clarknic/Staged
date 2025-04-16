@@ -15,11 +15,6 @@ const {
 } = wp.components;
 const { registerBlockStyle } = wp.blocks;
 
-// Initialize editor customizations
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('OBX Theme: Editor scripts initialized');
-});
-
 // Register custom block styles
 document.addEventListener('DOMContentLoaded', function() {
   if (wp && wp.blocks && wp.blocks.registerBlockStyle) {

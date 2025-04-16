@@ -27,12 +27,14 @@
 @use 'components/search' as search-component;
 @use 'components/table-of-contents';
 @use 'components/lightbox';
+@use 'components/post-card';
 
 // Import page-specific styles
 @use 'pages/home';
 @use 'pages/blog';
 @use 'pages/page-default';
 @use 'pages/search' as search-results;
+@use 'pages/category';
 
 // Import utilities
 @use 'utilities/helpers';

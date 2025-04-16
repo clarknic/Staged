@@ -21,10 +21,14 @@ const SearchForm = () => {
     
     // Focus the search input when opened
     if (!isExpanded) {
-      setTimeout(() => {
-        const input = searchContainer.querySelector('.search-field');
-        if (input) input.focus();
-      }, 300); // Wait for animation to complete
+      // Focus immediately without delay
+      const input = searchContainer.querySelector('.search-field');
+      if (input) {
+        // Use a minimal timeout to ensure DOM is updated before focusing
+        setTimeout(() => {
+          input.focus();
+        }, 10);
+      }
     }
   });
   

@@ -57,7 +57,6 @@ const PostLikes = () => {
           // Post is unliked, show outline only
           heart.classList.remove('liked');
           heart.setAttribute('fill', 'none');
-          console.log('Heart unliked - setting fill to none');
         }
       }
     })

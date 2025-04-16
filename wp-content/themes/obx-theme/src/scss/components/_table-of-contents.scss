@@ -34,18 +34,18 @@
     line-height: 1.4;
     
     a {
-      color: var(--color-text, #414141);
-      text-decoration: none;
+      color: var(--color-text, #414141) !important;
+      text-decoration: none !important;
       transition: color 0.25s ease;
       display: block;
       padding-left: 5px;
       
       &:hover {
-        color: var(--color-accent, #c4a468);
+        color: var(--color-accent, #c4a468) !important;
       }
       
       &.active {
-        color: var(--color-accent, #c4a468);
+        color: var(--color-accent, #c4a468) !important;
         font-family: var(--font-primary-book, sans-serif);
       }
     }

@@ -333,4 +333,102 @@ function obx_theme_block_editor_assets() {
         );
     }
 }
-add_action('enqueue_block_editor_assets', 'obx_theme_block_editor_assets'); 
+add_action('enqueue_block_editor_assets', 'obx_theme_block_editor_assets');
+
+/**
+ * Limit search results to posts only
+ * 
+ * @param object $query The main WP query
+ */
+function obx_limit_search_to_posts($query) {
+    if ($query->is_search() && $query->is_main_query()) {
+        $query->set('post_type', 'post');
+    }
+    return $query;
+}
+add_action('pre_get_posts', 'obx_limit_search_to_posts');
+
+/**
+ * AJAX handler for loading more posts
+ */
+function obx_load_more_posts() {
+    // Verify the request
+    if (!isset($_POST['page']) || !isset($_POST['posts_per_page'])) {
+        wp_send_json_error('Invalid request');
+        die();
+    }
+    
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : get_option('posts_per_page');
+    
+    $args = array(
+        'post_type' => 'post',
+        'post_status' => 'publish',
+        'posts_per_page' => $posts_per_page,
+        'paged' => $page,
+    );
+    
+    // Handle search query
+    if (isset($_POST['s']) && !empty($_POST['s'])) {
+        $args['s'] = sanitize_text_field($_POST['s']);
+    }
+    
+    // Handle category
+    if (isset($_POST['cat']) && !empty($_POST['cat'])) {
+        $args['cat'] = intval($_POST['cat']);
+    }
+    
+    $all_posts = new WP_Query($args);
+    
+    if ($all_posts->have_posts()) {
+        ob_start();
+        
+        while ($all_posts->have_posts()) {
+            $all_posts->the_post();
+            get_template_part('template-parts/content', 'post-card');
+        }
+        
+        $html = ob_get_clean();
+        wp_reset_postdata();
+        
+        echo $html;
+        die;
+    }
+    
+    die();
+}
+add_action('wp_ajax_load_more_posts', 'obx_load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'obx_load_more_posts');
+
+/**
+ * Display pagination with auto-loading functionality
+ */
+function obx_pagination() {
+    global $wp_query;
+    
+    // Use AJAX pagination for all templates (home, category, search)
+    $posts_per_page = get_option('posts_per_page');
+    if ($wp_query->max_num_pages > 1) : 
+        // Get current query parameters for search and category pages
+        $search_query = get_search_query();
+        $category_id = is_category() ? get_queried_object_id() : 0;
+    ?>
+        <div class="load-more-container">
+            <div class="loading-spinner hidden">
+                <div class="spinner"></div>
+            </div>
+            <button id="load-more" class="load-more-button" 
+                    data-page="1" 
+                    data-max-pages="<?php echo esc_attr($wp_query->max_num_pages); ?>"
+                    data-posts-per-page="<?php echo esc_attr($posts_per_page); ?>"
+                    <?php if (!empty($search_query)) : ?>
+                        data-search="<?php echo esc_attr($search_query); ?>"
+                    <?php endif; ?>
+                    <?php if ($category_id) : ?>
+                        data-cat="<?php echo esc_attr($category_id); ?>"
+                    <?php endif; ?>>
+                <?php esc_html_e('Load More', 'obx-theme'); ?>
+            </button>
+        </div>
+    <?php endif;
+} 

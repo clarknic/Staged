@@ -124,20 +124,48 @@
 
 <?php if ( is_singular() ) : ?>
 	<section class="related-posts">
-		<h2><?php esc_html_e( 'Related Posts', 'obx-theme' ); ?></h2>
+		<div class="related-posts-header">
+			<h2><?php esc_html_e( 'Related Posts', 'obx-theme' ); ?></h2>
+			<a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="see-all-link"><?php esc_html_e( 'See All', 'obx-theme' ); ?></a>
+		</div>
 		<div class="related-posts-grid">
 			<?php
 			$related_posts = get_related_posts();
 			foreach ( $related_posts as $post ) :
 				setup_postdata( $post );
+				$post_id = get_the_ID();
+				$permalink = get_permalink();
+				$thumbnail = get_the_post_thumbnail_url($post_id, 'medium_large');
 				?>
 				<article class="related-post">
-					<a href="<?php the_permalink(); ?>">
-						<?php if ( has_post_thumbnail() ) : ?>
-							<?php the_post_thumbnail( 'medium' ); ?>
+					<div class="related-post__image-container">
+						<div class="related-post__stats">
+							<span class="related-post__views">
+								<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+									<circle cx="12" cy="12" r="3"></circle>
+								</svg>
+								<?php echo esc_html(get_views_count()); ?>
+							</span>
+							<span class="related-post__likes">
+								<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="<?php echo has_user_liked_post() ? '#ff4757' : 'none'; ?>" stroke="#ff4757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+								</svg>
+								<?php echo esc_html(get_likes_count()); ?>
+							</span>
+						</div>
+						<?php if ($thumbnail) : ?>
+							<img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title_attribute(); ?>" class="related-post__image">
+						<?php else : ?>
+							<div class="related-post__image-placeholder"></div>
 						<?php endif; ?>
-						<h3><?php the_title(); ?></h3>
-					</a>
+					</div>
+					<div class="related-post__content">
+						<h3 class="related-post__title">
+							<a href="<?php echo esc_url($permalink); ?>"><?php the_title(); ?></a>
+						</h3>
+						<a href="<?php echo esc_url($permalink); ?>" class="related-post__read-more">Read More</a>
+					</div>
 				</article>
 			<?php
 			endforeach;

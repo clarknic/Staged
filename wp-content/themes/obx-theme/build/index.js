@@ -154,10 +154,126 @@ function navigation() {
       // Update aria-expanded attribute
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', !isExpanded);
-      console.log('Menu toggled:', mainNav.classList.contains('is-open'));
     });
   }
 }
+
+/***/ }),
+
+/***/ "./src/js/components/pagination.js":
+/*!*****************************************!*\
+  !*** ./src/js/components/pagination.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/**
+ * Pagination component - handles AJAX loading of posts
+ */
+
+class PostsPagination {
+  constructor() {
+    this.loadMoreBtn = document.getElementById('load-more');
+    this.postsContainer = document.getElementById('ajax-posts');
+    this.spinner = document.querySelector('.loading-spinner');
+    if (!this.loadMoreBtn || !this.postsContainer) {
+      return;
+    }
+    this.loading = false;
+    this.currentPage = parseInt(this.loadMoreBtn.dataset.page);
+    this.maxPages = parseInt(this.loadMoreBtn.dataset.maxPages);
+    this.postsPerPage = parseInt(this.loadMoreBtn.dataset.postsPerPage);
+    this.searchQuery = this.loadMoreBtn.dataset.search || '';
+    this.categoryId = this.loadMoreBtn.dataset.cat || '';
+    this.autoLoadThreshold = 200; // pixels from bottom to trigger auto load
+    this.loadDelay = 1000; // 1-second delay for loading posts
+
+    // Initialize event listeners
+    this.initEvents();
+  }
+  initEvents() {
+    // Click handler for Load More button
+    this.loadMoreBtn.addEventListener('click', e => {
+      e.preventDefault();
+      this.loadMorePosts();
+    });
+
+    // Auto-load when scrolling near bottom
+    window.addEventListener('scroll', () => {
+      if (this.loading) return;
+      if (window.scrollY + window.innerHeight > document.documentElement.scrollHeight - this.autoLoadThreshold) {
+        this.loadMorePosts();
+      }
+    });
+  }
+  loadMorePosts() {
+    if (this.loading || this.currentPage >= this.maxPages) {
+      return;
+    }
+    this.loading = true;
+    this.currentPage++;
+    this.spinner.classList.remove('hidden');
+
+    // Create FormData for the request
+    const formData = new FormData();
+    formData.append('action', 'load_more_posts');
+    formData.append('page', this.currentPage);
+    formData.append('posts_per_page', this.postsPerPage);
+
+    // Add search query if available
+    if (this.searchQuery) {
+      formData.append('s', this.searchQuery);
+    }
+
+    // Add category if available
+    if (this.categoryId) {
+      formData.append('cat', this.categoryId);
+    }
+
+    // Use modern Fetch API instead of jQuery.ajax
+    fetch(obx_site.ajax_url, {
+      method: 'POST',
+      body: formData,
+      credentials: 'same-origin'
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    }).then(html => {
+      // Add a slight delay before showing the posts
+      setTimeout(() => {
+        if (html) {
+          // Append new posts to container
+          this.postsContainer.insertAdjacentHTML('beforeend', html);
+          this.loadMoreBtn.dataset.page = this.currentPage;
+
+          // Remove button if we've reached the max pages
+          if (this.currentPage >= this.maxPages) {
+            this.loadMoreBtn.remove();
+          }
+        } else {
+          this.loadMoreBtn.remove();
+        }
+        this.loading = false;
+        this.spinner.classList.add('hidden');
+      }, this.loadDelay);
+    }).catch(error => {
+      console.error('Error loading more posts:', error);
+      this.loading = false;
+      this.spinner.classList.add('hidden');
+    });
+  }
+}
+
+// Initialize the pagination when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new PostsPagination();
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostsPagination);
 
 /***/ }),
 
@@ -227,7 +343,6 @@ const PostLikes = () => {
           // Post is unliked, show outline only
           heart.classList.remove('liked');
           heart.setAttribute('fill', 'none');
-          console.log('Heart unliked - setting fill to none');
         }
       }
     }).catch(error => {
@@ -274,10 +389,14 @@ const SearchForm = () => {
 
     // Focus the search input when opened
     if (!isExpanded) {
-      setTimeout(() => {
-        const input = searchContainer.querySelector('.search-field');
-        if (input) input.focus();
-      }, 300); // Wait for animation to complete
+      // Focus immediately without delay
+      const input = searchContainer.querySelector('.search-field');
+      if (input) {
+        // Use a minimal timeout to ensure DOM is updated before focusing
+        setTimeout(() => {
+          input.focus();
+        }, 10);
+      }
     }
   });
 
@@ -326,6 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initStickyToc();
   initActiveTocItem();
+  initScrollToTop();
 });
 
 /**
@@ -753,6 +873,22 @@ function smoothScroll(e) {
     window.isScrollingProgrammatically = false;
   }, 1000); // Slightly longer than typical scroll animation
 }
+
+/**
+ * Initialize scroll to top functionality
+ */
+function initScrollToTop() {
+  const scrollToTopButton = document.querySelector('.site-footer__scroll-top');
+  if (scrollToTopButton) {
+    scrollToTopButton.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+}
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initSmoothScroll);
 
 /***/ }),
@@ -838,6 +974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_search_form_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/components/search-form.js */ "./src/js/components/search-form.js");
 /* harmony import */ var _js_components_smooth_scroll_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/components/smooth-scroll.js */ "./src/js/components/smooth-scroll.js");
 /* harmony import */ var _js_components_lightbox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/components/lightbox.js */ "./src/js/components/lightbox.js");
+/* harmony import */ var _js_components_pagination_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/components/pagination.js */ "./src/js/components/pagination.js");
 /**
  * Main frontend JavaScript file
  */
@@ -852,10 +989,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 // DOM ready
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('OBX Theme initialized');
-
   // Initialize navigation
   (0,_js_components_navigation_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
 
@@ -870,6 +1006,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initialize lightbox
   (0,_js_components_lightbox_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
+
+  // Initialize pagination (will self-initialize in the component)
+  // PostsPagination is auto-initialized in the component
 });
 })();
 

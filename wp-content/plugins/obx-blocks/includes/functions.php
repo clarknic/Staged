@@ -53,26 +53,3 @@ function obx_render_service_icon($service) {
     // Default placeholder if no icon
     return '';
 }
-
-/**
- * Debug translation loading
- */
-function obx_blocks_debug_translation_loading($src, $handle) {
-    error_log('OBX Blocks: Debugging translation for ' . $handle);
-    error_log('OBX Blocks: Source URL: ' . $src);
-    
-    $parsed_url = wp_parse_url($src);
-    error_log('OBX Blocks: Parsed URL: ' . print_r($parsed_url, true));
-    
-    $content_url = wp_parse_url(content_url());
-    error_log('OBX Blocks: Content URL: ' . print_r($content_url, true));
-    
-    $plugins_url = wp_parse_url(plugins_url());
-    error_log('OBX Blocks: Plugins URL: ' . print_r($plugins_url, true));
-    
-    $site_url = wp_parse_url(site_url());
-    error_log('OBX Blocks: Site URL: ' . print_r($site_url, true));
-    
-    return $src;
-}
-add_filter('script_loader_src', 'obx_blocks_debug_translation_loading', 10, 2); 

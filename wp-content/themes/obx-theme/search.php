@@ -8,12 +8,24 @@
  */
 
 get_header();
+
+// Modify query to only show posts
+global $wp_query;
+if (!isset($_GET['post_type'])) {
+    // Store original search query for AJAX pagination
+    $search_query = get_search_query();
+    
+    $wp_query = new WP_Query(array(
+        's' => $search_query,
+        'post_type' => 'post'
+    ));
+}
 ?>
 
 <main id="primary" class="site-main">
     <?php get_template_part('template-parts/part-categories', 'search'); ?>
 
-    <div class="search-results-header">
+    <div class="category-header">
         <h1 class="page-title">
             <?php
             /* translators: %s: search query. */
@@ -22,26 +34,22 @@ get_header();
         </h1>
     </div>
 
-    <div class="search-results-container">
+    <div class="category-posts-container">
         <?php if (have_posts()) : ?>
-            <div class="search-results-grid">
+            <div class="post-card-grid" id="ajax-posts">
                 <?php
                 /* Start the Loop */
                 while (have_posts()) :
                     the_post();
                     
-                    get_template_part('template-parts/content', 'search');
+                    get_template_part('template-parts/content', 'post-card');
                     
                 endwhile;
                 ?>
             </div>
 
             <?php
-            the_posts_pagination(array(
-                'prev_text' => '<span class="screen-reader-text">' . __('Previous page', 'obx-theme') . '</span>',
-                'next_text' => '<span class="screen-reader-text">' . __('Next page', 'obx-theme') . '</span>',
-                'before_page_number' => '<span class="meta-nav screen-reader-text">' . __('Page', 'obx-theme') . ' </span>',
-            ));
+            obx_pagination();
             ?>
 
         <?php else : ?>

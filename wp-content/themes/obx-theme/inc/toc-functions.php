@@ -170,6 +170,7 @@ function obx_generate_toc($post_id = null) {
     
     // Build TOC HTML
     $html = '<div class="obx-toc">';
+    $html .= '<div class="obx-toc-container">';
     $html .= '<h2 class="obx-toc-title">In this article</h2>';
     $html .= '<ul class="obx-toc-list">';
     
@@ -187,6 +188,7 @@ function obx_generate_toc($post_id = null) {
     }
     
     $html .= '</ul>';
+    $html .= '</div>'; // Close .obx-toc-container
     $html .= '</div>';
     
     return $html;

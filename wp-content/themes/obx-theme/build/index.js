@@ -359,18 +359,50 @@ function initStickyToc() {
   const stickyToc = toc.cloneNode(true);
   stickyToc.classList.add('obx-toc-sticky');
 
-  // Make the title more compact for the sticky version
-  const tocTitle = stickyToc.querySelector('.obx-toc-title');
-  if (tocTitle) {
-    tocTitle.innerText = 'In this article';
-  }
+  // Remove the original container if it exists
+  const originalContainer = stickyToc.querySelector('.obx-toc-container');
+  if (originalContainer) {
+    // Save the contents to reinsert later
+    const contents = originalContainer.innerHTML;
+    originalContainer.remove();
 
-  // Add a toggle button to expand/collapse on mobile
-  const toggleButton = document.createElement('button');
-  toggleButton.className = 'obx-toc-toggle';
-  toggleButton.setAttribute('aria-label', 'Toggle table of contents');
-  toggleButton.innerHTML = '<span class="obx-toc-toggle-icon"></span>';
-  stickyToc.prepend(toggleButton);
+    // Create a new container
+    const container = document.createElement('div');
+    container.className = 'obx-toc-sticky-container';
+    container.innerHTML = contents;
+
+    // Add a toggle button to expand/collapse on mobile
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'obx-toc-toggle';
+    toggleButton.setAttribute('aria-label', 'Toggle table of contents');
+    toggleButton.innerHTML = '<span class="obx-toc-toggle-icon"></span>';
+
+    // Make the title more compact for the sticky version
+    const tocTitle = container.querySelector('.obx-toc-title');
+    if (tocTitle) {
+      tocTitle.innerText = 'In this article';
+    }
+
+    // Add toggle button to the container (before any other content)
+    container.prepend(toggleButton);
+
+    // Add the container to the sticky TOC
+    stickyToc.appendChild(container);
+  } else {
+    // Fallback if there's no container structure
+    // Make the title more compact for the sticky version
+    const tocTitle = stickyToc.querySelector('.obx-toc-title');
+    if (tocTitle) {
+      tocTitle.innerText = 'In this article';
+    }
+
+    // Add a toggle button to expand/collapse on mobile
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'obx-toc-toggle';
+    toggleButton.setAttribute('aria-label', 'Toggle table of contents');
+    toggleButton.innerHTML = '<span class="obx-toc-toggle-icon"></span>';
+    stickyToc.prepend(toggleButton);
+  }
 
   // Add the sticky TOC to the page
   document.body.appendChild(stickyToc);
@@ -381,9 +413,12 @@ function initStickyToc() {
   let tocBottomPosition = tocRect.bottom + window.pageYOffset;
 
   // Handle toggle click
-  toggleButton.addEventListener('click', () => {
-    stickyToc.classList.toggle('obx-toc-expanded');
-  });
+  const toggleButton = stickyToc.querySelector('.obx-toc-toggle');
+  if (toggleButton) {
+    toggleButton.addEventListener('click', () => {
+      stickyToc.classList.toggle('obx-toc-expanded');
+    });
+  }
 
   // Update sticky TOC position on scroll
   window.addEventListener('scroll', () => {

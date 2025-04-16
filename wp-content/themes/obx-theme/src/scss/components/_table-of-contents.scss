@@ -9,6 +9,12 @@
   border-radius: 4px;
   border-left: 4px solid var(--color-accent, #c4a468);
   
+  &-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
   &-title {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -41,7 +47,6 @@
       &.active {
         color: var(--color-accent, #c4a468);
         font-family: var(--font-primary-book, sans-serif);
-        transition: color 0.25s ease;
       }
     }
     
@@ -89,9 +94,15 @@
   transform: translateY(-20px);
   opacity: 0;
   
-  // Positioned on the left sidebar on desktop
+  // Positioned on the left sidebar on desktop (large screens)
   left: 2rem;
   top: 50px;
+  
+  &-container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0;
+  }
   
   // Smaller title for the sticky version
   .obx-toc-title {
@@ -196,16 +207,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Responsive styles
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .obx-toc-sticky {
-    left: 1rem;
-    max-width: 250px;
-  }
-}
-
-@media (max-width: 992px) {
-  // On smaller screens, move TOC to the top
-  .obx-toc-sticky {
+    // Position at the top when window width is less than 1500px
     left: 0;
     right: 0;
     top: 0;
@@ -213,31 +217,42 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0;
     border-left: none;
     border-bottom: 4px solid var(--color-accent, #c4a468);
+    margin: 0;
+    min-height: 36px;
     
-    // Collapsed by default on mobile
-    padding: 0.5rem 1rem;
+    // Constrain width of content to match content zone
+    &-container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+    }
+    
+    // Collapsed by default on smaller screens
+    padding: 0.5rem 0;
     
     .obx-toc-toggle {
-      display: block; // Show toggle on mobile
+      display: block; // Show toggle on smaller screens
+      top: 6px;
+      right: 0;
     }
     
     .obx-toc-title {
       margin-bottom: 0;
       padding-right: 30px; // Space for toggle button
+      line-height: 36px;
     }
     
     .obx-toc-list {
-      max-height: 0; // Hide list by default on mobile
+      max-height: 0; // Hide list by default on smaller screens
     }
     
-    // When TOC is expanded on mobile
+    // When TOC is expanded
     &.obx-toc-expanded {
-      padding: 0.75rem 1rem;
       
       .obx-toc-list {
-        max-height: 500px;
+        max-height: 300px;
         overflow-y: auto;
-        padding-top: 0.5rem;
       }
       
       .obx-toc-toggle-icon:before {
@@ -247,9 +262,58 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+@media (max-width: 1200px) {
+  .obx-toc-sticky {
+    .obx-toc-title {
+      padding-left: 40px;
+    }
+    
+    .obx-toc-list {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    
+    .obx-toc-toggle {
+      right: 40px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  // Further adjustments for mobile screens
+  .obx-toc-sticky {
+    &-container {
+      padding: 0 20px;
+    }
+    
+    .obx-toc-title {
+      padding-left: 20px;
+    }
+    
+    .obx-toc-list {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    .obx-toc-toggle {
+      right: 20px;
+    }
+    
+    &.obx-toc-expanded {
+      .obx-toc-list {
+        max-height: 500px; // Allow more space on medium screens
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .obx-toc {
     padding: 1rem;
+    
+    &-container {
+      padding: 0 15px;
+    }
     
     &-title {
       font-size: 1.25rem;
@@ -269,6 +333,25 @@ h1, h2, h3, h4, h5, h6 {
       &.obx-toc-level-6 {
         padding-left: 2.25rem;
       }
+    }
+  }
+  
+  .obx-toc-sticky {
+    &-container {
+      padding: 0 15px;
+    }
+    
+    .obx-toc-title {
+      padding-left: 15px;
+    }
+    
+    .obx-toc-list {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    .obx-toc-toggle {
+      right: 15px;
     }
   }
 } 

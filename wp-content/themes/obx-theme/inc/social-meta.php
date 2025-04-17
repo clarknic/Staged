@@ -129,11 +129,21 @@ add_action('customize_register', 'obx_social_customizer_settings');
  * Add Open Graph and Twitter Card meta tags to the head
  */
 function obx_add_social_meta_tags() {
-    global $post;
-    
-    if (!is_singular()) {
-        return;
+    // Handle singular posts and pages
+    if (is_singular()) {
+        obx_add_singular_meta_tags();
+    } 
+    // Handle category archives
+    elseif (is_category()) {
+        obx_add_category_meta_tags();
     }
+}
+
+/**
+ * Add meta tags for singular posts and pages
+ */
+function obx_add_singular_meta_tags() {
+    global $post;
     
     // Get post data
     $post_title = get_the_title();
@@ -239,4 +249,71 @@ function obx_add_social_meta_tags() {
         }
     }
 }
+
+/**
+ * Add meta tags for category archives
+ */
+function obx_add_category_meta_tags() {
+    // Get category data
+    $category = get_queried_object();
+    $cat_title = single_cat_title('', false);
+    $cat_description = category_description();
+    
+    // Clean up and prepare the description
+    if (empty($cat_description)) {
+        $cat_description = sprintf(__('Browse all posts in the %s category', 'obx-theme'), $cat_title);
+    } else {
+        $cat_description = wp_strip_all_tags($cat_description);
+    }
+    
+    $cat_url = get_category_link($category->term_id);
+    
+    // Get site data
+    $site_name = get_bloginfo('name');
+    
+    // Try to get category image if available
+    $cat_image = '';
+    
+    // Check for term meta directly
+    $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
+    if ($thumbnail_id) {
+        $cat_image = wp_get_attachment_image_url($thumbnail_id, 'large');
+    }
+    
+    // If no category image, try to get default social image
+    if (empty($cat_image)) {
+        $default_social_image_id = get_theme_mod('obx_default_social_image');
+        if ($default_social_image_id) {
+            $cat_image = wp_get_attachment_image_url($default_social_image_id, 'large');
+        }
+    }
+    
+    // If still no image, fallback to site logo
+    if (empty($cat_image)) {
+        $custom_logo_id = get_theme_mod('custom_logo');
+        $cat_image = $custom_logo_id ? wp_get_attachment_image_url($custom_logo_id, 'large') : '';
+    }
+    
+    // Output Open Graph meta tags
+    echo '<meta property="og:locale" content="' . esc_attr(get_locale()) . '" />' . "\n";
+    echo '<meta property="og:type" content="website" />' . "\n";
+    echo '<meta property="og:title" content="' . esc_attr($cat_title) . ' - ' . esc_attr($site_name) . '" />' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($cat_description) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($cat_url) . '" />' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '" />' . "\n";
+    
+    if (!empty($cat_image)) {
+        echo '<meta property="og:image" content="' . esc_url($cat_image) . '" />' . "\n";
+    }
+    
+    // Output Twitter Card meta tags
+    echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr($cat_title) . ' - ' . esc_attr($site_name) . '" />' . "\n";
+    echo '<meta name="twitter:description" content="' . esc_attr($cat_description) . '" />' . "\n";
+    
+    if (!empty($cat_image)) {
+        echo '<meta name="twitter:image" content="' . esc_url($cat_image) . '" />' . "\n";
+    }
+}
+
 add_action('wp_head', 'obx_add_social_meta_tags', 5); 

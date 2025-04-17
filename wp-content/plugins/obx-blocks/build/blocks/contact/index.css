@@ -174,12 +174,58 @@
   }
 }
 @media (max-width: 768px) {
+  .obx-contact {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .obx-contact__left {
+    padding: 30px 20px;
+    order: 1;
+  }
+  .obx-contact__right {
+    min-height: 300px;
+    order: 2;
+  }
   .obx-contact__form {
-    padding: 1rem;
-    margin: 0 1rem;
+    padding: 0 15px;
+    margin: 20px 0;
+    width: 100%;
+  }
+  .obx-contact__form .form-group {
+    margin-bottom: 15px;
+  }
+  .obx-contact__form .form-group input,
+  .obx-contact__form .form-group textarea {
+    font-size: 16px;
+    padding: 8px 0;
+  }
+  .obx-contact__form .submit-button {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
   }
   .obx-contact__title {
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  .obx-contact__heading-line {
+    width: 200px;
+    margin-bottom: 15px;
+  }
+  .obx-contact__text {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .obx-contact__contact-info {
+    margin-bottom: 20px;
+  }
+  .obx-contact__contact-item {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+  }
+  .obx-contact--responsive .obx-contact__form {
+    box-shadow: none;
+    background: transparent;
   }
 }
 .obx-contact.wp-block-obx-blocks-contact {

@@ -131,7 +131,7 @@
 
       @include respond-to(md) {
         margin-left: 0;
-        margin-bottom: $spacing-sm;
+        margin-bottom: 5px;
         width: 100%;
       }
       
@@ -147,7 +147,7 @@
         @include respond-to(md) {
           font-size: 20px;
           display: block;
-          padding: $spacing-xs $spacing-lg;
+          padding: 3px 10px;
           border-bottom: 1px solid $color-gold;
           padding-bottom: 10px;
         }

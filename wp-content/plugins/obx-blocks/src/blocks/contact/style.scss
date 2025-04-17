@@ -197,13 +197,71 @@
 // Responsive styles
 @media (max-width: 768px) {
   .obx-contact {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    
+    &__left {
+      padding: 30px 20px;
+      order: 1; // Place the form on top
+    }
+    
+    &__right {
+      min-height: 300px; // Reduce height for mobile
+      order: 2; // Place the image at the bottom
+    }
+    
     &__form {
-      padding: 1rem;
-      margin: 0 1rem;
+      padding: 0 15px;
+      margin: 20px 0;
+      width: 100%;
+      
+      .form-group {
+        margin-bottom: 15px;
+        
+        input, 
+        textarea {
+          font-size: 16px; // Better size for mobile touch inputs
+          padding: 8px 0;
+        }
+      }
+      
+      .submit-button {
+        margin-top: 10px;
+        padding: 12px;
+        font-size: 16px;
+      }
     }
     
     &__title {
-      font-size: 24px;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    
+    &__heading-line {
+      width: 200px;
+      margin-bottom: 15px;
+    }
+    
+    &__text {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    
+    &__contact-info {
+      margin-bottom: 20px;
+    }
+    
+    &__contact-item {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  // Add specific styles for the responsive class
+  .obx-contact--responsive {
+    .obx-contact__form {
+      box-shadow: none;
+      background: transparent;
     }
   }
 }

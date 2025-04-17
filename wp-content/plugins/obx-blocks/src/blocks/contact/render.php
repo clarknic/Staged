@@ -32,6 +32,7 @@ if (!empty($align)) {
     $class_names .= ' align' . $align;
 }
 $class_names .= ' text-' . $text_align;
+$class_names .= ' obx-contact--responsive';
 
 // Build the inline styles
 $block_style = '';

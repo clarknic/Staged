@@ -27,7 +27,7 @@
         
         @media (max-width: 767px) {
             flex-direction: column;
-            gap: 40px;
+            gap: 20px;
         }
     }
     
@@ -41,7 +41,11 @@
         @media (max-width: 767px) {
             flex: 0 0 100%;
             width: 100%;
-            order: 2;
+            padding: 14px 20px 28px;
+            order: 1;
+            margin-top: 0;
+            position: relative;
+            background-color: white;
         }
     }
     
@@ -51,7 +55,7 @@
         @media (max-width: 767px) {
             flex: 0 0 100%;
             width: 100%;
-            order: 1;
+            order: 2;
         }
     }
     
@@ -90,6 +94,11 @@
         min-height: 700px;
         position: relative;
         overflow: hidden;
+        
+        @media (max-width: 767px) {
+            min-height: 350px;
+        }
+        
         img {
             width: 100%;
             height: auto;

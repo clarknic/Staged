@@ -314,6 +314,11 @@ require_once get_template_directory() . '/inc/toc-functions.php';
 require_once get_template_directory() . '/inc/social-meta.php';
 
 /**
+ * Include schema.org structured data
+ */
+require_once get_template_directory() . '/inc/schema-functions.php';
+
+/**
  * Enqueue block editor assets
  */
 function obx_theme_block_editor_assets() {

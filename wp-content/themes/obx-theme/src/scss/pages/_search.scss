@@ -311,6 +311,18 @@
 }
 
 @media (max-width: 768px) {
+  .search-results-header {
+    padding: 0 20px;
+  }
+  
+  .search-results-container {
+    padding: 0 20px 3rem;
+    
+    .search-results-grid {
+      padding: 0;
+    }
+  }
+  
   .search-result-item {
     &__image {
       flex: 0 0 auto;
@@ -320,5 +332,13 @@
         height: 200px;
       }
     }
+    
+    &__content {
+      padding: 0;
+    }
+  }
+  
+  .no-results {
+    padding: 2rem 20px;
   }
 } 

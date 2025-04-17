@@ -266,8 +266,18 @@
 // Mobile breakpoint
 @media (max-width: 768px) {
   .category-header {
+    padding: 0 20px;
+    
     .page-title {
       font-size: 2rem;
+    }
+  }
+  
+  .category-posts-container {
+    padding: 0 20px 3rem;
+    
+    .category-posts-grid {
+      padding: 0;
     }
   }
   
@@ -275,6 +285,25 @@
     &__image {
       .post-thumbnail {
         height: 220px;
+      }
+    }
+    
+    &__content {
+      padding: 0;
+      
+      .entry-title {
+        font-size: 1.5rem;
+      }
+      
+      .entry-summary {
+        font-size: 0.95rem;
+      }
+    }
+    
+    .post-meta {
+      .author-meta {
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
     }
   }

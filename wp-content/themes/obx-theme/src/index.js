@@ -12,6 +12,7 @@ import SearchForm from './js/components/search-form.js';
 import initSmoothScroll from './js/components/smooth-scroll.js';
 import initLightbox from './js/components/lightbox.js';
 import PostsPagination from './js/components/pagination.js';
+import './js/components/mobile-categories.js'; // No need to initialize - self-initializing
 
 // DOM ready
 document.addEventListener('DOMContentLoaded', function() {

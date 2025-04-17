@@ -8,8 +8,13 @@ const SearchForm = () => {
   
   if (!searchToggle || !searchContainer) return;
   
-  // Toggle search form visibility
+  // Check if we're on mobile
+  const checkMobile = () => window.innerWidth <= 768;
+  
+  // For desktop: Toggle search form visibility
   searchToggle.addEventListener('click', () => {
+    if (checkMobile()) return; // Skip on mobile as the form is always visible
+    
     const isExpanded = searchToggle.getAttribute('aria-expanded') === 'true';
     
     // Update ARIA state
@@ -32,9 +37,24 @@ const SearchForm = () => {
     }
   });
   
-  // Close search when clicking outside
+  // Initialize mobile state
+  if (checkMobile()) {
+    searchContainer.classList.add('is-active');
+  }
+  
+  // Handle resize events
+  window.addEventListener('resize', () => {
+    if (checkMobile()) {
+      searchContainer.classList.add('is-active');
+    } else if (!searchToggle.classList.contains('is-active')) {
+      searchContainer.classList.remove('is-active');
+    }
+  });
+  
+  // Close search when clicking outside (desktop only)
   document.addEventListener('click', (event) => {
     if (
+      !checkMobile() &&
       searchContainer.classList.contains('is-active') &&
       !searchContainer.contains(event.target) &&
       !searchToggle.contains(event.target)
@@ -45,9 +65,10 @@ const SearchForm = () => {
     }
   });
   
-  // Close search when pressing Escape
+  // Close search when pressing Escape (desktop only)
   document.addEventListener('keydown', (event) => {
     if (
+      !checkMobile() &&
       event.key === 'Escape' &&
       searchContainer.classList.contains('is-active')
     ) {

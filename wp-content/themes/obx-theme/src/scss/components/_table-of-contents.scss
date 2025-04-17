@@ -117,6 +117,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
+    &.with-active-text {
+      color: var(--color-accent, #c4a468);
+      font-weight: 500;
+    }
   }
   
   // Compact list items
@@ -247,17 +252,30 @@ h1, h2, h3, h4, h5, h6 {
       position: relative;
     }
     
+    // Single post specific styling
+    .single.single-post & {
+      &-container {
+        max-width: 940px;
+        padding: 0 30px;
+      }
+    }
+    
     .obx-toc-toggle {
       display: block; // Show toggle on smaller screens
       top: 6px;
       right: 0;
+      z-index: 3; // Ensure button stays above title
     }
     
     .obx-toc-title {
       margin-bottom: 0;
       padding-right: 30px; // Space for toggle button
       line-height: 36px;
-      max-width: calc(100% - 30px); // Leave space for toggle button
+      width: calc(100% - 30px); // Leave space for toggle button
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block; // Ensure block display for text-overflow to work
     }
     
     .obx-toc-list {
@@ -278,7 +296,6 @@ h1, h2, h3, h4, h5, h6 {
     
     // When TOC is expanded
     &.obx-toc-expanded {
-      
       .obx-toc-list {
         max-height: 300px;
         overflow-y: auto;
@@ -372,20 +389,26 @@ h1, h2, h3, h4, h5, h6 {
   
   .obx-toc-sticky {
     &-container {
-      padding: 0 15px;
+      padding: 0;
     }
-    
-    .obx-toc-title {
-      padding-left: 15px;
-    }
-    
-    .obx-toc-list {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-    
     .obx-toc-toggle {
-      right: 15px;
+      right: 0;
+    }
+    
+    // Single post specific styling
+    .single.single-post & {
+      &-container {
+        padding: 0;
+      }
+      
+      .obx-toc-title {
+        padding-left: 0;
+        width: calc(100% - 40px);
+      }
+      
+      .obx-toc-toggle {
+        right: 0;
+      }
     }
   }
 } 

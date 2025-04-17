@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/js/components/lightbox.js":
@@ -8,6 +7,7 @@
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -116,12 +116,102 @@ function initLightbox() {
 
 /***/ }),
 
+/***/ "./src/js/components/mobile-categories.js":
+/*!************************************************!*\
+  !*** ./src/js/components/mobile-categories.js ***!
+  \************************************************/
+/***/ (() => {
+
+/**
+ * Mobile Categories Select
+ * 
+ * Transforms the categories list into a select dropdown on mobile
+ */
+
+document.addEventListener('DOMContentLoaded', function () {
+  const categoriesContainer = document.querySelector('.post-categories-search__categories');
+  if (!categoriesContainer) return;
+  const categoriesList = categoriesContainer.querySelector('.categories-list');
+  if (!categoriesList) return;
+
+  // Check if we're on mobile
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    // Create select element
+    const select = document.createElement('select');
+    select.className = 'mobile-categories-select';
+
+    // Add default option
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Select Category';
+    select.appendChild(defaultOption);
+
+    // Get current page URL to detect active category
+    const currentUrl = window.location.href;
+    let currentCategoryFound = false;
+
+    // Add options from the categories list
+    const categoryItems = categoriesList.querySelectorAll('li a');
+    categoryItems.forEach(item => {
+      const option = document.createElement('option');
+      const itemUrl = item.getAttribute('href');
+      option.value = itemUrl;
+      option.textContent = item.textContent.trim();
+
+      // Check if this is the current category
+      if (currentUrl === itemUrl || currentUrl.endsWith('/') && currentUrl.slice(0, -1) === itemUrl || !currentUrl.endsWith('/') && currentUrl + '/' === itemUrl) {
+        option.selected = true;
+        currentCategoryFound = true;
+
+        // Also highlight the original list item for desktop view
+        item.parentElement.classList.add('current-category');
+        item.style.fontWeight = 'bold';
+        item.style.color = 'var(--color-accent, #c4a468)';
+      }
+
+      // Also check if we're on a child category
+      if (!currentCategoryFound && currentUrl.includes(itemUrl) && itemUrl !== '/') {
+        option.selected = true;
+        currentCategoryFound = true;
+      }
+      select.appendChild(option);
+    });
+
+    // Handle selection change
+    select.addEventListener('change', function () {
+      if (this.value) {
+        window.location.href = this.value;
+      }
+    });
+
+    // Append the select element
+    categoriesContainer.appendChild(select);
+  }
+
+  // Handle resize events
+  window.addEventListener('resize', function () {
+    const isMobileNow = window.innerWidth <= 768;
+    const existingSelect = categoriesContainer.querySelector('.mobile-categories-select');
+    if (isMobileNow && !existingSelect) {
+      // Re-run the function if resized to mobile and select doesn't exist
+      document.dispatchEvent(new Event('DOMContentLoaded'));
+    } else if (!isMobileNow && existingSelect) {
+      // Remove select if resized to desktop
+      existingSelect.remove();
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./src/js/components/navigation.js":
 /*!*****************************************!*\
   !*** ./src/js/components/navigation.js ***!
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ navigation)
@@ -166,6 +256,7 @@ function navigation() {
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -283,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -363,6 +455,7 @@ const PostLikes = () => {
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -376,8 +469,13 @@ const SearchForm = () => {
   const searchContainer = document.querySelector('.search-form-container');
   if (!searchToggle || !searchContainer) return;
 
-  // Toggle search form visibility
+  // Check if we're on mobile
+  const checkMobile = () => window.innerWidth <= 768;
+
+  // For desktop: Toggle search form visibility
   searchToggle.addEventListener('click', () => {
+    if (checkMobile()) return; // Skip on mobile as the form is always visible
+
     const isExpanded = searchToggle.getAttribute('aria-expanded') === 'true';
 
     // Update ARIA state
@@ -400,18 +498,32 @@ const SearchForm = () => {
     }
   });
 
-  // Close search when clicking outside
+  // Initialize mobile state
+  if (checkMobile()) {
+    searchContainer.classList.add('is-active');
+  }
+
+  // Handle resize events
+  window.addEventListener('resize', () => {
+    if (checkMobile()) {
+      searchContainer.classList.add('is-active');
+    } else if (!searchToggle.classList.contains('is-active')) {
+      searchContainer.classList.remove('is-active');
+    }
+  });
+
+  // Close search when clicking outside (desktop only)
   document.addEventListener('click', event => {
-    if (searchContainer.classList.contains('is-active') && !searchContainer.contains(event.target) && !searchToggle.contains(event.target)) {
+    if (!checkMobile() && searchContainer.classList.contains('is-active') && !searchContainer.contains(event.target) && !searchToggle.contains(event.target)) {
       searchContainer.classList.remove('is-active');
       searchToggle.classList.remove('is-active');
       searchToggle.setAttribute('aria-expanded', 'false');
     }
   });
 
-  // Close search when pressing Escape
+  // Close search when pressing Escape (desktop only)
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && searchContainer.classList.contains('is-active')) {
+    if (!checkMobile() && event.key === 'Escape' && searchContainer.classList.contains('is-active')) {
       searchContainer.classList.remove('is-active');
       searchToggle.classList.remove('is-active');
       searchToggle.setAttribute('aria-expanded', 'false');
@@ -429,6 +541,7 @@ const SearchForm = () => {
   \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -899,6 +1012,7 @@ function initScrollToTop() {
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -932,6 +1046,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -962,8 +1088,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
@@ -975,6 +1102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_components_smooth_scroll_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/components/smooth-scroll.js */ "./src/js/components/smooth-scroll.js");
 /* harmony import */ var _js_components_lightbox_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/components/lightbox.js */ "./src/js/components/lightbox.js");
 /* harmony import */ var _js_components_pagination_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/components/pagination.js */ "./src/js/components/pagination.js");
+/* harmony import */ var _js_components_mobile_categories_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/components/mobile-categories.js */ "./src/js/components/mobile-categories.js");
+/* harmony import */ var _js_components_mobile_categories_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_js_components_mobile_categories_js__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * Main frontend JavaScript file
  */
@@ -989,6 +1118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // No need to initialize - self-initializing
 
 // DOM ready
 document.addEventListener('DOMContentLoaded', function () {

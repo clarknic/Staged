@@ -74,4 +74,14 @@
       background-color: $color-light;
     }
   }
+}
+
+// Mobile styles
+@media (max-width: 768px) {
+  .home-hero, 
+  .home-features, 
+  .home-cta {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 } 

@@ -309,6 +309,11 @@ require get_template_directory() . '/inc/post-functions.php';
 require_once get_template_directory() . '/inc/toc-functions.php';
 
 /**
+ * Include social media meta tags
+ */
+require_once get_template_directory() . '/inc/social-meta.php';
+
+/**
  * Enqueue block editor assets
  */
 function obx_theme_block_editor_assets() {

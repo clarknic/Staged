@@ -296,10 +296,21 @@ body {
   justify-content: space-between;
   align-items: flex-start;
 }
-.site-header .site-branding .site-logo img {
+.site-header .site-branding .custom-logo {
   max-height: 131px;
   width: auto;
   display: block;
+}
+@media (max-width: 992px) {
+  .site-header .site-branding .custom-logo {
+    max-height: 80px;
+  }
+}
+@media (max-width: 992px) {
+  .site-header .menu-toggle {
+    right: 20px !important;
+    left: auto !important;
+  }
 }
 
 .site-branding {
@@ -353,6 +364,21 @@ body {
   color: #414141;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
 }
+@media (max-width: 992px) {
+  .contact-us-floating-link {
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
 /**
  * Main Stylesheet
  */

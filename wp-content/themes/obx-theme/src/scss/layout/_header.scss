@@ -24,12 +24,21 @@ body {
   }
 
   .site-branding {
-    .site-logo {
-      img {
-        max-height: 131px;
-        width: auto;
-        display: block;
+    .custom-logo {
+      max-height: 131px;
+      width: auto;
+      display: block;
+      
+      @include respond-to(md) {
+        max-height: 80px;
       }
+    }
+  }
+  
+  @include respond-to(md) {
+    .menu-toggle {
+      right: 20px !important;
+      left: auto !important;
     }
   }
 }
@@ -85,6 +94,15 @@ body {
   }
 
   @include respond-to(md) {
-
+    writing-mode: horizontal-tb;
+    text-orientation: initial;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   }
 }

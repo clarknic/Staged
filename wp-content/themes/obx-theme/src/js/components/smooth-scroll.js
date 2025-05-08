@@ -48,6 +48,26 @@ function initStickyToc() {
   // Store original title text
   let originalTitleText = 'In this article';
   
+  // Function to calculate and set TOC position
+  function updateTocPosition() {
+    if (window.innerWidth >= 1500) {
+      const article = document.querySelector('.single-post article');
+      if (article) {
+        const articleRect = article.getBoundingClientRect();
+        const leftPosition = articleRect.left - stickyToc.offsetWidth - 32; // 32px = 2rem
+        stickyToc.style.setProperty('--toc-left-position', `${Math.max(leftPosition, 32)}px`);
+      }
+    } else {
+      stickyToc.style.removeProperty('--toc-left-position');
+    }
+  }
+  
+  // Update position on resize
+  window.addEventListener('resize', updateTocPosition);
+  
+  // Initial position calculation
+  updateTocPosition();
+  
   // Remove the original container if it exists
   const originalContainer = stickyToc.querySelector('.obx-toc-container');
   if (originalContainer) {
@@ -155,6 +175,7 @@ function initStickyToc() {
     // Show sticky TOC only when scrolled past the BOTTOM of the original TOC
     if (scrollPosition > tocBottomPosition) {
       stickyToc.classList.add('obx-toc-visible');
+      updateTocPosition(); // Ensure correct positioning when becoming visible
       
       // Check if we should hide it when we reach footer or content end
       // But only if we're very close to the bottom of the page
@@ -352,8 +373,10 @@ function initActiveTocItem() {
             activeStickyLink.classList.add('active');
             
             // Update the sticky TOC title with the active item text if collapsed and only on small screens
+            const stickyTocTitle = stickyToc.querySelector('.obx-toc-title');
             if (stickyTocTitle && !stickyToc.classList.contains('obx-toc-expanded') && isSmallScreen()) {
               stickyTocTitle.innerText = activeHeading.link.innerText;
+              stickyTocTitle.classList.add('with-active-text');
             }
           }
         }
@@ -366,6 +389,22 @@ function initActiveTocItem() {
   
   // Track active heading on scroll
   window.addEventListener('scroll', debouncedUpdateActiveTocItem);
+
+  // Also update active item when TOC becomes visible
+  if (stickyToc) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target.classList.contains('obx-toc-visible')) {
+          updateActiveTocItem();
+        }
+      });
+    });
+    
+    observer.observe(stickyToc, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
 }
 
 /**

@@ -79,7 +79,7 @@
  * Sticky TOC styles
  */
 .obx-toc-sticky {
-  display: none; // Hidden by default
+  display: none;
   position: fixed;
   z-index: 100;
   padding: 8px 1rem 12px;
@@ -94,9 +94,23 @@
   transform: translateY(-20px);
   opacity: 0;
   
-  // Positioned on the left sidebar on desktop (large screens)
-  left: 2rem;
-  top: 50px;
+  @media (min-width: 1500px) {
+    position: fixed;
+    left: var(--toc-left-position, 2rem); // Fallback position
+    top: 50px;
+    
+    .obx-toc-container {
+      max-width: 252px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+  
+  &.obx-toc-visible {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
   
   &-container {
     max-width: 940px;
@@ -199,13 +213,6 @@
     background-color: var(--color-accent, #c4a468);
     transition: width 0.2s ease-out;
   }
-  
-  // When TOC is visible (scrolled past the original)
-  &.obx-toc-visible {
-    display: block;
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 // Heading link targets
@@ -236,7 +243,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     max-width: 100%;
     border-radius: 0;
-    border-left: none;
+    border-left: none !important; // Remove left border on mobile
     border-bottom: none; // Remove default border-bottom
     margin: 0;
     min-height: 36px;
@@ -409,6 +416,15 @@ h1, h2, h3, h4, h5, h6 {
       .obx-toc-toggle {
         right: 0;
       }
+    }
+  }
+}
+
+// Add positioning context for sticky TOC
+.single-post {
+  article {
+    @media (min-width: 1500px) {
+      position: relative; // Create positioning context
     }
   }
 } 
